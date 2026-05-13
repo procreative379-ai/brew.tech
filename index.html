@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BREW.TECH — профессиональное оборудование для кофе</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --ink:#0a0a0a;
+    --blue:#0066ff;
+    --blue-soft:rgba(0,102,255,.08);
+    --orange:#ff6b35;
+    --white:#fff;
+    --bg:#f5f5f5;
+    --line:rgba(0,0,0,.08);
+    --line-d:rgba(255,255,255,.08);
+    --mute:#6b6b6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--white);color:var(--ink);font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .container{max-width:1440px;margin:0 auto;padding:0 48px}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+  .eyebrow.light{color:rgba(255,255,255,.6)}
+  .dot-blue{color:var(--blue)}
+
+  /* ================= NAV ================= */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 48px;max-width:1440px;margin:0 auto}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-.01em}
+  .logo .b{color:#000}
+  .logo .dot{color:var(--blue)}
+  .logo .t{color:var(--blue)}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:13.5px;font-weight:500;color:#333;transition:color .15s}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-cta{display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;padding:11px 18px;border-radius:0;font-weight:600;font-size:13px;letter-spacing:.02em}
+  .nav-cta::after{content:"";width:10px;height:10px;border-right:1.5px solid #fff;border-top:1.5px solid #fff;transform:rotate(45deg);margin-left:2px}
+
+  /* ================= HERO ================= */
+  .hero{position:relative;padding:120px 0 100px;background:#fff;overflow:hidden}
+  .hero .container{position:relative;z-index:2}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:end}
+  .hero-stamp{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+  .hero-stamp .dots{display:inline-flex;gap:5px}
+  .hero-stamp .dots span{width:7px;height:7px;background:var(--blue);border-radius:50%}
+  .hero h1{font-weight:800;font-size:clamp(48px,7.6vw,108px);line-height:.92;letter-spacing:-.035em}
+  .hero h1 .accent{color:var(--blue)}
+  .hero h1 .stroke{-webkit-text-stroke:1.5px #000;color:transparent}
+  .hero-below{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;margin-top:64px;align-items:start}
+  .hero-sub{display:flex;flex-direction:column;gap:24px}
+  .hero-sub p{font-size:17px;line-height:1.55;color:#222;max-width:480px}
+  .hero-meta{display:flex;flex-direction:column;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+  .hero-meta-row{display:flex;justify-content:space-between;font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;color:#555}
+  .hero-meta-row b{color:#000;font-weight:600}
+  .hero-ctas{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 24px;font-weight:600;font-size:14px;letter-spacing:.02em;border:none;cursor:pointer;transition:transform .15s ease, background .15s}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:#0052cc}
+  .btn-ghost{background:transparent;color:#000;border:1.5px solid #000}
+  .btn-ghost:hover{background:#000;color:#fff}
+  .btn-orange{background:var(--orange);color:#fff}
+  .btn .arrow{width:14px;height:1.5px;background:currentColor;position:relative}
+  .btn .arrow::after{content:"";position:absolute;right:-1px;top:-4px;width:9px;height:9px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg)}
+
+  /* Hero visual */
+  .hero-visual{width:100%;align-self:stretch}
+  .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent);pointer-events:none}
+
+  /* Coffee machine SVG placeholder */
+  .machine-card{position:relative;background:var(--bg);padding:32px 28px 28px;border:1px solid var(--line)}
+  .machine-card::before,.machine-card::after{content:"";position:absolute;width:22px;height:22px;border:1.5px solid var(--blue)}
+  .machine-card::before{top:0;left:0;border-right:0;border-bottom:0}
+  .machine-card::after{bottom:0;right:0;border-left:0;border-top:0}
+  .machine-label{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:.08em;margin-bottom:18px}
+  .machine-label b{color:#000}
+  .machine-svg{width:100%;height:auto}
+
+  /* Marquee */
+  .marquee{background:#000;color:#fff;padding:22px 0;overflow:hidden;border-top:1px solid #111;border-bottom:1px solid #111}
+  .marquee-track{display:flex;gap:64px;white-space:nowrap;animation:scroll 38s linear infinite;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.18em;text-transform:uppercase}
+  .marquee-track span{display:inline-flex;align-items:center;gap:64px}
+  .marquee-track i{font-style:normal;color:var(--blue)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ================= SECTIONS ================= */
+  section{position:relative}
+  .section-head{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;margin-bottom:64px}
+  .section-head h2{font-weight:800;font-size:clamp(40px,5.4vw,72px);line-height:1;letter-spacing:-.03em;max-width:900px}
+  .section-head h2 .blue{color:var(--blue)}
+  .section-head .idx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);letter-spacing:.1em}
+  .section-head .idx .num{display:block;font-size:64px;line-height:1;color:#000;font-weight:800;margin-top:6px;font-family:'Montserrat',sans-serif}
+
+  /* ================= MISSION ================= */
+  .mission{padding:140px 0;background:#fff;border-top:1px solid var(--line)}
+  .mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+  .mission-quote{font-weight:700;font-size:clamp(32px,3.4vw,44px);line-height:1.12;letter-spacing:-.02em}
+  .mission-quote .hl{background:linear-gradient(transparent 60%,rgba(0,102,255,.16) 60%);padding:0 4px}
+  .mission-body{display:flex;flex-direction:column;gap:24px;font-size:17px;line-height:1.6;color:#333}
+  .mission-body p strong{color:#000;font-weight:600}
+  .mission-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;border-top:1px solid var(--line)}
+  .mission-stat{padding:28px 0;border-right:1px solid var(--line)}
+  .mission-stat:last-child{border-right:0}
+  .mission-stat .v{font-weight:800;font-size:52px;letter-spacing:-.025em}
+  .mission-stat .v .u{color:var(--blue);font-size:32px;vertical-align:top;margin-left:2px}
+  .mission-stat .l{font-size:13px;color:#666;margin-top:4px}
+
+  /* ================= VALUES ================= */
+  .values{padding:140px 0;background:#0a0a0a;color:#fff;position:relative;overflow:hidden}
+  .values .section-head h2{color:#fff}
+  .values .section-head .idx .num{color:#fff}
+  .values-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;opacity:.6}
+  .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)}
+  .value-card{background:#0a0a0a;padding:48px 36px 44px;position:relative;transition:background .25s}
+  .value-card:hover{background:#0e0e0e}
+  .value-card .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);letter-spacing:.1em}
+  .value-card h3{margin:18px 0 14px;font-weight:700;font-size:24px;line-height:1.15;letter-spacing:-.01em}
+  .value-card p{font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.6)}
+  .value-card .corner{position:absolute;top:18px;right:18px;width:18px;height:18px;border-right:1.5px solid var(--blue);border-top:1.5px solid var(--blue)}
+
+  /* ================= PRODUCTS ================= */
+  .products{padding:140px 0;background:var(--bg);position:relative}
+  .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .product{background:#fff;border:1px solid var(--line);padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .product-img{aspect-ratio:5/4;background:#0a0a0a;position:relative;overflow:hidden}
+  .product-img svg{width:100%;height:100%;display:block}
+  .product-tag{position:absolute;top:18px;left:18px;background:var(--blue);color:#fff;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em}
+  .product-spec-bar{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;color:rgba(255,255,255,.65);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em}
+  .product-spec-bar b{color:#fff;font-weight:600}
+  .product-body{padding:32px 28px 28px;display:flex;flex-direction:column;gap:22px;flex:1}
+  .product-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .product-title h3{font-weight:800;font-size:32px;letter-spacing:-.02em}
+  .product-title .price{font-family:'JetBrains Mono',monospace;font-size:13px;color:#666}
+  .product-title .price b{color:#000;font-size:18px;letter-spacing:-.01em;font-family:'Montserrat',sans-serif;font-weight:700}
+  .product p.desc{font-size:14.5px;line-height:1.6;color:#444;max-width:42ch}
+  .product-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);padding-top:20px;margin-top:auto}
+  .product-specs .s{display:flex;flex-direction:column;gap:4px}
+  .product-specs .s .l{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#888;letter-spacing:.08em}
+  .product-specs .s .v{font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .product-cta{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:18px 28px}
+  .product-cta a{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13.5px}
+  .product-cta a .arrow{width:18px;height:1.5px;background:#000;position:relative}
+  .product-cta a .arrow::after{content:"";position:absolute;right:-1px;top:-4px;width:9px;height:9px;border-right:1.5px solid #000;border-top:1.5px solid #000;transform:rotate(45deg)}
+  .product-cta .id{font-family:'JetBrains Mono',monospace;font-size:11px;color:#999}
+
+  /* ================= PLATFORM ================= */
+  .platform{padding:140px 0;background:#fff}
+  .platform-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:24px;border:1px solid var(--line);border-radius:0}
+  .flow-step{padding:48px 36px;border-right:1px solid var(--line);position:relative}
+  .flow-step:last-child{border-right:0}
+  .flow-step .n{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1.5px solid var(--blue);color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:13px;border-radius:50%}
+  .flow-step h4{margin:24px 0 10px;font-weight:700;font-size:24px;letter-spacing:-.01em}
+  .flow-step p{font-size:14.5px;color:#555;line-height:1.55}
+  .flow-step::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);background:#fff;color:var(--blue);font-size:20px;padding:8px;font-weight:300}
+  .flow-step:last-child::after{display:none}
+
+  .platform-quotes{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:80px;border:1px solid var(--line)}
+  .pq{background:#fff;padding:32px 28px;display:flex;flex-direction:column;gap:14px;min-height:200px}
+  .pq .role{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:.1em}
+  .pq .quote{font-weight:600;font-size:18px;line-height:1.3;letter-spacing:-.01em;margin-top:auto}
+
+  /* ================= AUDIENCE ================= */
+  .audience{padding:140px 0;background:#0a0a0a;color:#fff;position:relative;overflow:hidden}
+  .audience .section-head h2,.audience .section-head .idx .num{color:#fff}
+  .aud-diag{position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0,transparent 40px,rgba(255,255,255,.025) 40px,rgba(255,255,255,.025) 41px);pointer-events:none}
+  .aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:2}
+  .aud-card{background:#0e0e0e;border:1px solid rgba(255,255,255,.06);padding:32px 26px 28px;position:relative;transition:transform .25s, border-color .25s}
+  .aud-card:hover{transform:translateY(-4px);border-color:var(--blue)}
+  .aud-card .share{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
+  .aud-card .share .pct{font-weight:800;font-size:44px;letter-spacing:-.025em}
+  .aud-card .share .pct .p{color:var(--blue);font-size:22px;vertical-align:top}
+  .aud-card .share .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.1em}
+  .aud-card h3{font-weight:700;font-size:18px;letter-spacing:-.005em;margin-bottom:14px;line-height:1.2}
+  .aud-card .meta{display:flex;flex-direction:column;gap:6px;padding:14px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:14px}
+  .aud-card .meta div{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px}
+  .aud-card .meta div span:first-child{color:rgba(255,255,255,.45)}
+  .aud-card .meta div span:last-child{color:#fff;font-weight:500}
+  .aud-card p{font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.6)}
+  .aud-bar{height:3px;background:rgba(255,255,255,.06);margin-top:18px;position:relative;overflow:hidden}
+  .aud-bar i{display:block;height:100%;background:var(--blue);transform-origin:left}
+
+  /* ================= TECH SPECS ================= */
+  .tech{padding:140px 0;background:#fff}
+  .tech-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:start}
+  .tech-visual{position:relative;background:#0a0a0a;padding:40px;aspect-ratio:1/1;overflow:hidden}
+  .tech-visual::before{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.08);pointer-events:none}
+  .tech-visual svg{width:100%;height:100%}
+  .tech-callout{position:absolute;background:rgba(255,255,255,.04);backdrop-filter:blur(8px);border:1px solid rgba(0,102,255,.4);padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#fff;letter-spacing:.05em}
+  .tech-callout b{color:var(--blue);display:block;font-size:10px;letter-spacing:.12em;font-weight:500}
+  .tech-callout .v{font-size:14px;color:#fff;font-weight:600;margin-top:2px}
+  .tech-callout::before{content:"";position:absolute;width:8px;height:8px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 4px rgba(0,102,255,.2)}
+  .tc1{top:14%;left:46%}.tc1::before{left:-30px;top:14px}
+  .tc2{top:42%;right:6%}.tc2::before{left:-30px;top:14px}
+  .tc3{bottom:14%;left:8%}.tc3::before{right:-30px;top:14px}
+
+  .tech-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+  .tech-row{display:grid;grid-template-columns:60px 1fr 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:center}
+  .tech-row .i{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:.1em}
+  .tech-row .k{font-weight:600;font-size:17px;letter-spacing:-.005em}
+  .tech-row .v{font-family:'JetBrains Mono',monospace;font-size:14px;color:#333;text-align:right}
+
+  /* ================= PRICE / CTA ================= */
+  .price{padding:140px 0;background:var(--bg)}
+  .price-card{background:#fff;border:1px solid var(--line);padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative}
+  .price-card::before{content:"";position:absolute;top:0;left:0;width:6px;height:64px;background:var(--blue)}
+  .price-card h2{font-weight:800;font-size:48px;letter-spacing:-.025em;line-height:1.05}
+  .price-card h2 .blue{color:var(--blue)}
+  .price-card p{margin-top:18px;color:#444;font-size:15.5px;line-height:1.6}
+  .price-breakdown{display:flex;flex-direction:column;gap:14px}
+  .price-line{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+  .price-line .l{font-size:14px;color:#555;font-family:'JetBrains Mono',monospace}
+  .price-line .v{font-weight:600;font-size:16px}
+  .price-line.tot{border-bottom:0;border-top:1.5px solid #000;padding-top:14px;margin-top:6px}
+  .price-line.tot .l{color:#000;font-weight:700;font-family:'Montserrat',sans-serif;font-size:15px}
+  .price-line.tot .v{font-size:22px;letter-spacing:-.01em}
+  .price-honest{margin-top:18px;font-size:12px;color:#888;font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+
+  /* ================= CONTACT ================= */
+  .contact{padding:140px 0 120px;background:#000;color:#fff;position:relative;overflow:hidden}
+  .contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:center}
+  .contact h2{font-weight:800;font-size:clamp(48px,7vw,104px);line-height:.95;letter-spacing:-.03em}
+  .contact h2 .blue{color:var(--blue)}
+  .contact h2 .o{color:var(--orange)}
+  .contact .sub{margin-top:24px;font-size:18px;line-height:1.5;color:rgba(255,255,255,.6);max-width:480px}
+  .contact-form{background:#0a0a0a;border:1px solid rgba(255,255,255,.08);padding:36px}
+  .contact-form .row{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+  .contact-form label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:.12em}
+  .contact-form input,.contact-form select{background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);color:#fff;font-size:16px;font-family:'Montserrat',sans-serif;padding:8px 0;outline:none}
+  .contact-form input:focus,.contact-form select:focus{border-bottom-color:var(--blue)}
+  .contact-form select option{background:#0a0a0a;color:#fff}
+  .contact-form button{width:100%;background:var(--orange);color:#fff;padding:18px;border:0;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;margin-top:6px;transition:background .15s}
+  .contact-form button:hover{background:#e85a26}
+
+  /* ================= FOOTER ================= */
+  footer{background:#000;color:#fff;border-top:1px solid rgba(255,255,255,.08);padding:48px 0 32px}
+  .foot{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px;align-items:start}
+  .foot .logo{font-size:24px;color:#fff}
+  .foot p{margin-top:14px;color:rgba(255,255,255,.5);font-size:13px;line-height:1.55;max-width:280px}
+  .foot h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--blue);margin-bottom:14px}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .foot ul a{color:rgba(255,255,255,.7);font-size:14px}
+  .foot ul a:hover{color:var(--blue)}
+  .foot-bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.08em}
+
+  /* ================= UTILITIES ================= */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:1024px){
+    .container,.nav-inner{padding-left:24px;padding-right:24px}
+    .hero-grid,.hero-below,.mission-grid,.tech-wrap,.contact-grid,.price-card{grid-template-columns:1fr;gap:40px}
+    .product-grid,.values-grid{grid-template-columns:1fr}
+    .platform-flow{grid-template-columns:1fr}
+    .platform-flow .flow-step{border-right:0;border-bottom:1px solid var(--line)}
+    .platform-flow .flow-step::after{display:none}
+    .platform-quotes,.aud-grid{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .section-head{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" data-screen-label="Nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo"><span class="b">BREW</span><span class="dot">.</span><span class="t">TECH</span></a>
+    <div class="nav-links">
+      <a href="#products">Оборудование</a>
+      <a href="#platform">Платформа</a>
+      <a href="#mission">Миссия</a>
+      <a href="#audience">Кому подходит</a>
+      <a href="#price">Цена</a>
+    </div>
+    <a href="#contact" class="nav-cta">Запросить демо</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top" data-screen-label="01 Hero">
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-stamp">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span class="eyebrow">профессиональное оборудование для кофе</span>
+        </div>
+        <h1>
+          Машина,<br>
+          <span class="stroke">которая</span><br>
+          судит<br>
+          о&nbsp;кофе <span class="accent">.</span>
+        </h1>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="machine-card">
+      <div class="machine-label">
+        <span><b>BT-PRO/01</b> · ESPRESSO MACHINE</span>
+        <span>v3.2 / 2026</span>
+      </div>
+      <svg class="machine-svg" viewBox="0 0 520 540" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid1" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,0,0,.05)" stroke-width="1"/>
+          </pattern>
+          <linearGradient id="bodyG" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#1a1a1a"/>
+            <stop offset="1" stop-color="#000"/>
+          </linearGradient>
+          <linearGradient id="screenG" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#0066ff" stop-opacity=".25"/>
+            <stop offset="1" stop-color="#0066ff" stop-opacity=".05"/>
+          </linearGradient>
+        </defs>
+        <rect width="520" height="540" fill="url(#grid1)"/>
+        <!-- base -->
+        <rect x="60" y="430" width="400" height="60" fill="#0a0a0a"/>
+        <rect x="60" y="490" width="400" height="6" fill="#0066ff"/>
+        <!-- body -->
+        <rect x="90" y="80" width="340" height="360" rx="6" fill="url(#bodyG)"/>
+        <!-- screen -->
+        <rect x="120" y="110" width="280" height="100" rx="4" fill="url(#screenG)" stroke="#0066ff" stroke-width="1"/>
+        <text x="135" y="138" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">TEMP 93.5°C · 9 BAR</text>
+        <text x="135" y="160" fill="#fff" font-family="Montserrat,sans-serif" font-size="28" font-weight="800">ESPRESSO</text>
+        <text x="135" y="186" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2">PROFILE 03 / 25.0 SEC</text>
+        <!-- portafilters -->
+        <g transform="translate(140,240)">
+          <rect width="100" height="14" rx="2" fill="#222"/>
+          <rect x="20" y="14" width="60" height="40" rx="3" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+          <rect x="36" y="54" width="28" height="6" fill="#0066ff"/>
+        </g>
+        <g transform="translate(280,240)">
+          <rect width="100" height="14" rx="2" fill="#222"/>
+          <rect x="20" y="14" width="60" height="40" rx="3" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+          <rect x="36" y="54" width="28" height="6" fill="#0066ff"/>
+        </g>
+        <!-- steam wands -->
+        <line x1="100" y1="240" x2="100" y2="380" stroke="#444" stroke-width="3"/>
+        <line x1="420" y1="240" x2="420" y2="380" stroke="#444" stroke-width="3"/>
+        <!-- cups -->
+        <ellipse cx="190" cy="400" rx="34" ry="6" fill="#222"/>
+        <rect x="160" y="370" width="60" height="32" rx="2" fill="#fff"/>
+        <ellipse cx="330" cy="400" rx="34" ry="6" fill="#222"/>
+        <rect x="300" y="370" width="60" height="32" rx="2" fill="#fff"/>
+        <!-- buttons -->
+        <circle cx="160" cy="335" r="6" fill="#0066ff"/>
+        <circle cx="180" cy="335" r="6" fill="#333"/>
+        <circle cx="340" cy="335" r="6" fill="#333"/>
+        <circle cx="360" cy="335" r="6" fill="#0066ff"/>
+        <!-- logo -->
+        <text x="260" y="465" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="13" font-weight="800" letter-spacing="2">BREW<tspan fill="#0066ff">.</tspan>TECH</text>
+      </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-below">
+      <div class="hero-sub">
+        <p>BREW.TECH — для тех, кто судит о&nbsp;кофе по&nbsp;вкусу, а&nbsp;не&nbsp;по&nbsp;бюджету на&nbsp;оборудование. Надёжные технологичные решения по&nbsp;справедливым ценам.</p>
+        <div class="hero-ctas">
+          <a href="#products" class="btn btn-primary">Смотреть оборудование <span class="arrow"></span></a>
+          <a href="#contact" class="btn btn-ghost">Запросить демо</a>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-row"><span>СОБРАНО В РФ</span><b>MOSCOW · NIZHNY · KAZAN</b></div>
+        <div class="hero-meta-row"><span>ГАРАНТИЯ</span><b>36 МЕСЯЦЕВ · 24/7 SUPPORT</b></div>
+        <div class="hero-meta-row"><span>ПЛАТФОРМА</span><b>OTA UPDATE · OPEN API v2.1</b></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>ТЕХНОЛОГИЯ <i>·</i> МИНИМАЛИЗМ <i>·</i> НАДЁЖНОСТЬ <i>·</i> ДОСТУПНАЯ ТЕХНОЛОГИЧНОСТЬ <i>·</i> ПРОЗРАЧНАЯ ЦЕНА <i>·</i> 24/7 ПОДДЕРЖКА <i>·</i></span>
+    <span>ТЕХНОЛОГИЯ <i>·</i> МИНИМАЛИЗМ <i>·</i> НАДЁЖНОСТЬ <i>·</i> ДОСТУПНАЯ ТЕХНОЛОГИЧНОСТЬ <i>·</i> ПРОЗРАЧНАЯ ЦЕНА <i>·</i> 24/7 ПОДДЕРЖКА <i>·</i></span>
+  </div>
+</div>
+
+<!-- ================= MISSION ================= -->
+<section class="mission" id="mission" data-screen-label="02 Mission">
+  <div class="container">
+    <div class="section-head">
+      <div class="idx">[ MISSION ]<span class="num">01</span></div>
+      <h2>Аттестат зрелости рынка, где главное — <span class="blue">профессионализм</span>, а не платёжеспособность.</h2>
+    </div>
+    <div class="mission-grid">
+      <div>
+        <p class="mission-quote">Мы верим, что качественное оборудование <span class="hl">не должно быть дорогим</span>.</p>
+        <div class="mission-stats">
+          <div class="mission-stat"><div class="v">−42<span class="u">%</span></div><div class="l">к&nbsp;цене западных аналогов</div></div>
+          <div class="mission-stat"><div class="v">99.4<span class="u">%</span></div><div class="l">аптайм за&nbsp;первый год</div></div>
+          <div class="mission-stat"><div class="v">36<span class="u">мес</span></div><div class="l">гарантия на&nbsp;каждый узел</div></div>
+        </div>
+      </div>
+      <div class="mission-body">
+        <p><strong>BREW.TECH предоставляет надёжные технологичные решения по&nbsp;справедливым ценам</strong>, позволяя малым и&nbsp;средним кофейням конкурировать с&nbsp;крупными сетями на&nbsp;равных.</p>
+        <p>Мы не&nbsp;скрываем цену — мы&nbsp;объясняем её. Никаких скрытых наценок: только реальные расходы&nbsp;— детали, зарплаты инженеров, доставка&nbsp;— плюс честная прибыль.</p>
+        <p>Каждая машина BREW.TECH&nbsp;— это платформа для экспериментирования, где каждый бариста становится инженером своего кофе.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VALUES ================= -->
+<section class="values" data-screen-label="03 Values">
+  <div class="values-dots"></div>
+  <div class="container">
+    <div class="section-head">
+      <div class="idx" style="color:#0066ff">[ VALUES ]<span class="num">02</span></div>
+      <h2>Три принципа,<br>на которых стоит<br>каждая <span class="blue">машина</span>.</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="corner"></span>
+        <div class="num">/ 001</div>
+        <h3>Доступная технологичность</h3>
+        <p>Профессиональные узлы, прошивки и&nbsp;термостабильность&nbsp;— по&nbsp;цене, которая открывает рынок для независимых кофеен и&nbsp;молодых бариста.</p>
+      </div>
+      <div class="value-card">
+        <span class="corner"></span>
+        <div class="num">/ 002</div>
+        <h3>Прозрачность цены</h3>
+        <p>Мы&nbsp;показываем структуру стоимости открыто: детали, зарплата инженерам, доставка, честная прибыль. Никаких маркетинговых наценок «за&nbsp;бренд».</p>
+      </div>
+      <div class="value-card">
+        <span class="corner"></span>
+        <div class="num">/ 003</div>
+        <h3>Профессионализм</h3>
+        <p>Каждая машина проходит 142&nbsp;точки контроля. Каждое обновление&nbsp;— это инженерный диалог с&nbsp;бариста и&nbsp;владельцами кофеен.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="products" id="products" data-screen-label="04 Products">
+  <div class="container">
+    <div class="section-head">
+      <div class="idx">[ PRODUCTS ]<span class="num">03</span></div>
+      <h2>Линейка оборудования <span class="blue">2026</span>.<br>Каждая машина&nbsp;— платформа.</h2>
+    </div>
+    <div class="product-grid">
+      <!-- Pro Espresso -->
+      <div class="product">
+        <div class="product-img">
+          <span class="product-tag">FLAGSHIP</span>
+          <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dotPattern" width="14" height="14" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.08)"/>
+              </pattern>
+              <linearGradient id="bg1" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#0e0e0e"/><stop offset="1" stop-color="#000"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="480" fill="url(#bg1)"/>
+            <rect width="600" height="480" fill="url(#dotPattern)"/>
+            <!-- machine -->
+            <g transform="translate(150,70)">
+              <rect width="300" height="320" rx="8" fill="#1a1a1a" stroke="#2a2a2a"/>
+              <rect x="30" y="30" width="240" height="80" rx="4" fill="#000"/>
+              <rect x="30" y="30" width="240" height="80" rx="4" fill="#0066ff" fill-opacity=".12"/>
+              <text x="50" y="58" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2">PROFILE 03 / DOUBLE</text>
+              <text x="50" y="86" fill="#fff" font-family="Montserrat,sans-serif" font-size="26" font-weight="800">ESPRESSO</text>
+              <line x1="30" y1="130" x2="270" y2="130" stroke="#2a2a2a"/>
+              <!-- dials -->
+              <circle cx="80" cy="180" r="22" fill="#0a0a0a" stroke="#333"/>
+              <circle cx="80" cy="180" r="3" fill="#0066ff"/>
+              <line x1="80" y1="180" x2="92" y2="168" stroke="#fff" stroke-width="2"/>
+              <circle cx="220" cy="180" r="22" fill="#0a0a0a" stroke="#333"/>
+              <circle cx="220" cy="180" r="3" fill="#0066ff"/>
+              <line x1="220" y1="180" x2="232" y2="172" stroke="#fff" stroke-width="2"/>
+              <!-- group heads -->
+              <rect x="60" y="220" width="80" height="50" rx="3" fill="#0a0a0a"/>
+              <rect x="160" y="220" width="80" height="50" rx="3" fill="#0a0a0a"/>
+              <rect x="92" y="270" width="16" height="20" fill="#0066ff"/>
+              <rect x="192" y="270" width="16" height="20" fill="#0066ff"/>
+              <text x="150" y="305" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="11" font-weight="800" letter-spacing="2">BREW<tspan fill="#0066ff">.</tspan>TECH</text>
+            </g>
+          </svg>
+          <div class="product-spec-bar">
+            <span>FLAGSHIP / DUAL BOILER</span>
+            <b>PRO ESPRESSO</b>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-title">
+            <h3>Pro Espresso</h3>
+            <div class="price"><b>489 000 ₽</b> / без НДС</div>
+          </div>
+          <p class="desc">Двухгруппная профессиональная машина с&nbsp;двойным PID-котлом, 12&nbsp;программируемыми профилями давления и&nbsp;открытым API для интеграции с&nbsp;кассой.</p>
+          <div class="product-specs">
+            <div class="s"><span class="l">КОТЁЛ</span><span class="v">2× 1.8L</span></div>
+            <div class="s"><span class="l">ДАВЛЕНИЕ</span><span class="v">9–15 bar</span></div>
+            <div class="s"><span class="l">ПРОФИЛИ</span><span class="v">12 × OTA</span></div>
+          </div>
+        </div>
+        <div class="product-cta">
+          <span class="id mono">SKU · BT-PRO-2X</span>
+          <a href="#contact">Заказать <span class="arrow"></span></a>
+        </div>
+      </div>
+
+      <!-- Grinder -->
+      <div class="product">
+        <div class="product-img">
+          <span class="product-tag">NEW · 2026</span>
+          <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bg2" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#0066ff" stop-opacity=".25"/>
+                <stop offset="1" stop-color="#000"/>
+              </linearGradient>
+              <pattern id="diag" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(255,255,255,.05)"/>
+              </pattern>
+            </defs>
+            <rect width="600" height="480" fill="#0a0a0a"/>
+            <rect width="600" height="480" fill="url(#bg2)"/>
+            <rect width="600" height="480" fill="url(#diag)"/>
+            <!-- grinder -->
+            <g transform="translate(220,60)">
+              <rect width="160" height="80" rx="6" fill="#1a1a1a" stroke="#333"/>
+              <ellipse cx="80" cy="20" rx="60" ry="10" fill="#0a0a0a" stroke="#333"/>
+              <ellipse cx="80" cy="20" rx="40" ry="6" fill="#0066ff" fill-opacity=".25"/>
+              <rect x="20" y="80" width="120" height="160" rx="4" fill="#1a1a1a" stroke="#333"/>
+              <rect x="40" y="110" width="80" height="40" rx="3" fill="#000"/>
+              <text x="80" y="135" text-anchor="middle" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="14">14.2g</text>
+              <circle cx="80" cy="180" r="18" fill="#0a0a0a" stroke="#0066ff"/>
+              <circle cx="80" cy="180" r="3" fill="#0066ff"/>
+              <line x1="80" y1="180" x2="92" y2="172" stroke="#fff" stroke-width="2"/>
+              <rect x="50" y="220" width="60" height="10" fill="#0066ff"/>
+              <!-- spout -->
+              <rect x="65" y="240" width="30" height="40" fill="#1a1a1a" stroke="#333"/>
+              <rect x="60" y="280" width="40" height="8" fill="#0a0a0a"/>
+              <!-- portafilter cradle -->
+              <rect x="40" y="300" width="80" height="20" fill="#0a0a0a"/>
+              <text x="80" y="345" text-anchor="middle" fill="#fff" font-family="Montserrat,sans-serif" font-size="10" font-weight="800" letter-spacing="2">BREW<tspan fill="#0066ff">.</tspan>TECH</text>
+            </g>
+          </svg>
+          <div class="product-spec-bar">
+            <span>FLAT BURR / GRAVIMETRIC</span>
+            <b>PRO GRINDER</b>
+          </div>
+        </div>
+        <div class="product-body">
+          <div class="product-title">
+            <h3>Pro Grinder</h3>
+            <div class="price"><b>189 000 ₽</b> / без НДС</div>
+          </div>
+          <p class="desc">Кофемолка с&nbsp;плоскими 75&nbsp;мм жерновами, гравиметрическим дозированием с&nbsp;точностью ±0.1&nbsp;г и&nbsp;бесшумным двигателем 1500W.</p>
+          <div class="product-specs">
+            <div class="s"><span class="l">ЖЕРНОВА</span><span class="v">Flat 75mm</span></div>
+            <div class="s"><span class="l">ТОЧНОСТЬ</span><span class="v">±0.1 g</span></div>
+            <div class="s"><span class="l">УРОВЕНЬ ШУМА</span><span class="v">62 dB</span></div>
+          </div>
+        </div>
+        <div class="product-cta">
+          <span class="id mono">SKU · BT-GR-75</span>
+          <a href="#contact">Заказать <span class="arrow"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLATFORM ================= -->
+<section class="platform" id="platform" data-screen-label="05 Platform">
+  <div class="container">
+    <div class="section-head">
+      <div class="idx">[ PLATFORM ]<span class="num">04</span></div>
+      <h2>Это не&nbsp;просто машина.<br>Это <span class="blue">платформа</span> для экспериментов.</h2>
+    </div>
+    <div class="platform-flow">
+      <div class="flow-step">
+        <div class="n">01</div>
+        <h4>Твоя идея</h4>
+        <p>Бариста замечает, что профиль давления можно улучшить, а&nbsp;владелец&nbsp;— что отчёт о&nbsp;расходе зерна должен выгружаться в&nbsp;1С.</p>
+      </div>
+      <div class="flow-step">
+        <div class="n">02</div>
+        <h4>Наше обновление</h4>
+        <p>Команда BREW.TECH принимает запрос, инженеры пишут прошивку. OTA-обновление прилетает на&nbsp;все машины линейки одновременно.</p>
+      </div>
+      <div class="flow-step">
+        <div class="n">03</div>
+        <h4>Твоя машина</h4>
+        <p>Машина становится умнее с&nbsp;каждым месяцем эксплуатации. То, что вчера было идеей&nbsp;— завтра приносит выручку.</p>
+      </div>
+    </div>
+
+    <div class="platform-quotes">
+      <div class="pq"><span class="role">// ВЛАДЕЛЬЦЫ</span><p class="quote">«Окупается не&nbsp;низкой ценой, а&nbsp;своей надёжностью.»</p></div>
+      <div class="pq"><span class="role">// БАРИСТА</span><p class="quote">«Твой инструмент. Твои правила.»</p></div>
+      <div class="pq"><span class="role">// РЕСТОРАТОРЫ</span><p class="quote">«Кофе, который не&nbsp;требует внимания.»</p></div>
+      <div class="pq"><span class="role">// ЭНТУЗИАСТЫ</span><p class="quote">«Лаборатория для экспериментов.»</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AUDIENCE ================= -->
+<section class="audience" id="audience" data-screen-label="06 Audience">
+  <div class="aud-diag"></div>
+  <div class="container">
+    <div class="section-head">
+      <div class="idx">[ AUDIENCE ]<span class="num">05</span></div>
+      <h2>Для тех,<br>кто <span class="blue">варит</span> всерьёз.</h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card">
+        <div class="share"><div class="pct">40<span class="p">%</span></div><div class="num">/ A.01</div></div>
+        <h3>Владельцы кофеен</h3>
+        <div class="meta">
+          <div><span>возраст</span><span>25–50</span></div>
+          <div><span>доход</span><span>средний+</span></div>
+          <div><span>сегмент</span><span>SMB</span></div>
+        </div>
+        <p>Предприниматели в&nbsp;поиске баланса цены и&nbsp;качества. Боятся высоких затрат и&nbsp;простоев оборудования.</p>
+        <div class="aud-bar"><i style="width:40%"></i></div>
+      </div>
+
+      <div class="aud-card">
+        <div class="share"><div class="pct">35<span class="p">%</span></div><div class="num">/ A.02</div></div>
+        <h3>Профессиональные бариста</h3>
+        <div class="meta">
+          <div><span>возраст</span><span>20–40</span></div>
+          <div><span>опыт</span><span>3+ года</span></div>
+          <div><span>профиль</span><span>спешелти</span></div>
+        </div>
+        <p>Перфекционисты, ценят технологию. Понимают, что некачественное железо влияет на&nbsp;вкус кофе.</p>
+        <div class="aud-bar"><i style="width:35%"></i></div>
+      </div>
+
+      <div class="aud-card">
+        <div class="share"><div class="pct">15<span class="p">%</span></div><div class="num">/ A.03</div></div>
+        <h3>Рестораны и&nbsp;кафе</h3>
+        <div class="meta">
+          <div><span>размер</span><span>малые / средние</span></div>
+          <div><span>фокус</span><span>надёжность</span></div>
+          <div><span>график</span><span>14/7</span></div>
+        </div>
+        <p>Нужно надёжное оборудование, простое в&nbsp;использовании и&nbsp;обслуживании персоналом без долгого обучения.</p>
+        <div class="aud-bar"><i style="width:15%"></i></div>
+      </div>
+
+      <div class="aud-card">
+        <div class="share"><div class="pct">10<span class="p">%</span></div><div class="num">/ A.04</div></div>
+        <h3>Гостиницы и&nbsp;отели</h3>
+        <div class="meta">
+          <div><span>уровень</span><span>3–5 звёзд</span></div>
+          <div><span>гость</span><span>требователен</span></div>
+          <div><span>интеграция</span><span>PMS / API</span></div>
+        </div>
+        <p>Профессиональный уровень кофе для гостей&nbsp;— без сложности обучения линейного персонала.</p>
+        <div class="aud-bar"><i style="width:10%"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TECH SPECS ================= -->
+<section class="tech" data-screen-label="07 Tech">
+  <div class="container">
+    <div class="section-head">
+      <div class="idx">[ TECHNOLOGY ]<span class="num">06</span></div>
+      <h2>Инженерия,<br>а не <span class="blue">маркетинг</span>.</h2>
+    </div>
+    <div class="tech-wrap">
+      <div class="tech-visual">
+        <svg viewBox="0 0 460 460" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="gloR" cx=".5" cy=".5" r=".55">
+              <stop offset="0" stop-color="#0066ff" stop-opacity=".25"/>
+              <stop offset="1" stop-color="#0066ff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="230" cy="230" r="180" fill="url(#gloR)"/>
+          <circle cx="230" cy="230" r="170" fill="none" stroke="rgba(0,102,255,.18)" stroke-dasharray="2 6"/>
+          <circle cx="230" cy="230" r="130" fill="none" stroke="rgba(255,255,255,.06)"/>
+          <circle cx="230" cy="230" r="90" fill="none" stroke="rgba(255,255,255,.06)"/>
+          <!-- machine schematic -->
+          <g transform="translate(130,110)" stroke="#fff" stroke-opacity=".3" fill="none">
+            <rect width="200" height="230" rx="6"/>
+            <rect x="20" y="22" width="160" height="56" rx="2" fill="rgba(0,102,255,.12)" stroke="#0066ff" stroke-opacity=".6"/>
+            <line x1="20" y1="100" x2="180" y2="100"/>
+            <circle cx="60" cy="140" r="18"/>
+            <circle cx="140" cy="140" r="18"/>
+            <circle cx="60" cy="140" r="3" fill="#0066ff"/>
+            <circle cx="140" cy="140" r="3" fill="#0066ff"/>
+            <rect x="40" y="175" width="40" height="34"/>
+            <rect x="120" y="175" width="40" height="34"/>
+            <line x1="100" y1="210" x2="100" y2="225"/>
+          </g>
+          <!-- annotation lines -->
+          <line x1="280" y1="142" x2="340" y2="120" stroke="#0066ff" stroke-opacity=".5" stroke-dasharray="2 3"/>
+          <line x1="320" y1="260" x2="380" y2="280" stroke="#0066ff" stroke-opacity=".5" stroke-dasharray="2 3"/>
+          <line x1="170" y1="330" x2="100" y2="360" stroke="#0066ff" stroke-opacity=".5" stroke-dasharray="2 3"/>
+        </svg>
+        <div class="tech-callout tc1"><b>// DISPLAY</b><div class="v">5.0" IPS · 60Hz</div></div>
+        <div class="tech-callout tc2"><b>// GROUP HEAD</b><div class="v">E61 + PID 0.1°C</div></div>
+        <div class="tech-callout tc3"><b>// API</b><div class="v">REST v2.1 · MQTT</div></div>
+      </div>
+      <div>
+        <div class="tech-list">
+          <div class="tech-row"><span class="i">/ 01</span><span class="k">PID-термостабильность котла</span><span class="v">± 0.2 °C</span></div>
+          <div class="tech-row"><span class="i">/ 02</span><span class="k">Программируемые профили давления</span><span class="v">12 × OTA</span></div>
+          <div class="tech-row"><span class="i">/ 03</span><span class="k">Открытый API для кассы и&nbsp;PMS</span><span class="v">REST v2.1</span></div>
+          <div class="tech-row"><span class="i">/ 04</span><span class="k">Удалённая диагностика 24/7</span><span class="v">MQTT</span></div>
+          <div class="tech-row"><span class="i">/ 05</span><span class="k">Контроль износа жерновов</span><span class="v">live counter</span></div>
+          <div class="tech-row"><span class="i">/ 06</span><span class="k">Локальный сервис в&nbsp;14&nbsp;городах РФ</span><span class="v">≤ 48 h SLA</span></div>
+          <div class="tech-row"><span class="i">/ 07</span><span class="k">Запчасти на&nbsp;складе</span><span class="v">7 500 SKU</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICE ================= -->
+<section class="price" id="price" data-screen-label="08 Price">
+  <div class="container">
+    <div class="price-card">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px">[ PRICE TRANSPARENCY ]</div>
+        <h2>Мы не&nbsp;скрываем цену.<br>Мы <span class="blue">объясняем</span> её.</h2>
+        <p>Никаких маркетинговых наценок «за&nbsp;бренд». Только реальные расходы плюс честная инженерная прибыль. Так выглядит каждая Pro&nbsp;Espresso:</p>
+      </div>
+      <div class="price-breakdown">
+        <div class="price-line"><span class="l">// детали и&nbsp;компоненты</span><span class="v">312 000 ₽</span></div>
+        <div class="price-line"><span class="l">// зарплата инженерам</span><span class="v">88 000 ₽</span></div>
+        <div class="price-line"><span class="l">// сборка и&nbsp;ОТК</span><span class="v">26 000 ₽</span></div>
+        <div class="price-line"><span class="l">// доставка</span><span class="v">14 000 ₽</span></div>
+        <div class="price-line"><span class="l">// честная прибыль (≈10%)</span><span class="v">49 000 ₽</span></div>
+        <div class="price-line tot"><span class="l">Pro Espresso · итого</span><span class="v">489 000 ₽</span></div>
+        <div class="price-honest">// аналог западного бренда: 840 000 — 980 000 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact" data-screen-label="09 Contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="eyebrow light" style="margin-bottom:24px">[ GET IN TOUCH / 07 ]</div>
+        <h2>Запросить<br><span class="blue">демо</span><br>в&nbsp;вашей<br>кофейне<span class="o">.</span></h2>
+        <p class="sub">Мы привезём Pro&nbsp;Espresso, поставим рядом с&nbsp;вашей текущей машиной и&nbsp;дадим бариста сварить пять чашек. Сравнение&nbsp;— честное.</p>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='ЗАПРОС ОТПРАВЛЕН';this.querySelector('button').style.background='#0066ff';">
+        <div class="row"><label>// ИМЯ И&nbsp;ФАМИЛИЯ</label><input type="text" placeholder="Алексей Петров" required></div>
+        <div class="row"><label>// ТЕЛЕФОН</label><input type="tel" placeholder="+7 (___) ___–__–__" required></div>
+        <div class="row"><label>// ТИП ЗАВЕДЕНИЯ</label>
+          <select>
+            <option>Кофейня — independent</option>
+            <option>Кофейня — сеть</option>
+            <option>Ресторан / кафе</option>
+            <option>Отель / гостиница</option>
+            <option>Энтузиаст / лаборатория</option>
+          </select>
+        </div>
+        <div class="row"><label>// ГОРОД</label><input type="text" placeholder="Москва"></div>
+        <button type="submit">Запросить демо →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer data-screen-label="10 Footer">
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="logo"><span style="color:#fff">BREW</span><span style="color:#0066ff">.</span><span style="color:#0066ff">TECH</span></div>
+        <p>Профессиональное оборудование для кофе. Технология. Минимализм. Надёжность. Собрано и&nbsp;поддерживается в&nbsp;России.</p>
+      </div>
+      <div>
+        <h5>// ОБОРУДОВАНИЕ</h5>
+        <ul>
+          <li><a href="#products">Pro Espresso</a></li>
+          <li><a href="#products">Pro Grinder</a></li>
+          <li><a href="#">Аксессуары</a></li>
+          <li><a href="#">Запчасти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>// КОМПАНИЯ</h5>
+        <ul>
+          <li><a href="#mission">Миссия</a></li>
+          <li><a href="#platform">Платформа</a></li>
+          <li><a href="#price">Прозрачная цена</a></li>
+          <li><a href="#">Карьера</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>// КОНТАКТЫ</h5>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#ef878a838380af8d9d8a98c19b8a8c87"><span class="__cf_email__" data-cfemail="a7cfc2cbcbc8e7c5d5c2d089d3c2c4cf">[email&#160;protected]</span></a></li>
+          <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+          <li><a href="#">Москва, Нижний, Казань</a></li>
+          <li><a href="#">Telegram · WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 BREW.TECH · ВСЕ ПРАВА ЗАЩИЩЕНЫ</span>
+      <span>BUILD 2026.05 · MOSCOW / NIZHNY / KAZAN</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{threshold:.12});
+  document.querySelectorAll('section, .machine-card, .product, .aud-card, .value-card, .flow-step, .pq').forEach(el=>{el.classList.add('reveal');io.observe(el);});
+</script>
+</body>
+</html>
