@@ -96,6 +96,7 @@
             <li><a href="index.html#price">Прозрачная цена</a></li>
             <li><a href="articles.html">Статьи</a></li>
             <li><a href="index.html#buy">Где купить</a></li>
+            <li><a href="https://disk.yandex.ru/i/XuidxsI_v73MfA" target="_blank" rel="noopener">Брендбук ↗</a></li>
           </ul>
         </div>
         <div>
