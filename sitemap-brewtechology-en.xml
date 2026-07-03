@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+
+  <!-- Homepage (English) -->
+  <url>
+    <loc>https://brewtechology.ru/index-en.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Coffee Machine Page -->
+  <url>
+    <loc>https://brewtechology.ru/machine-en.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://brewtechology.ru/machine-illustration.svg</image:loc>
+      <image:title>Pro Espresso - Professional Coffee Machine by BREW.TECH</image:title>
+      <image:caption>Dual-group professional espresso machine with PID temperature control</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Grinder Page -->
+  <url>
+    <loc>https://brewtechology.ru/grinder-en.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://brewtechology.ru/grinder-illustration.svg</image:loc>
+      <image:title>Pro Grinder - Professional Coffee Grinder by BREW.TECH</image:title>
+      <image:caption>Coffee grinder with 75mm flat burrs and weight-based dosing</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Articles Page -->
+  <url>
+    <loc>https://brewtechology.ru/articles-en.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Error 404 Page -->
+  <url>
+    <loc>https://brewtechology.ru/404-en.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Hreflang for language alternates -->
+  <url>
+    <loc>https://brewtechology.ru/index-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brewtechology.ru/index-en.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brewtechology.ru/index.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brewtechology.ru/index.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+  </url>
+
+  <url>
+    <loc>https://brewtechology.ru/machine-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brewtechology.ru/machine-en.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brewtechology.ru/machine.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+  </url>
+
+  <url>
+    <loc>https://brewtechology.ru/grinder-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brewtechology.ru/grinder-en.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brewtechology.ru/grinder.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+  </url>
+
+</urlset>

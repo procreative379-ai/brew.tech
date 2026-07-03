@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru" data-page="machine" data-nav="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pro Espresso — кофемашина BREW.TECH</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109249350', 'ym');
+    ym(109249350, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109249350" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<style>
+:root{--black:#000;--ink:#0a0a0a;--blue:#0066ff;--white:#fff;--bg:#f5f5f5;--line:rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--white);color:var(--ink);font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:1440px;margin:0 auto;padding:0 48px}
+
+/* ===== PRODUCT HERO ===== */
+.product-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%);color:#fff;padding:80px 0 120px;position:relative;overflow:hidden}
+.product-hero::before{content:'';position:absolute;top:-40%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,102,255,.15) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.product-hero .container{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
+.product-hero-content h1{font-size:clamp(36px,5vw,72px);font-weight:900;line-height:1.1;margin-bottom:20px;letter-spacing:-.03em}
+.product-hero-content .model{font-family:'JetBrains Mono',monospace;color:#0066ff;font-size:14px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:30px}
+.product-hero-content p{font-size:18px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:40px;max-width:500px}
+.product-specs-mini{display:flex;flex-direction:column;gap:16px;margin-bottom:40px}
+.spec-item{display:flex;align-items:center;gap:12px;font-size:15px}
+.spec-icon{width:24px;height:24px;background:rgba(0,102,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.spec-icon::after{content:'✓';color:#0066ff;font-weight:900;font-size:12px}
+.price-block{background:rgba(0,102,255,.1);border:1px solid rgba(0,102,255,.3);border-radius:8px;padding:24px;margin:30px 0;backdrop-filter:blur(10px)}
+.price-block .price-label{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:8px}
+.price-block .price-value{font-size:48px;font-weight:900;color:#fff}
+.price-block .price-note{font-size:13px;color:rgba(255,255,255,.7);margin-top:8px}
+.btn-group{display:flex;gap:16px;margin-bottom:40px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;font-weight:700;font-size:15px;border:none;border-radius:8px;cursor:pointer;transition:all .3s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#0052cc;transform:translateY(-2px);box-shadow:0 12px 24px rgba(0,102,255,.3)}
+.btn-secondary{background:rgba(255,255,255,.1);color:#fff;border:2px solid rgba(255,255,255,.3)}
+.btn-secondary:hover{background:rgba(255,255,255,.2);border-color:#fff}
+
+.product-image{position:relative;display:flex;align-items:center;justify-content:center}
+.product-image-box{width:100%;aspect-ratio:1;background:linear-gradient(135deg,rgba(0,102,255,.1),rgba(255,255,255,.05));border-radius:16px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1)}
+.product-image-box svg{max-width:90%;max-height:90%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.3))}
+
+/* ===== SPECS SECTION ===== */
+.specs-section{padding:100px 0;background:var(--bg)}
+.specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
+.spec-card{background:#fff;padding:40px;border-radius:12px;text-align:center;border:1px solid var(--line);transition:all .3s}
+.spec-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.08);border-color:var(--blue)}
+.spec-card-icon{width:64px;height:64px;background:var(--blue);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:#fff;font-size:32px}
+.spec-card h3{font-size:18px;font-weight:700;margin-bottom:12px}
+.spec-card p{font-size:14px;color:#666;line-height:1.6}
+
+/* ===== FEATURES SECTION ===== */
+.features-section{padding:100px 0}
+.section-title{font-size:48px;font-weight:900;margin-bottom:60px;text-align:center}
+.features-list{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.feature-item{display:flex;gap:24px}
+.feature-icon{width:48px;height:48px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;font-weight:900;font-size:24px}
+.feature-content h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.feature-content p{font-size:14px;color:#666;line-height:1.6}
+
+/* ===== TECH SPECS ===== */
+.tech-specs{padding:100px 0;background:#f5f5f5}
+.specs-table{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.specs-table-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);padding:20px;align-items:center}
+.specs-table-row:last-child{border-bottom:none}
+.specs-table-row.header{background:var(--blue);color:#fff;font-weight:700}
+.specs-label{font-weight:600;color:#333}
+.specs-value{color:#666;text-align:right}
+.specs-table-row.header .specs-value{text-align:right;color:#fff}
+
+/* ===== CTA SECTION ===== */
+.cta-section{padding:80px 0;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%);color:#fff;text-align:center}
+.cta-section h2{font-size:42px;font-weight:900;margin-bottom:20px}
+.cta-section p{font-size:16px;color:rgba(255,255,255,.8);margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ===== LOGO WATERMARK ===== */
+.logo-watermark{position:fixed;bottom:30px;right:30px;opacity:.15;pointer-events:none;z-index:-1}
+.logo-watermark svg{width:120px;height:120px}
+
+@media (max-width:768px){
+  .product-hero .container{grid-template-columns:1fr;gap:40px;padding:40px 0}
+  .features-list{grid-template-columns:1fr}
+  .specs-table-row{grid-template-columns:1fr;padding:15px}
+  .specs-value{text-align:left;margin-top:8px}
+  .btn-group{flex-direction:column}
+  .btn{width:100%}
+  .cta-buttons{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGO WATERMARK -->
+<div class="logo-watermark">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="50" y="55" text-anchor="middle" font-size="8" font-weight="bold" fill="currentColor">BREW</text>
+    <text x="50" y="65" text-anchor="middle" font-size="6" fill="currentColor">.TECH</text>
+  </svg>
+</div>
+
+<div id="navMount"></div>
+
+<!-- PRODUCT HERO -->
+<section class="product-hero">
+  <div class="container">
+    <div class="product-hero-content">
+      <div class="model">Pro Espresso · Model BT-PRO/01</div>
+      <h1>Двухгруппная профессиональная машина</h1>
+      <p>Кофемашина для профессионалов, которые судят о кофе по вкусу. PID-контроль температуры, открытый API и платформа для экспериментирования.</p>
+      
+      <div class="product-specs-mini">
+        <div class="spec-item"><div class="spec-icon"></div>PID ±0.2°C — идеальная стабильность</div>
+        <div class="spec-item"><div class="spec-icon"></div>2 группы для параллельного приготовления</div>
+        <div class="spec-item"><div class="spec-icon"></div>Открытый API для интеграции</div>
+        <div class="spec-item"><div class="spec-icon"></div>Обновления по сети (OTA)</div>
+      </div>
+
+      <div class="price-block">
+        <div class="price-label">ОФИЦИАЛЬНАЯ ЦЕНА</div>
+        <div class="price-value">489 000 ₽</div>
+        <div class="price-note">Гарантия 12 месяцев • Поддержка 24/7 • Доставка в 14 городов</div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary">Запросить демо</button>
+        <button class="btn btn-secondary">Смотреть характеристики</button>
+      </div>
+    </div>
+
+    <div class="product-image">
+      <div class="product-image-box">
+        <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+          <!-- Espresso Machine Illustration -->
+          <rect x="50" y="30" width="100" height="180" rx="8" fill="#1a1a1a" stroke="#0066ff" stroke-width="2"/>
+          <rect x="60" y="40" width="80" height="50" fill="rgba(0,102,255,.2)" rx="4"/>
+          <circle cx="70" cy="110" r="6" fill="#0066ff"/>
+          <circle cx="130" cy="110" r="6" fill="#0066ff"/>
+          <rect x="65" y="130" width="70" height="15" fill="#0066ff" opacity=".3" rx="2"/>
+          <circle cx="100" cy="250" r="8" fill="#0066ff"/>
+          <rect x="40" y="220" width="120" height="8" fill="#333"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS SECTION -->
+<section class="specs-section">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:60px">Основные характеристики</h2>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-card-icon">🌡</div>
+        <h3>PID Контроль</h3>
+        <p>Удерживает температуру в диапазоне ±0.2°C для идеального эспрессо</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-icon">⚙️</div>
+        <h3>Двухгруппная</h3>
+        <p>Две независимые группы для одновременного приготовления двух порций</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-icon">🔌</div>
+        <h3>Открытый API</h3>
+        <p>Интегрируется с вашей системой управления кофейней</p>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-icon">📡</div>
+        <h3>Обновления OTA</h3>
+        <p>Получайте улучшения по сети без остановки работы</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features-section">
+  <div class="container">
+    <h2 class="section-title">Почему выбирают BREW.TECH</h2>
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-icon">1</div>
+        <div class="feature-content">
+          <h4>Доступная технологичность</h4>
+          <p>Профессиональные компоненты и прошивка по цене, открывающей рынок независимым кофейням</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">2</div>
+        <div class="feature-content">
+          <h4>Прозрачная цена</h4>
+          <p>Мы не скрываем цену — объясняем её. Никаких скрытых наценок</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">3</div>
+        <div class="feature-content">
+          <h4>Локальная поддержка</h4>
+          <p>Наши специалисты в Москве, Нижнем и Казани всегда помогут вам</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">4</div>
+        <div class="feature-content">
+          <h4>Платформа для экспериментирования</h4>
+          <p>Каждый бариста становится инженером своего кофе</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH SPECS TABLE -->
+<section class="tech-specs">
+  <div class="container">
+    <h2 class="section-title">Полные технические характеристики</h2>
+    <div class="specs-table">
+      <div class="specs-table-row header">
+        <div class="specs-label">Параметр</div>
+        <div class="specs-value">Значение</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Количество групп</div>
+        <div class="specs-value">2</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Контроль температуры</div>
+        <div class="specs-value">PID ±0.2°C</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Рабочее давление</div>
+        <div class="specs-value">9.0 БАР</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Температура воды</div>
+        <div class="specs-value">93.5°C</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Объем котла</div>
+        <div class="specs-value">10 литров</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Электропитание</div>
+        <div class="specs-value">380В, 3 фазы, 4.8 кВт</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Гарантия</div>
+        <div class="specs-value">12 месяцев</div>
+      </div>
+      <div class="specs-table-row">
+        <div class="specs-label">Поддержка</div>
+        <div class="specs-value">24/7</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Готовы судить о кофе по вкусу?</h2>
+    <p>Запросите демонстрацию Pro Espresso и убедитесь сами, почему независимые кофейни выбирают BREW.TECH</p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary">Запросить демо</button>
+      <button class="btn btn-secondary">Где купить</button>
+    </div>
+  </div>
+</section>
+
+<div id="footMount"></div>
+
+<script src="partials.js"></script>
+<script src="i18n.js"></script>
+</body>
+</html>

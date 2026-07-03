@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREW.TECH — Иллюстрации продуктов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #f5f5f5;
+            font-family: 'Montserrat', sans-serif;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 42px;
+            color: #0a0a0a;
+        }
+        
+        .illustrations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .illustration-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .illustration-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .illustration-svg {
+            width: 100%;
+            height: 500px;
+            display: block;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        
+        .illustration-info {
+            padding: 30px;
+            background: white;
+        }
+        
+        .illustration-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #0066ff;
+        }
+        
+        .illustration-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .specs {
+            background: #f9f9f9;
+            border-left: 4px solid #0066ff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .specs strong {
+            color: #0066ff;
+        }
+        
+        .code-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .code-section h3 {
+            margin-bottom: 20px;
+            color: #0a0a0a;
+        }
+        
+        .code-block {
+            background: #0a0a0a;
+            color: #0066ff;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .download-links {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        
+        .download-links h3 {
+            margin-bottom: 20px;
+            color: #0a0a0a;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #0066ff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        
+        .download-btn:hover {
+            background: #0052cc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,102,255,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .illustrations-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 BREW.TECH — Иллюстрации продуктов</h1>
+        
+        <div class="illustrations-grid">
+            <!-- КОФЕМАШИНА -->
+            <div class="illustration-card">
+                <svg class="illustration-svg" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Фон с градиентом -->
+                    <defs>
+                        <linearGradient id="bgGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="metalGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8e8e8;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="shadow1" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="20" stdDeviation="40" flood-opacity="0.4"/>
+                        </filter>
+                    </defs>
+                    
+                    <rect width="600" height="800" fill="url(#bgGradient1)"/>
+                    <circle cx="500" cy="200" r="300" fill="#0066ff" opacity="0.05"/>
+                    
+                    <g filter="url(#shadow1)">
+                        <rect x="120" y="150" width="360" height="480" rx="20" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                        <rect x="120" y="150" width="360" height="80" rx="20" fill="#222" stroke="#333" stroke-width="2"/>
+                        <rect x="140" y="170" width="320" height="60" rx="8" fill="#0a0a0a" stroke="#0066ff" stroke-width="2"/>
+                        <circle cx="170" cy="200" r="8" fill="#0066ff" opacity="0.8"/>
+                        <circle cx="200" cy="200" r="8" fill="#0066ff" opacity="0.6"/>
+                        <circle cx="230" cy="200" r="8" fill="#0066ff" opacity="0.4"/>
+                        <line x1="140" y1="215" x2="460" y2="215" stroke="#0066ff" stroke-width="1" opacity="0.3"/>
+                        
+                        <rect x="140" y="250" width="320" height="200" rx="8" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+                        
+                        <circle cx="220" cy="310" r="35" fill="url(#metalGradient1)" stroke="#666" stroke-width="2"/>
+                        <circle cx="220" cy="310" r="28" fill="#0a0a0a"/>
+                        <circle cx="220" cy="310" r="20" fill="#1a1a1a" stroke="#0066ff" stroke-width="1"/>
+                        <rect x="210" y="335" width="20" height="60" rx="4" fill="#333" stroke="#555" stroke-width="1"/>
+                        <circle cx="220" cy="405" r="12" fill="#1a1a1a" stroke="#666" stroke-width="1"/>
+                        
+                        <circle cx="380" cy="310" r="35" fill="url(#metalGradient1)" stroke="#666" stroke-width="2"/>
+                        <circle cx="380" cy="310" r="28" fill="#0a0a0a"/>
+                        <circle cx="380" cy="310" r="20" fill="#1a1a1a" stroke="#0066ff" stroke-width="1"/>
+                        <rect x="370" y="335" width="20" height="60" rx="4" fill="#333" stroke="#555" stroke-width="1"/>
+                        <circle cx="380" cy="405" r="12" fill="#1a1a1a" stroke="#666" stroke-width="1"/>
+                        
+                        <rect x="420" y="260" width="40" height="120" rx="6" fill="#222" stroke="#333" stroke-width="1"/>
+                        <circle cx="440" cy="280" r="6" fill="#333" stroke="#555" stroke-width="1"/>
+                        <circle cx="440" cy="310" r="6" fill="#0066ff" opacity="0.7" stroke="#0088ff" stroke-width="1"/>
+                        <circle cx="440" cy="340" r="6" fill="#333" stroke="#555" stroke-width="1"/>
+                        <rect x="425" y="360" width="30" height="8" rx="2" fill="#333" stroke="#555" stroke-width="1"/>
+                        
+                        <rect x="160" y="280" width="80" height="100" rx="4" fill="#0066ff" opacity="0.15" stroke="#0066ff" stroke-width="1" stroke-dasharray="2,2"/>
+                        
+                        <rect x="120" y="630" width="360" height="40" rx="8" fill="#222" stroke="#333" stroke-width="2"/>
+                        <rect x="130" y="630" width="340" height="35" rx="4" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+                        
+                        <line x1="150" y1="645" x2="450" y2="645" stroke="#666" stroke-width="1" opacity="0.4"/>
+                        <line x1="150" y1="655" x2="450" y2="655" stroke="#666" stroke-width="1" opacity="0.4"/>
+                        
+                        <ellipse cx="300" cy="180" rx="120" ry="30" fill="#fff" opacity="0.1"/>
+                        <ellipse cx="300" cy="400" rx="100" ry="40" fill="#fff" opacity="0.05"/>
+                    </g>
+                    
+                    <g>
+                        <rect x="400" y="700" width="180" height="80" rx="8" fill="#0a0a0a" stroke="#0066ff" stroke-width="2" opacity="0.8"/>
+                        <text x="490" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">BREW</text>
+                        <text x="490" y="732" font-family="Montserrat, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#0066ff">.</text>
+                        <text x="510" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">TECH</text>
+                        <text x="490" y="760" font-family="Montserrat, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#0066ff">Pro Espresso</text>
+                    </g>
+                    
+                    <text x="300" y="750" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" fill="#0066ff" opacity="0.6">// BT-PRO/01 · 2 GROUPS · PID ±0.2°C</text>
+                </svg>
+                
+                <div class="illustration-info">
+                    <h2>Pro Espresso</h2>
+                    <p>Двухгруппная профессиональная кофемашина для независимых кофеен и кафе</p>
+                    
+                    <div class="specs">
+                        <strong>Характеристики:</strong><br>
+                        • 2 групповые головки<br>
+                        • PID контроль температуры<br>
+                        • Давление: 9.0 БАР<br>
+                        • Модель: BT-PRO/01
+                    </div>
+                </div>
+            </div>
+            
+            <!-- КОФЕМОЛКА -->
+            <div class="illustration-card">
+                <svg class="illustration-svg" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Фон с градиентом -->
+                    <defs>
+                        <linearGradient id="bgGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="metalGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8e8e8;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="shadow2" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="0" dy="20" stdDeviation="40" flood-opacity="0.4"/>
+                        </filter>
+                    </defs>
+                    
+                    <rect width="600" height="800" fill="url(#bgGradient2)"/>
+                    <circle cx="500" cy="200" r="300" fill="#0066ff" opacity="0.05"/>
+                    
+                    <g filter="url(#shadow2)">
+                        <ellipse cx="300" cy="120" rx="70" ry="35" fill="url(#metalGradient2)" stroke="#666" stroke-width="2"/>
+                        <path d="M 230 120 L 240 210 L 360 210 L 370 120" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                        <ellipse cx="300" cy="210" rx="60" ry="20" fill="#0a0a0a" stroke="#333" stroke-width="2"/>
+                        <path d="M 245 140 L 255 205 L 345 205 L 355 140 Q 300 150 245 140" fill="#8B6F47" opacity="0.7"/>
+                        
+                        <rect x="180" y="210" width="240" height="240" rx="12" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                        <rect x="185" y="215" width="230" height="30" rx="8" fill="#222" stroke="#333" stroke-width="1"/>
+                        <rect x="200" y="225" width="200" height="20" rx="4" fill="#0a0a0a" stroke="#0066ff" stroke-width="1.5"/>
+                        
+                        <line x1="210" y1="235" x2="380" y2="235" stroke="#0066ff" stroke-width="2" opacity="0.7"/>
+                        <line x1="210" y1="237" x2="350" y2="237" stroke="#0066ff" stroke-width="1" opacity="0.4"/>
+                        
+                        <circle cx="300" cy="340" r="80" fill="#333" stroke="#555" stroke-width="2"/>
+                        <circle cx="300" cy="340" r="70" fill="url(#metalGradient2)" stroke="#666" stroke-width="1"/>
+                        
+                        <line x1="240" y1="285" x2="360" y2="395" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="250" y1="280" x2="350" y2="400" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="260" y1="278" x2="340" y2="402" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="360" y1="285" x2="240" y2="395" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="350" y1="280" x2="250" y2="400" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+                        <line x1="340" y1="278" x2="260" y2="402" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+                        
+                        <circle cx="300" cy="340" r="15" fill="#0066ff" opacity="0.3" stroke="#0066ff" stroke-width="1"/>
+                        
+                        <rect x="190" y="440" width="220" height="140" rx="8" fill="#222" stroke="#333" stroke-width="2"/>
+                        <rect x="200" y="455" width="200" height="110" rx="6" fill="#0a0a0a" stroke="#0066ff" stroke-width="1.5" opacity="0.9"/>
+                        <rect x="205" y="510" width="190" height="50" rx="4" fill="#8B6F47" opacity="0.6"/>
+                        
+                        <line x1="195" y1="480" x2="195" y2="560" stroke="#0066ff" stroke-width="1" opacity="0.3"/>
+                        <line x1="198" y1="490" x2="193" y2="490" stroke="#0066ff" stroke-width="1" opacity="0.5"/>
+                        <line x1="198" y1="520" x2="193" y2="520" stroke="#0066ff" stroke-width="1.5" opacity="0.7"/>
+                        <line x1="198" y1="550" x2="193" y2="550" stroke="#0066ff" stroke-width="1" opacity="0.5"/>
+                        
+                        <rect x="420" y="450" width="50" height="50" rx="8" fill="#0066ff" stroke="#0088ff" stroke-width="2"/>
+                        <circle cx="445" cy="475" r="12" fill="#0044cc"/>
+                        <circle cx="445" cy="475" r="8" fill="#0066ff" opacity="0.5"/>
+                        
+                        <circle cx="300" cy="380" r="25" fill="#333" stroke="#555" stroke-width="2"/>
+                        <circle cx="300" cy="380" r="20" fill="#222"/>
+                        <line x1="300" y1="362" x2="300" y2="350" stroke="#0066ff" stroke-width="3"/>
+                        <line x1="310" y1="375" x2="322" y2="375" stroke="#666" stroke-width="1"/>
+                        <line x1="290" y1="375" x2="278" y2="375" stroke="#666" stroke-width="1"/>
+                        <line x1="305" y1="365" x2="315" y2="360" stroke="#666" stroke-width="1"/>
+                        <line x1="295" y1="365" x2="285" y2="360" stroke="#666" stroke-width="1"/>
+                        
+                        <rect x="175" y="595" width="250" height="35" rx="6" fill="#222" stroke="#333" stroke-width="2"/>
+                        <rect x="185" y="600" width="230" height="25" rx="4" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+                        <circle cx="210" cy="630" r="6" fill="#333"/>
+                        <circle cx="390" cy="630" r="6" fill="#333"/>
+                    </g>
+                    
+                    <g>
+                        <rect x="20" y="700" width="180" height="80" rx="8" fill="#0a0a0a" stroke="#0066ff" stroke-width="2" opacity="0.8"/>
+                        <text x="110" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">BREW</text>
+                        <text x="110" y="732" font-family="Montserrat, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#0066ff">.</text>
+                        <text x="130" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">TECH</text>
+                        <text x="110" y="760" font-family="Montserrat, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#0066ff">Pro Grinder</text>
+                    </g>
+                    
+                    <text x="300" y="750" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" fill="#0066ff" opacity="0.6">// BT-GR/75 · FLAT BURRS · 500 SETTINGS</text>
+                </svg>
+                
+                <div class="illustration-info">
+                    <h2>Pro Grinder</h2>
+                    <p>Профессиональная кофемолка с плоскими жерновами для идеального помола</p>
+                    
+                    <div class="specs">
+                        <strong>Характеристики:</strong><br>
+                        • Плоские жернова 75мм<br>
+                        • Дозирование по весу<br>
+                        • 500 позиций помола<br>
+                        • Модель: BT-GR/75
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- КОД ДЛЯ ВСТАВКИ -->
+        <div class="code-section">
+            <h3>📌 Как вставить иллюстрации на сайт</h3>
+            
+            <p style="margin-bottom: 15px;">Добавьте эти файлы на ваш сервер:</p>
+            
+            <div class="code-block">
+machine-illustration.svg
+grinder-illustration.svg
+            </div>
+            
+            <p style="margin-bottom: 15px;">Затем вставьте в HTML (например, на страницу machine.html):</p>
+            
+            <div class="code-block">&lt;img src="machine-illustration.svg" alt="Pro Espresso - Coffee Machine" /&gt;</div>
+            
+            <p style="margin-bottom: 15px;">Или как встроенный SVG:</p>
+            
+            <div class="code-block">&lt;object data="machine-illustration.svg" type="image/svg+xml"&gt;&lt;/object&gt;</div>
+            
+            <p style="color: #666;">Рекомендуется использовать тег &lt;img&gt; для лучшей оптимизации и быстрой загрузки.</p>
+        </div>
+        
+        <!-- ССЫЛКИ ДЛЯ СКАЧИВАНИЯ -->
+        <div class="download-links">
+            <h3>📥 Скачать иллюстрации</h3>
+            
+            <p style="margin-bottom: 20px; color: #666;">Выберите формат для скачивания:</p>
+            
+            <a href="machine-illustration.svg" class="download-btn" download>⬇ Кофемашина (SVG)</a>
+            <a href="grinder-illustration.svg" class="download-btn" download>⬇ Кофемолка (SVG)</a>
+            
+            <p style="margin-top: 20px; font-size: 13px; color: #999;">💡 SVG формат: масштабируется без потери качества, занимает мало места, отлично выглядит на всех размерах экрана</p>
+        </div>
+    </div>
+</body>
+</html>

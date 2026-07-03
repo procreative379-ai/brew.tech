@@ -1,0 +1,137 @@
+<svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон с градиентом -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0088ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0044cc;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="20" stdDeviation="40" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Фон -->
+  <rect width="600" height="800" fill="url(#bgGradient)"/>
+  
+  <!-- Лучи света в фоне -->
+  <circle cx="500" cy="200" r="300" fill="#0066ff" opacity="0.05"/>
+  <circle cx="100" cy="600" r="250" fill="#0066ff" opacity="0.03"/>
+  
+  <!-- ОСНОВНАЯ КОФЕМОЛКА -->
+  <g filter="url(#shadow)">
+    <!-- Верхний бункер (для кофе) -->
+    <ellipse cx="300" cy="120" rx="70" ry="35" fill="url(#metalGradient)" stroke="#666" stroke-width="2"/>
+    
+    <!-- Боковые стенки бункера -->
+    <path d="M 230 120 L 240 210 L 360 210 L 370 120" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+    
+    <!-- Передняя часть бункера -->
+    <ellipse cx="300" cy="210" rx="60" ry="20" fill="#0a0a0a" stroke="#333" stroke-width="2"/>
+    
+    <!-- Видимая часть кофе в бункере -->
+    <path d="M 245 140 L 255 205 L 345 205 L 355 140 Q 300 150 245 140" fill="#8B6F47" opacity="0.7"/>
+    
+    <!-- Главный корпус (средняя часть) -->
+    <rect x="180" y="210" width="240" height="240" rx="12" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+    
+    <!-- Верхняя крышка корпуса -->
+    <rect x="185" y="215" width="230" height="30" rx="8" fill="#222" stroke="#333" stroke-width="1"/>
+    
+    <!-- Дисплей/панель управления -->
+    <rect x="200" y="225" width="200" height="20" rx="4" fill="#0a0a0a" stroke="#0066ff" stroke-width="1.5"/>
+    
+    <!-- Индикаторы дисплея -->
+    <line x1="210" y1="235" x2="380" y2="235" stroke="#0066ff" stroke-width="2" opacity="0.7"/>
+    <line x1="210" y1="237" x2="350" y2="237" stroke="#0066ff" stroke-width="1" opacity="0.4"/>
+    
+    <!-- Центральная часть (главные жернова) -->
+    <g>
+      <!-- Внешнее кольцо жерновов (видимая часть) -->
+      <circle cx="300" cy="340" r="80" fill="#333" stroke="#555" stroke-width="2"/>
+      
+      <!-- Верхний жернов -->
+      <circle cx="300" cy="340" r="70" fill="url(#metalGradient)" stroke="#666" stroke-width="1"/>
+      
+      <!-- Диагональные линии (текстура жерновов) -->
+      <line x1="240" y1="285" x2="360" y2="395" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+      <line x1="250" y1="280" x2="350" y2="400" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+      <line x1="260" y1="278" x2="340" y2="402" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+      <line x1="360" y1="285" x2="240" y2="395" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+      <line x1="350" y1="280" x2="250" y2="400" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+      <line x1="340" y1="278" x2="260" y2="402" stroke="#999" stroke-width="0.5" opacity="0.5"/>
+      
+      <!-- Центральное отверстие -->
+      <circle cx="300" cy="340" r="15" fill="#0066ff" opacity="0.3" stroke="#0066ff" stroke-width="1"/>
+    </g>
+    
+    <!-- Нижняя часть корпуса -->
+    <rect x="190" y="440" width="220" height="140" rx="8" fill="#222" stroke="#333" stroke-width="2"/>
+    
+    <!-- Отсек для молотого кофе -->
+    <rect x="200" y="455" width="200" height="110" rx="6" fill="#0a0a0a" stroke="#0066ff" stroke-width="1.5" opacity="0.9"/>
+    
+    <!-- Видимое количество молотого кофе -->
+    <rect x="205" y="510" width="190" height="50" rx="4" fill="#8B6F47" opacity="0.6"/>
+    
+    <!-- Шкала уровня -->
+    <line x1="195" y1="480" x2="195" y2="560" stroke="#0066ff" stroke-width="1" opacity="0.3"/>
+    <line x1="198" y1="490" x2="193" y2="490" stroke="#0066ff" stroke-width="1" opacity="0.5"/>
+    <line x1="198" y1="520" x2="193" y2="520" stroke="#0066ff" stroke-width="1.5" opacity="0.7"/>
+    <line x1="198" y1="550" x2="193" y2="550" stroke="#0066ff" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Кнопки управления справа -->
+    <g>
+      <!-- Основная кнопка включения -->
+      <rect x="420" y="450" width="50" height="50" rx="8" fill="#0066ff" stroke="#0088ff" stroke-width="2"/>
+      <circle cx="445" cy="475" r="12" fill="#0044cc"/>
+      <circle cx="445" cy="475" r="8" fill="#0066ff" opacity="0.5"/>
+    </g>
+    
+    <!-- Регулятор помола (ручка) -->
+    <g>
+      <circle cx="300" cy="380" r="25" fill="#333" stroke="#555" stroke-width="2"/>
+      <circle cx="300" cy="380" r="20" fill="#222"/>
+      <!-- Линия указателя -->
+      <line x1="300" y1="362" x2="300" y2="350" stroke="#0066ff" stroke-width="3"/>
+      <!-- Деления -->
+      <line x1="310" y1="375" x2="322" y2="375" stroke="#666" stroke-width="1"/>
+      <line x1="290" y1="375" x2="278" y2="375" stroke="#666" stroke-width="1"/>
+      <line x1="305" y1="365" x2="315" y2="360" stroke="#666" stroke-width="1"/>
+      <line x1="295" y1="365" x2="285" y2="360" stroke="#666" stroke-width="1"/>
+    </g>
+    
+    <!-- Нижняя база -->
+    <rect x="175" y="595" width="250" height="35" rx="6" fill="#222" stroke="#333" stroke-width="2"/>
+    <rect x="185" y="600" width="230" height="25" rx="4" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+    
+    <!-- Силиконовые ножки (впечатление) -->
+    <circle cx="210" cy="630" r="6" fill="#333"/>
+    <circle cx="390" cy="630" r="6" fill="#333"/>
+  </g>
+  
+  <!-- ЛОГОТИП BREW.TECH (нижний левый угол) -->
+  <g>
+    <!-- Прямоугольник фона для логотипа -->
+    <rect x="20" y="700" width="180" height="80" rx="8" fill="#0a0a0a" stroke="#0066ff" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Текст логотипа -->
+    <text x="110" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">BREW</text>
+    <text x="110" y="732" font-family="Montserrat, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#0066ff">.</text>
+    <text x="130" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">TECH</text>
+    
+    <!-- Подпись -->
+    <text x="110" y="760" font-family="Montserrat, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#0066ff">Pro Grinder</text>
+  </g>
+  
+  <!-- Технические строки (детали) -->
+  <text x="300" y="750" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" fill="#0066ff" opacity="0.6">// BT-GR/75 · FLAT BURRS · 500 SETTINGS</text>
+</svg>

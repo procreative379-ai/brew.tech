@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+
+  <!-- Главная страница (русская) -->
+  <url>
+    <loc>https://brewtechology.ru/index.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Страница кофемашины Pro Espresso -->
+  <url>
+    <loc>https://brewtechology.ru/machine.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://brewtechology.ru/machine-illustration.svg</image:loc>
+      <image:title>Pro Espresso - Профессиональная кофемашина BREW.TECH</image:title>
+      <image:caption>Двухгруппная кофемашина с PID контролем температуры</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Страница кофемолки Pro Grinder -->
+  <url>
+    <loc>https://brewtechology.ru/grinder.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://brewtechology.ru/grinder-illustration.svg</image:loc>
+      <image:title>Pro Grinder - Профессиональная кофемолка BREW.TECH</image:title>
+      <image:caption>Кофемолка с плоскими жерновами 75мм и дозированием по весу</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Страница статей -->
+  <url>
+    <loc>https://brewtechology.ru/articles.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Страница ошибки 404 -->
+  <url>
+    <loc>https://brewtechology.ru/404.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- Альтернативные языковые версии (hreflang) -->
+  <url>
+    <loc>https://brewtechology.ru/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brewtechology.ru/index.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brewtechology.ru/index-en.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brewtechology.ru/index.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+  </url>
+
+  <url>
+    <loc>https://brewtechology.ru/machine.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brewtechology.ru/machine.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brewtechology.ru/machine-en.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+  </url>
+
+  <url>
+    <loc>https://brewtechology.ru/grinder.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://brewtechology.ru/grinder.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brewtechology.ru/grinder-en.html" xmlns:xhtml="http://www.w3.org/1999/xhtml"/>
+  </url>
+
+</urlset>

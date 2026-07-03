@@ -1,0 +1,79 @@
+# BREW.TECH — robots.txt для brewtechology.ru
+# Инструкции для поисковых роботов Яндекса и Google
+
+# Доступ для всех поисковиков
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /internal/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /*.pdf$
+Disallow: /*.zip$
+Disallow: /*.exe$
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+Request-rate: 30/1m
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+Request-rate: 10/1s
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+Request-rate: 10/1s
+
+# Блокируем известные спам-боты
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap для русской версии
+Sitemap: https://brewtechology.ru/sitemap.xml
+Sitemap: https://brewtechology.ru/sitemap-ru.xml
+
+# Директивы кеширования
+Cache-Control: max-age=604800
+
+# Правила для параметров URL
+Clean-param: utm_source&utm_medium&utm_campaign /
+Clean-param: fbclid /
+Clean-param: gclid /
+
+# Статические файлы (разрешаем кешировать)
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.ico$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+
+# Замедляем агрессивные боты
+User-agent: *
+Crawl-delay: 1
+Request-rate: 1/1s
+
+# Host declaration
+Host: https://brewtechology.ru

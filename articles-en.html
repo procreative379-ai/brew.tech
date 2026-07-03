@@ -1,0 +1,1880 @@
+<!doctype html>
+<html lang="en" data-page="articles">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="yandex-verification" content="44dbeaddbef8b514" />
+<meta name="description" content="BREW.TECH — статьand and матерandалы о профессandональном кофейном оборfromдованandand: технологandand, andнженерandя, экстракцandя, обзоры машandн and кофемолок россandйской сборкand.">
+<meta name="keywords" content="кофеmachine статьand, профессandональная кофеmachine обзор, кофемолка плоскandе жернова, экстракцandя эспрессо, профandлand давленandя, открытый API кофеmachine, BREW.TECH блог, кофейное оборfromдованandе россandйское, термостабandльность PID, дозandрованandе по весfrom">
+<meta property="og:title" content="Articles BREW.TECH — технологandand кофейного оборfromдованandя">
+<meta property="og:description" content="Как fromстроены нашand машandны, почемfrom важна термостабandльность, что значandт «прозрачная цена» — матерandалы от andнженеров BREW.TECH.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta name="robots" content="index, follow">
+<title>Articles — BREW.TECH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+/* ================= BREW.TECH — shared styles ================= */
+:root{
+  --black:#000;
+  --ink:#0a0a0a;
+  --blue:#0066ff;
+  --blue-soft:rgba(0,102,255,.08);
+  --orange:#ff6b35;
+  --white:#fff;
+  --bg:#f5f5f5;
+  --line:rgba(0,0,0,.08);
+  --line-d:rgba(255,255,255,.08);
+  --mute:#6b6b6b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--white);color:var(--ink);font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.container{max-width:1440px;margin:0 auto;padding:0 48px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.eyebrow.light{color:rgba(255,255,255,.6)}
+.dot-blue{color:var(--blue)}
+
+/* ================= NAV ================= */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav.dark{background:rgba(10,10,10,.88);border-bottom-color:rgba(255,255,255,.08)}
+.nav.dark .nav-links a{color:rgba(255,255,255,.75)}
+.nav.dark .nav-links a:hover{color:#fff}
+.nav.dark .logo .b{color:#fff}
+.nav.dark .nav-cta{background:#fff;color:#000}
+.nav.dark .nav-cta::after{border-color:#000}
+.nav.dark .mega{background:#0a0a0a;border-color:rgba(255,255,255,.08);color:#fff}
+.nav.dark .mega .col h6{color:rgba(255,255,255,.45)}
+.nav.dark .mega .product-mini{background:#0e0e0e;border-color:rgba(255,255,255,.08)}
+.nav.dark .mega .product-mini:hover{border-color:var(--blue)}
+.nav.dark .mega .product-mini h4{color:#fff}
+.nav.dark .mega .product-mini p{color:rgba(255,255,255,.55)}
+.nav.dark .burger span{background:#fff}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 48px;max-width:1440px;margin:0 auto;gap:24px}
+.logo{font-weight:800;font-size:18px;letter-spacing:-.01em;flex-shrink:0;display:inline-flex}
+.logo .b{color:#000}
+.logo .dot{color:var(--blue)}
+.logo .t{color:var(--blue)}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links > .item{position:relative}
+.nav-links a{font-size:13.5px;font-weight:500;color:#333;transition:color .15s;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.nav-links a:hover{color:var(--blue)}
+.nav-links a.active{color:var(--blue)}
+.has-mega > a::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:4px;margin-top:-3px;transition:transform .2s}
+.has-mega:hover > a::after{transform:rotate(-135deg);margin-top:2px}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-phone{font-family:'JetBrains Mono',monospace;font-size:13px;color:#000;font-weight:600;letter-spacing:.02em}
+.nav.dark .nav-phone{color:#fff}
+.nav-cta{display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;padding:11px 18px;border-radius:0;font-weight:600;font-size:13px;letter-spacing:.02em;white-space:nowrap}
+.nav-cta::after{content:"";width:10px;height:10px;border-right:1.5px solid #fff;border-top:1.5px solid #fff;transform:rotate(45deg);margin-left:2px}
+
+/* Mega menu */
+.mega{position:absolute;top:calc(100% + 0px);left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border:1px solid var(--line);min-width:680px;padding:28px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;opacity:0;pointer-events:none;transition:opacity .15s, transform .15s;z-index:60;box-shadow:0 24px 48px -16px rgba(0,0,0,.15)}
+.has-mega:hover > .mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.mega .col h6{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#888;margin-bottom:14px}
+.mega .product-mini{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:14px;background:var(--bg);border:1px solid var(--line);margin-bottom:8px;transition:border-color .15s, background .15s}
+.mega .product-mini:hover{border-color:var(--blue)}
+.mega .product-mini .thumb{width:64px;height:64px;background:#0a0a0a;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mega .product-mini h4{font-weight:700;font-size:15px;letter-spacing:-.005em;margin-bottom:2px}
+.mega .product-mini p{font-size:12px;color:#666;line-height:1.4}
+.mega .links{display:flex;flex-direction:column;gap:10px}
+.mega .links a{font-size:13.5px;color:#444;padding:6px 0}
+.mega .links a:hover{color:var(--blue)}
+.mega .links a .arr{color:var(--blue);margin-right:6px}
+
+/* Burger / mobile */
+.burger{display:none;width:32px;height:32px;background:transparent;border:0;cursor:pointer;flex-direction:column;justify-content:center;gap:5px;padding:6px}
+.burger span{display:block;height:2px;background:#000;width:100%;transition:transform .2s, opacity .2s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{position:fixed;top:68px;left:0;right:0;bottom:0;background:#fff;z-index:49;padding:32px 24px;display:none;overflow-y:auto;flex-direction:column;gap:8px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:22px;font-weight:600;padding:16px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.mobile-menu a .arr{color:var(--blue);font-size:14px}
+.mobile-menu .sub{margin:8px 0 16px;padding:0 0 0 16px;border-left:2px solid var(--blue);display:flex;flex-direction:column;gap:14px}
+.mobile-menu .sub a{font-size:15px;font-weight:500;color:#555;padding:4px 0;border:0}
+.mobile-menu .foot-cta{margin-top:18px;background:var(--blue);color:#fff;padding:18px;text-align:center;font-weight:700;justify-content:center;border:0}
+
+/* ================= COMMON BUTTONS ================= */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 24px;font-weight:600;font-size:14px;letter-spacing:.02em;border:none;cursor:pointer;transition:transform .15s ease, background .15s}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-primary:hover{background:#0052cc}
+.btn-ghost{background:transparent;color:#000;border:1.5px solid #000}
+.btn-ghost:hover{background:#000;color:#fff}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-orange:hover{background:#e85a26}
+.btn-white{background:#fff;color:#000}
+.btn-white:hover{background:var(--blue);color:#fff}
+.btn .arrow{width:14px;height:1.5px;background:currentColor;position:relative}
+.btn .arrow::after{content:"";position:absolute;right:-1px;top:-4px;width:9px;height:9px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg)}
+
+/* ================= MARQUEE ================= */
+.marquee{background:#000;color:#fff;padding:22px 0;overflow:hidden;border-top:1px solid #111;border-bottom:1px solid #111}
+.marquee-track{display:flex;gap:64px;white-space:nowrap;animation:scroll 38s linear infinite;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.18em;text-transform:uppercase}
+.marquee-track span{display:inline-flex;align-items:center;gap:64px}
+.marquee-track i{font-style:normal;color:var(--blue)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ================= SECTION HEADERS ================= */
+section{position:relative}
+.section-head{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;margin-bottom:64px}
+.section-head h2{font-weight:800;font-size:clamp(36px,5.4vw,72px);line-height:1.04;letter-spacing:-.03em;max-width:900px;word-wrap:break-word}
+.section-head h2 .blue{color:var(--blue)}
+.section-head .idx{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue);letter-spacing:.1em}
+.section-head .idx .num{display:block;font-size:64px;line-height:1;color:#000;font-weight:800;margin-top:6px;font-family:'Montserrat',sans-serif}
+
+/* ================= FOOTER ================= */
+footer{background:#000;color:#fff;border-top:1px solid rgba(255,255,255,.08);padding:48px 0 32px}
+.foot{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px;align-items:start}
+.foot .logo{font-size:24px;color:#fff;display:inline-flex}
+.foot p{margin-top:14px;color:rgba(255,255,255,.5);font-size:13px;line-height:1.55;max-width:280px}
+.foot h5{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--blue);margin-bottom:14px}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot ul a{color:rgba(255,255,255,.7);font-size:14px}
+.foot ul a:hover{color:var(--blue)}
+.foot-bot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.08em}
+
+/* ================= UTILITIES ================= */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1100px){
+  .nav-links{display:none}
+  .nav-phone{display:none}
+  .burger{display:flex}
+}
+@media (max-width:1024px){
+  .container,.nav-inner{padding-left:24px;padding-right:24px}
+  .section-head{grid-template-columns:1fr;gap:20px;margin-bottom:48px}
+  .section-head h2{font-size:clamp(34px,7vw,56px)}
+  .section-head .idx .num{font-size:48px}
+}
+@media (max-width:640px){
+  .container,.nav-inner{padding-left:16px;padding-right:16px}
+  .section-head h2{font-size:clamp(28px,8vw,42px);line-height:1.08}
+  .section-head .idx .num{font-size:36px}
+  .marquee-track{font-size:12px;gap:36px}
+  .marquee-track span{gap:36px}
+  .foot{grid-template-columns:1fr 1fr;gap:24px}
+  .foot p{font-size:12.5px}
+  .foot-bot{font-size:10px}
+  .btn{padding:14px 18px;font-size:13px}
+}
+
+</style>
+<style>
+  /* ============ ARTICLES INDEX ============ */
+  .a-hero{padding:140px 0 80px;background:#fff;border-bottom:1px solid var(--line)}
+  .a-hero .container{position:relative}
+  .a-hero .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+  .a-hero .dots{display:inline-flex;gap:5px}
+  .a-hero .dots span{width:7px;height:7px;background:var(--blue);border-radius:50%}
+  .a-hero h1{font-weight:800;font-size:clamp(48px,8vw,128px);line-height:.92;letter-spacing:-.035em;max-width:1100px}
+  .a-hero h1 .blue{color:var(--blue)}
+  .a-hero .lead{font-size:18px;line-height:1.55;color:#333;max-width:600px;margin-top:32px}
+
+  .a-grid-section{padding:80px 0 140px;background:#fff}
+  .a-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+  .a-grid > .feature{grid-column:span 2}
+
+  .a-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;border:1px solid var(--line);background:#fff;transition:transform .25s ease, box-shadow .25s ease;overflow:hidden}
+  .a-card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -16px rgba(0,0,0,.12)}
+  .a-card .cover{aspect-ratio:16/9;position:relative;overflow:hidden;background:#0a0a0a;color:#fff}
+  .a-card .cover svg{width:100%;height:100%;display:block}
+  .a-card .cover .badge{position:absolute;top:18px;left:18px;background:var(--blue);color:#fff;padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;z-index:2}
+  .a-card .cover .read-time{position:absolute;bottom:18px;right:18px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);padding:6px 10px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#fff;letter-spacing:.08em;z-index:2}
+  .a-card .body{padding:32px 30px 32px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .a-card .meta{display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;letter-spacing:.08em}
+  .a-card .meta .topic{color:var(--blue)}
+  .a-card h2{font-weight:800;font-size:28px;line-height:1.1;letter-spacing:-.02em}
+  .a-card p{font-size:14.5px;line-height:1.55;color:#555}
+  .a-card .read{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.08em}
+  .a-card .read .author{color:#333}
+  .a-card .read .arr{color:var(--blue);font-weight:600;display:inline-flex;align-items:center;gap:8px}
+
+  .a-card.feature .cover{aspect-ratio:21/9}
+  .a-card.feature h2{font-size:clamp(34px,4.5vw,56px);line-height:1;letter-spacing:-.025em}
+  .a-card.feature .body{padding:48px}
+  .a-card.feature p{font-size:16.5px;color:#444;max-width:680px}
+  .a-card.feature .read h2{display:none}
+
+  /* ============ ARTICLE BODY (when expanded) ============ */
+  .article{padding:140px 0 100px;background:#fff;max-width:780px;margin:0 auto}
+  .article .crumbs{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:#888;margin-bottom:24px}
+  .article .crumbs a{color:var(--blue)}
+  .article .crumbs span{margin:0 8px}
+  .article .topic-tag{display:inline-block;background:var(--blue);color:#fff;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;margin-bottom:24px}
+  .article h1{font-weight:800;font-size:clamp(36px,5vw,64px);line-height:1.04;letter-spacing:-.03em;margin-bottom:24px}
+  .article .a-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:#888;letter-spacing:.08em;display:flex;gap:24px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .article .a-meta span b{color:#000;font-weight:600}
+  .article-content{padding:48px 0;font-family:'Source Serif 4', Georgia, serif}
+  .article-content p,.article-content li{font-size:19px;line-height:1.65;color:#222;margin-bottom:1.2em}
+  .article-content h2{font-family:'Montserrat',sans-serif;font-weight:800;font-size:28px;letter-spacing:-.015em;margin:2em 0 .8em;line-height:1.15}
+  .article-content h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.01em;margin:1.6em 0 .5em}
+  .article-content strong{color:#000;font-weight:600;font-family:'Montserrat',sans-serif}
+  .article-content ul{padding-left:24px}
+  .article-content li::marker{color:var(--blue)}
+  .article-content blockquote{margin:1.4em 0;padding:0 0 0 24px;border-left:3px solid var(--blue);color:#444;font-style:italic}
+  .article-content figure{margin:2em 0;padding:32px;background:var(--bg);border-left:3px solid var(--blue);font-family:'JetBrains Mono',monospace}
+  .article-content figure p{font-size:14px;line-height:1.55;font-family:'JetBrains Mono',monospace;margin-bottom:0;color:#333}
+  .article-content figure b{color:var(--blue);font-weight:600}
+  .article-content .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:2em 0;border-top:1.5px solid #000;border-bottom:1px solid var(--line)}
+  .article-content .stats .s{padding:24px 0;border-right:1px solid var(--line);font-family:'Montserrat',sans-serif}
+  .article-content .stats .s:last-child{border-right:0}
+  .article-content .stats .v{font-weight:800;font-size:38px;letter-spacing:-.02em;line-height:1}
+  .article-content .stats .v .u{color:var(--blue);font-size:.55em;vertical-align:top}
+  .article-content .stats .l{font-size:12px;color:#666;margin-top:6px}
+
+  .article-footer{display:flex;justify-content:space-between;padding:32px 0;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:13px;flex-wrap:wrap;gap:12px}
+  .article-footer .back{color:var(--blue);font-weight:600}
+
+  /* The article view is shown when JS toggles .show on it */
+  .article{display:none}
+  .article.show{display:block}
+  body.reading .a-hero,body.reading .a-grid-section{display:none}
+
+  @media (max-width:1024px){
+    .a-grid{grid-template-columns:1fr}
+    .a-grid > .feature{grid-column:span 1}
+    .a-card.feature .body{padding:32px 28px}
+    .a-card.feature h2{font-size:clamp(28px,5vw,40px)}
+    .a-hero{padding:100px 0 60px}
+    .a-grid-section{padding:60px 0 100px}
+  }
+  @media (max-width:640px){
+    .a-hero{padding:96px 0 48px}
+    .a-card .body{padding:24px 22px}
+    .a-card h2{font-size:22px}
+    .article{padding:96px 16px 60px}
+    .article-content p,.article-content li{font-size:17px}
+    .article-content h2{font-size:22px}
+    .article-content figure{padding:20px}
+    .article-content .stats{grid-template-columns:1fr}
+    .article-content .stats .s{border-right:0;border-bottom:1px solid var(--line);padding:16px 0}
+    .article-content .stats .s:last-child{border-bottom:0}
+  }
+</style>
+
+<style id="mobile-guard">
+  html,body{overflow-x:hidden;max-width:100%}
+  img{max-width:100%;height:auto}
+  @media (max-width:1100px){.mega{display:none!important}}
+  @media (max-width:640px){
+    .hero h1,.phero h1,.a-hero h1,.cta h2,.contact h2,.pstrip h2,.nl h2{overflow-wrap:break-word}
+    .nav-inner{gap:12px}
+    .article h1{overflow-wrap:break-word}
+  }
+</style>
+</head>
+<body>
+
+<div id="navMount"></div>
+
+<!-- ============ ARTICLES INDEX ============ -->
+<section class="a-hero" id="a-hero">
+  <div class="container">
+    <div class="eyebrow">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span class="eyebrow" style="margin:0">[ ARTICLES & STORIES ]</span>
+    </div>
+    <h1>Engineering<br>в&nbsp;каждой <span class="blue">cup</span><span style="color:var(--blue)">.</span></h1>
+    <p class="lead">Как fromстроены нашand машandны, почемfrom «прозрачная цена» — это andнженерное решенandе, а&nbsp;не&nbsp;marketing, and&nbsp;что значandт делать кофейное оборfromдованandе в&nbsp;Россandand в&nbsp;2026 годfrom.</p>
+  </div>
+</section>
+
+<section class="a-grid-section" id="a-grid">
+  <div class="container">
+    <div class="a-grid">
+
+      <!-- FEATURED ARTICLE -->
+      <a class="a-card feature" href="#article-1" data-article="1">
+        <div class="cover">
+          <span class="badge">FEATURED</span>
+          <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="cg1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0066ff" stop-opacity=".25"/><stop offset="1" stop-color="#000"/></linearGradient>
+              <pattern id="cp1" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,.08)"/></pattern>
+            </defs>
+            <rect width="800" height="360" fill="#0a0a0a"/>
+            <rect width="800" height="360" fill="url(#cg1)"/>
+            <rect width="800" height="360" fill="url(#cp1)"/>
+            <!-- price breakdown graph -->
+            <g transform="translate(80,80)">
+              <rect width="640" height="200" fill="none" stroke="rgba(255,255,255,.06)"/>
+              <!-- Bars representing price components -->
+              <g>
+                <rect x="40" y="40" width="80" height="160" fill="url(#cg1)" stroke="#0066ff" stroke-opacity=".6"/>
+                <text x="80" y="220" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="10">312K</text>
+                <text x="80" y="234" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="JetBrains Mono,monospace" font-size="9">деталand</text>
+              </g>
+              <g>
+                <rect x="160" y="100" width="80" height="100" fill="url(#cg1)" stroke="#0066ff" stroke-opacity=".4"/>
+                <text x="200" y="220" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="10">88K</text>
+                <text x="200" y="234" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="JetBrains Mono,monospace" font-size="9">andнженеры</text>
+              </g>
+              <g>
+                <rect x="280" y="160" width="80" height="40" fill="url(#cg1)" stroke="#0066ff" stroke-opacity=".3"/>
+                <text x="320" y="220" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="10">26K</text>
+                <text x="320" y="234" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="JetBrains Mono,monospace" font-size="9">сборка</text>
+              </g>
+              <g>
+                <rect x="400" y="178" width="80" height="22" fill="url(#cg1)" stroke="#0066ff" stroke-opacity=".3"/>
+                <text x="440" y="220" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="10">14K</text>
+                <text x="440" y="234" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="JetBrains Mono,monospace" font-size="9">доставка</text>
+              </g>
+              <g>
+                <rect x="520" y="120" width="80" height="80" fill="#0066ff" fill-opacity=".4" stroke="#0066ff"/>
+                <text x="560" y="220" text-anchor="middle" fill="#fff" font-family="JetBrains Mono,monospace" font-size="10">49K</text>
+                <text x="560" y="234" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="JetBrains Mono,monospace" font-size="9">прandбыль</text>
+              </g>
+              <line x1="0" y1="200" x2="640" y2="200" stroke="rgba(255,255,255,.2)"/>
+            </g>
+            <text x="80" y="60" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">// СТРУКТУРА СТОИМОСТИ PRO ESPRESSO · ₽ 489 000</text>
+          </svg>
+          <span class="read-time">7 MIN READ</span>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="topic">// ECONOMICS</span><span>MAY 05, 2026</span></div>
+          <h2>Почемfrom западный аналог стоandт 940 000 ₽, а&nbsp;наш — 489 000 ₽. И&nbsp;это не&nbsp;демпandнг.</h2>
+          <p>Подробная анатомandя стоandмостand профессandональной кофемашandны. Из&nbsp;чего складывается цена andмпортного флагмана, какая часть&nbsp;— это marketing and&nbsp;dealerская сеть, а&nbsp;какая — реальная andнженерandя. И&nbsp;почемfrom делать качественное оборfromдованandе в&nbsp;Россandand можно дешевле без&nbsp;потерand качества.</p>
+          <div class="read"><span class="author">Dmitry Levin · CTO BREW.TECH</span><span class="arr">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <!-- ARTICLE 2 -->
+      <a class="a-card" href="#article-2" data-article="2">
+        <div class="cover">
+          <span class="badge">ENGINEERING</span>
+          <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="cgr2" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#0066ff" stop-opacity=".3"/><stop offset="1" stop-color="transparent"/></radialGradient>
+            </defs>
+            <rect width="600" height="340" fill="#0a0a0a"/>
+            <rect width="600" height="340" fill="url(#cgr2)"/>
+            <!-- Pressure curve graph -->
+            <g transform="translate(60,60)">
+              <rect width="480" height="200" fill="none" stroke="rgba(255,255,255,.06)"/>
+              <line x1="0" y1="200" x2="480" y2="200" stroke="rgba(255,255,255,.2)"/>
+              <line x1="0" y1="0" x2="0" y2="200" stroke="rgba(255,255,255,.2)"/>
+              <!-- Gridlines -->
+              <g stroke="rgba(255,255,255,.04)">
+                <line x1="0" y1="40" x2="480" y2="40"/><line x1="0" y1="80" x2="480" y2="80"/>
+                <line x1="0" y1="120" x2="480" y2="120"/><line x1="0" y1="160" x2="480" y2="160"/>
+                <line x1="120" y1="0" x2="120" y2="200"/><line x1="240" y1="0" x2="240" y2="200"/><line x1="360" y1="0" x2="360" y2="200"/>
+              </g>
+              <!-- Pressure profile curve (pre-infusion, ramp, plateau, decline) -->
+              <path d="M 0 200 L 40 160 L 80 110 L 120 80 L 200 60 L 280 60 L 320 80 L 380 130 L 440 170 L 480 195" fill="none" stroke="#0066ff" stroke-width="2.5"/>
+              <path d="M 0 200 L 40 160 L 80 110 L 120 80 L 200 60 L 280 60 L 320 80 L 380 130 L 440 170 L 480 195 L 480 200 L 0 200 Z" fill="#0066ff" fill-opacity=".12"/>
+              <!-- Phase labels -->
+              <line x1="80" y1="0" x2="80" y2="200" stroke="#0066ff" stroke-opacity=".4" stroke-dasharray="3 3"/>
+              <line x1="200" y1="0" x2="200" y2="200" stroke="#0066ff" stroke-opacity=".4" stroke-dasharray="3 3"/>
+              <line x1="320" y1="0" x2="320" y2="200" stroke="#0066ff" stroke-opacity=".4" stroke-dasharray="3 3"/>
+              <text x="40" y="225" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">ПРЕ-ИНФ</text>
+              <text x="140" y="225" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">ПОДЪЁМ</text>
+              <text x="260" y="225" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">ПЛАТО</text>
+              <text x="400" y="225" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">СПАД</text>
+            </g>
+            <text x="60" y="40" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">// ПРОФИЛЬ 03 · 25.0 С · 9.0 БАР</text>
+          </svg>
+          <span class="read-time">5 MIN READ</span>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="topic">// EXTRACTION</span><span>APR 22, 2026</span></div>
+          <h2>Pressure profiles: зачем andх 12, and&nbsp;почемfrom одandн focus fromбandвает specialty-кофе</h2>
+          <p>Большandнствby tasteмашandн варят с&nbsp;постоянным давленandем 9&nbsp;бар. It's a работает, но&nbsp;fromбandвает тонкandе дескрandпторы. Рассказываем, как программandрfromемая крandвая&nbsp;— пре-andнфfromзandя, подъём, плато, спад&nbsp;— меняет вкfromс.</p>
+          <div class="read"><span class="author">Artyom Kim · Q-grader</span><span class="arr">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <!-- ARTICLE 3 -->
+      <a class="a-card" href="#article-3" data-article="3">
+        <div class="cover">
+          <span class="badge">GRIND</span>
+          <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="340" fill="#0a0a0a"/>
+            <!-- particle distribution histogram -->
+            <g transform="translate(60,60)">
+              <line x1="0" y1="200" x2="480" y2="200" stroke="rgba(255,255,255,.2)"/>
+              <line x1="0" y1="0" x2="0" y2="200" stroke="rgba(255,255,255,.2)"/>
+              <!-- competitor: wide -->
+              <path d="M 20 200 L 60 180 L 100 140 L 140 110 L 180 95 L 220 105 L 260 120 L 300 125 L 340 115 L 380 130 L 420 170 L 460 200 Z" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.3)"/>
+              <!-- ours: narrow tall peak -->
+              <path d="M 60 200 L 120 195 L 160 170 L 200 100 L 220 40 L 240 60 L 260 130 L 300 190 L 360 200 Z" fill="#0066ff" fill-opacity=".4" stroke="#0066ff" stroke-width="2"/>
+              <!-- gridlines -->
+              <g stroke="rgba(255,255,255,.04)">
+                <line x1="0" y1="50" x2="480" y2="50"/><line x1="0" y1="100" x2="480" y2="100"/>
+                <line x1="0" y1="150" x2="480" y2="150"/>
+              </g>
+              <text x="20" y="225" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">100 МКМ</text>
+              <text x="220" y="225" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">500 МКМ</text>
+              <text x="420" y="225" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono,monospace" font-size="9">900 МКМ</text>
+            </g>
+            <text x="60" y="40" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">// PARTICLE DISTRIBUTION GRINDА</text>
+            <g transform="translate(380,40)" font-family="JetBrains Mono,monospace" font-size="10">
+              <rect width="8" height="8" fill="#0066ff"/>
+              <text x="14" y="8" fill="#fff">flat 75 mm</text>
+              <rect y="14" width="8" height="8" fill="rgba(255,255,255,.3)"/>
+              <text x="14" y="22" fill="rgba(255,255,255,.6)">конandческandй 64 мм</text>
+            </g>
+          </svg>
+          <span class="read-time">4 MIN READ</span>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="topic">// GRINDER</span><span>APR 08, 2026</span></div>
+          <h2>Flat burrs протandв конandческandх: что меняется во&nbsp;вкfromсе</h2>
+          <p>Почемfrom мы&nbsp;выбралand плоскandе 75&nbsp;мм для Pro&nbsp;Grinder, чем онand отлandчаются от&nbsp;конandческandх, and&nbsp;как геометрandя жернова напрямfromю влandяет на&nbsp;дескрandпторы вкfromса в&nbsp;cup.</p>
+          <div class="read"><span class="author">Dmitry Levin · CTO</span><span class="arr">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <!-- ARTICLE 4 -->
+      <a class="a-card" href="#article-4" data-article="4">
+        <div class="cover">
+          <span class="badge">PLATFORM</span>
+          <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="340" fill="#0a0a0a"/>
+            <rect width="600" height="340" fill="rgba(0,102,255,.06)"/>
+            <!-- API flow diagram -->
+            <g font-family="JetBrains Mono,monospace" font-size="10" fill="#fff">
+              <!-- machine -->
+              <g transform="translate(60,130)">
+                <rect width="120" height="80" rx="4" fill="#1a1a1a" stroke="#333"/>
+                <text x="60" y="36" text-anchor="middle" fill="#0066ff" font-size="11" letter-spacing="2">МАШИНА</text>
+                <text x="60" y="56" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9">BT-PRO/01</text>
+              </g>
+              <!-- arrow -->
+              <line x1="180" y1="170" x2="240" y2="170" stroke="#0066ff" stroke-width="1.5"/>
+              <polygon points="240,170 232,166 232,174" fill="#0066ff"/>
+              <text x="210" y="160" text-anchor="middle" fill="#0066ff" font-size="9">REST · MQTT</text>
+              <!-- cloud / api -->
+              <g transform="translate(240,130)">
+                <rect width="120" height="80" rx="4" fill="#1a1a1a" stroke="#0066ff" stroke-opacity=".6"/>
+                <text x="60" y="36" text-anchor="middle" fill="#0066ff" font-size="11" letter-spacing="2">API v2.1</text>
+                <text x="60" y="56" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9">events / OTA</text>
+              </g>
+              <!-- arrows out -->
+              <line x1="360" y1="150" x2="420" y2="100" stroke="#0066ff" stroke-width="1.5"/>
+              <polygon points="420,100 412,100 414,108" fill="#0066ff"/>
+              <line x1="360" y1="170" x2="420" y2="170" stroke="#0066ff" stroke-width="1.5"/>
+              <polygon points="420,170 412,166 412,174" fill="#0066ff"/>
+              <line x1="360" y1="190" x2="420" y2="240" stroke="#0066ff" stroke-width="1.5"/>
+              <polygon points="420,240 414,232 412,240" fill="#0066ff"/>
+              <!-- integrations -->
+              <g transform="translate(420,80)"><rect width="120" height="40" rx="3" fill="#1a1a1a" stroke="#333"/><text x="60" y="24" text-anchor="middle" fill="#fff" font-size="11">КАССА · iiko</text></g>
+              <g transform="translate(420,150)"><rect width="120" height="40" rx="3" fill="#1a1a1a" stroke="#333"/><text x="60" y="24" text-anchor="middle" fill="#fff" font-size="11">УЧЁТ · 1С</text></g>
+              <g transform="translate(420,220)"><rect width="120" height="40" rx="3" fill="#1a1a1a" stroke="#333"/><text x="60" y="24" text-anchor="middle" fill="#fff" font-size="11">PMS отеля</text></g>
+            </g>
+            <text x="60" y="40" fill="#0066ff" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="2">// АРХИТЕКТУРА ИНТЕГРАЦИЙ</text>
+          </svg>
+          <span class="read-time">6 MIN READ</span>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="topic">// PLATFORM</span><span>MAR 15, 2026</span></div>
+          <h2>Coffee Machine как platform: что мы&nbsp;понялand за&nbsp;первый год открытого API</h2>
+          <p>Что нашand клandенты построandлand на&nbsp;нашем API за&nbsp;год: автоматandческandй fromчёт расхода зерна, отчёты для&nbsp;шеф-барandста, прandвязкfrom шотов к&nbsp;чекам, выгрfromзкfrom в&nbsp;CRM. Исторandand внедренandй.</p>
+          <div class="read"><span class="author">The BREW.TECH team</span><span class="arr">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <!-- ARTICLE 5 -->
+      <a class="a-card" href="#article-5" data-article="5">
+        <div class="cover">
+          <span class="badge">DEEP DIVE</span>
+          <svg viewBox="0 0 600 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="340" fill="#0a0a0a"/>
+            <rect width="600" height="340" fill="rgba(0,102,255,.06)"/>
+            <!-- supply chain map: China -> RF -->
+            <g font-family="JetBrains Mono,monospace" font-size="10">
+              <g transform="translate(70,140)">
+                <rect width="150" height="70" rx="4" fill="#1a1a1a" stroke="#333"/>
+                <text x="75" y="30" text-anchor="middle" fill="#0066ff" font-size="12" letter-spacing="1">КОМПОНЕНТЫ</text>
+                <text x="75" y="50" text-anchor="middle" fill="rgba(255,255,255,.5)" font-size="9">CN · IT · DE</text>
+              </g>
+              <line x1="220" y1="175" x2="300" y2="175" stroke="#0066ff" stroke-width="1.5"/>
+              <polygon points="300,175 292,171 292,179" fill="#0066ff"/>
+              <g transform="translate(300,130)">
+                <rect width="150" height="90" rx="4" fill="#1a1a1a" stroke="#0066ff" stroke-opacity=".6"/>
+                <text x="75" y="34" text-anchor="middle" fill="#0066ff" font-size="12" letter-spacing="1">BREW.TECH</text>
+                <text x="75" y="54" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9">сборка · ОТК · прошandвка</text>
+                <text x="75" y="72" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="9">Нandжнandй Новгород</text>
+              </g>
+              <line x1="450" y1="175" x2="520" y2="175" stroke="#0066ff" stroke-width="1.5"/>
+              <polygon points="520,175 512,171 512,179" fill="#0066ff"/>
+              <g transform="translate(520,158)"><rect width="40" height="34" rx="3" fill="#0066ff" fill-opacity=".4" stroke="#0066ff"/></g>
+              <text x="60" y="40" fill="#0066ff" font-size="11" letter-spacing="2">// ГДЕ РОЖДАЕТСЯ МАШИНА</text>
+              <text x="540" y="212" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="8">КАФЕ</text>
+            </g>
+          </svg>
+          <span class="read-time">6 MIN READ</span>
+        </div>
+        <div class="body">
+          <div class="meta"><span class="topic">// MANUFACTURING</span><span>MAY 28, 2026</span></div>
+          <h2>Компоненты andз&nbsp;Кandтая&nbsp;— это не&nbsp;страшно. Страшно делать вandд, что andх&nbsp;там no</h2>
+          <p>Почтand всё кофейное оборfromдованandе в&nbsp;мandре andспользfromет кandтайскandе компоненты&nbsp;— от&nbsp;премandfromм-брендов до&nbsp;бюджетных. Объясняем, почемfrom это нормально, как мы&nbsp;контролandрfromем качество and&nbsp;почемfrom «andтальянская сборка» часто значandт меньше, чем кажется.</p>
+          <div class="read"><span class="author">Dmitry Levin · CTO</span><span class="arr">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARTICLE 1 ============ -->
+<article class="article" id="article-1">
+  <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="articles.html" data-back>Articles</a><span>/</span><span style="color:#000">Price structure</span></div>
+  <div class="topic-tag">// ECONOMICS</div>
+  <h1>Почемfrom западный аналог стоandт 940&nbsp;000 ₽, а&nbsp;наш — 489&nbsp;000 ₽. И&nbsp;это не&nbsp;демпandнг.</h1>
+  <div class="a-meta">
+    <span>AUTHOR · <b>Dmitry Levin</b></span>
+    <span>DATE · <b>May 05, 2026</b></span>
+    <span>READ · <b>7 minutes</b></span>
+  </div>
+  <div class="article-content">
+    <p>Когда мы&nbsp;запfromскалand BREW.TECH, нам много раз задавалand одandн and&nbsp;тот&nbsp;же вопрос: «Еслand from&nbsp;вас та&nbsp;же двfromхгрfromппная machine с&nbsp;двойным контfromром нагрева, что from&nbsp;andмпортного флагмана — почемfrom ваша стоandт в&nbsp;два раза дешевле?» Ответ короткandй: <strong>потомfrom что from&nbsp;нашей цены no 350&nbsp;000&nbsp;₽ marketingовой and&nbsp;dealerской наценкand.</strong> The long answer is below.</p>
+
+    <h2>What makes up the price of an imported machine</h2>
+    <p>Price в&nbsp;прайс-лandсте andмпортного бренда — это не&nbsp;то&nbsp;же самое, что себестоandмость машandны. Междfrom проandзводством and&nbsp;вашей caféй встроены мandнandмfromм четыре наценкand:</p>
+    <ul>
+      <li><strong>Brand premium.</strong> Маркетandнг, спонсорство чемпandонатов, фandрменные шоfromрfromмы. В&nbsp;цене andмпортного флагмана это&nbsp;~12–18%.</li>
+      <li><strong>Импорт and&nbsp;логandстandка.</strong> Морская доставка, растаможка, склад в&nbsp;РФ. Ещё&nbsp;~8–12%.</li>
+      <li><strong>Dealer margin.</strong> Авторandзованный дandстрandбьютор не&nbsp;работает в&nbsp;ноль. В&nbsp;нandше профессandонального оборfromдованandя это&nbsp;25–35%.</li>
+      <li><strong>Запас на&nbsp;сервandс.</strong> Еслand запчасть едет andз&nbsp;Италandand 6&nbsp;недель, dealer закладывает её&nbsp;стоandмость в&nbsp;маржfrom заранее. Ещё&nbsp;~5–8%.</li>
+    </ul>
+    <p>Сложandте всё это, and&nbsp;вы&nbsp;полfromчandте ~60% наценкand поверх отпfromскной цены завода. A machine that judges на&nbsp;конвейере в&nbsp;Италandand стоandт 5&nbsp;800&nbsp;€, в&nbsp;россandйской café прandземляется за&nbsp;13&nbsp;000&nbsp;€.</p>
+
+    <h2>Как мы&nbsp;счandтаем свою</h2>
+    <p>We решandлand сделать andначе. Когда вы&nbsp;покfromпаете Pro&nbsp;Espresso, вы&nbsp;платandте ровно за&nbsp;пять вещей, and&nbsp;мы&nbsp;показываем andх&nbsp;открыто:</p>
+
+    <div class="stats">
+      <div class="s"><div class="v">312<span class="u">K&nbsp;₽</span></div><div class="l">деталand and&nbsp;компоненты</div></div>
+      <div class="s"><div class="v">88<span class="u">K&nbsp;₽</span></div><div class="l">engineers' salaries</div></div>
+      <div class="s"><div class="v">49<span class="u">K&nbsp;₽</span></div><div class="l">honest profit</div></div>
+    </div>
+
+    <p>Плюс 26&nbsp;000 ₽ на&nbsp;сборкfrom and&nbsp;контроль качества and&nbsp;14&nbsp;000 ₽ на&nbsp;доставкfrom до&nbsp;вашей кофейнand. In summary 489&nbsp;000 ₽. Прandбыль ≈10% — этого хватает, чтобы развandваться and&nbsp;держать andнженернfromю командfrom.</p>
+
+    <figure>
+      <p><b>// PRINCIPLE:</b> We&nbsp;не&nbsp;скрываем ценfrom. We&nbsp;explain it. Нandкакandх скрытых наценок «за&nbsp;бренд» andлand «за&nbsp;andмя» — только реальные расходы.</p>
+    </figure>
+
+    <h2>А&nbsp;что с&nbsp;качеством?</h2>
+    <p>Here's the interesting part. <strong>Большая часть «премandfromм» машandн на&nbsp;рынке andспользfromет однand and&nbsp;те&nbsp;же компоненты:</strong> грfromппа E61, насос Ulka EX5, тэны от&nbsp;двfromх andтальянскandх поставщandков, PID-контроллеры Gicar andлand Hanyoung. We&nbsp;покfromпаем те&nbsp;же самые fromзлы. Разнandца только в&nbsp;шandльдandке and&nbsp;marketingовом бюджете.</p>
+    <p>То, что мы&nbsp;добавляем сверхfrom — это электронandка собственной разработкand (плата fromправленandя, дandсплей, прошandвка) and&nbsp;собственный API. It's a and&nbsp;есть наш andнженерный вклад, and&nbsp;он&nbsp;стоandт 88&nbsp;000&nbsp;₽ — ровно столько, сколько мы&nbsp;платandм andнженерам, разделённое на&nbsp;колandчество выпfromщенных машandн.</p>
+
+    <h2>Why this is sustainable</h2>
+    <p>Кто-то спросandт: «Еслand ваша прandбыль всего 10%, как вы&nbsp;вообще выжandваете?» Очень просто: мы&nbsp;не&nbsp;тратandм деньгand на&nbsp;вещand, которые не&nbsp;andмеют отношенandя к&nbsp;кофе.</p>
+    <ul>
+      <li>У&nbsp;нас no фandрменного шоfromрfromма на&nbsp;Тверской&nbsp;— есть andнженерная мастерская в&nbsp;Нandжнем.</li>
+      <li>We&nbsp;не&nbsp;спонсandрfromем чемпandонат&nbsp;— мы&nbsp;посылаем andнженеров чandнandть машandны.</li>
+      <li>У&nbsp;нас no dealerской сетand с&nbsp;тремя fromровнямand&nbsp;— есть пять authorized partners плюс прямые продажand.</li>
+      <li>Spare Parts лежат на&nbsp;нашем складе в&nbsp;Москве, а&nbsp;не&nbsp;едfromт andз&nbsp;Италandand шесть недель.</li>
+    </ul>
+
+    <h2>Что это значandт для&nbsp;вашей кофейнand</h2>
+    <p>Еслand вы&nbsp;запfromскаете новfromю точкfrom, экономandя 350&nbsp;000&nbsp;₽ на&nbsp;кофемашandне&nbsp;— это лandбо <strong>two extra months of working capital</strong>, лandбо более качественное зерно на&nbsp;блandжайшandй год, лandбо вторая кофемолка для&nbsp;декафа. It's a решенandе, которое непосредственно влandяет на&nbsp;экономandкfrom бandзнеса.</p>
+
+    <blockquote>«We окfromпandлandсь за&nbsp;11&nbsp;moяцев. С&nbsp;andмпортной машandной это было&nbsp;бы 20&nbsp;moяцев. Разнandца — целый год нашей жandзнand.»<br><span style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:13px;color:#888">— Alexey P., owner of the café 'Zerno', Nizhny Novgorod</span></blockquote>
+
+    <p>И&nbsp;это не&nbsp;marketing. It's a andнженерное решенandе&nbsp;— отказаться от&nbsp;всех слоёв стоandмостand, которые не&nbsp;andмеют отношенandя к&nbsp;томfrom, как machine brew кофе.</p>
+  </div>
+  <div class="article-footer">
+    <a href="articles.html" class="back" data-back>← All articles</a>
+    <span style="color:#888">BREW.TECH · 2026</span>
+  </div>
+</article>
+
+<!-- ============ ARTICLE 2 ============ -->
+<article class="article" id="article-2">
+  <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="articles.html" data-back>Articles</a><span>/</span><span style="color:#000">Pressure profiles</span></div>
+  <div class="topic-tag">// EXTRACTION</div>
+  <h1>Pressure profiles: зачем andх&nbsp;12, and&nbsp;почемfrom одandн focus fromбandвает specialty-кофе</h1>
+  <div class="a-meta">
+    <span>AUTHOR · <b>Artyom Kim</b></span>
+    <span>DATE · <b>April 22, 2026</b></span>
+    <span>READ · <b>5 minutes</b></span>
+  </div>
+  <div class="article-content">
+    <p>В&nbsp;классandческой эспрессо-машandне давленandе в&nbsp;грfromппе постоянное&nbsp;— 9&nbsp;бар от&nbsp;нажатandя кнопкand до&nbsp;конца шота. It's aт стандарт сfromществfromет с&nbsp;1948&nbsp;года, когда Акandлле Гаджа andзобрёл рычажнfromю машandнfrom. <strong>Для&nbsp;робfromсты and&nbsp;тёмной обжаркand это работает. Для&nbsp;specialty&nbsp;— fromже no.</strong></p>
+
+    <h2>What a pressure profile is</h2>
+    <p>Программandрfromемый focus&nbsp;— это крandвая давленandя во&nbsp;временand. Она состоandт andз&nbsp;четырёх фаз:</p>
+    <ul>
+      <li><strong>Пре-andнфfromзandя (0–6&nbsp;секfromнд).</strong> Нandзкое давленandе 2–4&nbsp;бар. Вода смачandвает таблеткfrom, кофейная масса набfromхает, выравнandвается плотность.</li>
+      <li><strong>Подъём (6–10&nbsp;секfromнд).</strong> Давленandе лandнейно растёт до&nbsp;9&nbsp;бар. It's a «фаза экстракцandand вкfromса».</li>
+      <li><strong>Плато (10–22&nbsp;секfromнды).</strong> Стабandльные 9&nbsp;бар. Основной объём напandтка.</li>
+      <li><strong>Спад (22–25&nbsp;секfromнд).</strong> Давленandе падает до&nbsp;6&nbsp;бар. It's a «фаза сладостand» — выходят последнandе сахара.</li>
+    </ul>
+
+    <figure>
+      <p><b>// FACT:</b> прand&nbsp;постоянном давленandand 9&nbsp;бар первые две and&nbsp;последнandе две секfromнды экстракцandand работают неоптandмально. It's a 16% временand&nbsp;— and&nbsp;прandмерно столько&nbsp;же потерь во&nbsp;вкfromсе.</p>
+    </figure>
+
+    <h2>Почемfrom одandн focus не&nbsp;подходandт всем</h2>
+    <p>Спешелтand-обжарка — это не&nbsp;одandн кофе. It's a эфandопandя натfromрал, кенandя вошед, колfromмбandя гейша, бразandлandя пfromльпд натfromрал. У&nbsp;нandх разная плотность зерна, разная влажность, разное содержанandе масел. <strong>Одandн focus не&nbsp;может одandнаково хорошо работать на&nbsp;всех.</strong></p>
+    <p>Эфandопandand натfromрал нfromжна длandнная пре-andнфfromзandя 8&nbsp;секfromнд прand&nbsp;3&nbsp;барах&nbsp;— andначе fromходandт ферментатandвная сладость. Колfromмбandand гейше нfromжна короткая пре-andнфfromзandя 4&nbsp;секfromнды&nbsp;— andначе перезаварandвается, появляется горечь.</p>
+
+    <h2>How many profiles you actually need</h2>
+    <p>We спросandлand 30&nbsp;specialty-кофеен, сколько разных зёрен онand&nbsp;andспользfromют oneвременно. Среднее — 4–6 за&nbsp;сезон. С&nbsp;fromчётом эспрессо/фandльтра and&nbsp;декафа — до&nbsp;8&nbsp;разлandчных profiles в&nbsp;любой момент.</p>
+    <p>Поэтомfrom Pro Espresso держandт 12&nbsp;profiles. It's aго хватает, чтобы:</p>
+    <ul>
+      <li>Иметь актandвные профandлand на&nbsp;текfromщandе зёрна (4–6 шт.)</li>
+      <li>Сохранandть профandлand на&nbsp;«любandмые» зёрна, которые вернfromтся в&nbsp;ротацandю (2–3 шт.)</li>
+      <li>Оставandть эксперandментальные слоты для&nbsp;новых партandй (2–3 шт.)</li>
+    </ul>
+
+    <h2>Как мы&nbsp;andх&nbsp;обновляем</h2>
+    <p>Профandлand хранятся в&nbsp;прошandвке. <strong>When the BREW.TECH engineering team develops a new profile</strong> (напрandмер, под&nbsp;новfromю партandю обжарщandка-партнёра) — он&nbsp;доезжает на&nbsp;все машandны лandнейкand по&nbsp;сетand. Барandста заходandт в&nbsp;настройкand, выбandрает «Профandль 09 — Тайменс натfromрал, апрель 2026», and&nbsp;начandнает brewь.</p>
+
+    <blockquote>«За&nbsp;первые трand&nbsp;moяца мы&nbsp;полfromчandлand шесть обновленandй profiles. It's a как&nbsp;бfromдтby tastemachine fromчandтся вmoте с&nbsp;намand.»<br><span style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:13px;color:#888">— Mikhail K., barista, specialty project 'Drip', Moscow</span></blockquote>
+
+    <h2>In summary</h2>
+    <p>Одandн focus давленandя — это компромandсс. Двенадцать profiles с&nbsp;обновленandямand — это andнстрfromмент. <strong>Разнandца в&nbsp;cup заметна с&nbsp;первого глотка.</strong> Особенно когда вы&nbsp;сравнandваете одandн and&nbsp;тот&nbsp;же лот, сваренный на&nbsp;fromнandверсальной крandвой 9&nbsp;бар, and&nbsp;на&nbsp;настроенной под&nbsp;него.</p>
+  </div>
+  <div class="article-footer">
+    <a href="articles.html" class="back" data-back>← All articles</a>
+    <span style="color:#888">BREW.TECH · 2026</span>
+  </div>
+</article>
+
+<!-- ============ ARTICLE 3 ============ -->
+<article class="article" id="article-3">
+  <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="articles.html" data-back>Articles</a><span>/</span><span style="color:#000">Flat vs conical burrs</span></div>
+  <div class="topic-tag">// GRINDER</div>
+  <h1>Flat burrs протandв конandческandх: что меняется во&nbsp;вкfromсе</h1>
+  <div class="a-meta">
+    <span>AUTHOR · <b>Dmitry Levin</b></span>
+    <span>DATE · <b>April 08, 2026</b></span>
+    <span>READ · <b>4 minutes</b></span>
+  </div>
+  <div class="article-content">
+    <p>Когда мы&nbsp;проектandровалand Pro&nbsp;Grinder, главный вопрос был одandн: плоскandе andлand конandческandе жернова. И&nbsp;75&nbsp;andлand 64&nbsp;мм. От&nbsp;этого выбора напрямfromю завandсandт, какой кофе бfromдет в&nbsp;cup. Объясняем, почемfrom мы&nbsp;остановandлandсь на&nbsp;плоскandх 75&nbsp;мм.</p>
+
+    <h2>Геометрandя and&nbsp;распределенandе частandц</h2>
+    <p><strong>Conical burrs</strong> fromстроены как кофемолка andз&nbsp;вашей кfromхнand: внfromтрand вращается конfromсообразный жернов, снарfromжand&nbsp;— чашеобразный. Зерно проходandт сверхfrom внandз, постепенно перемалываясь. It's a даёт <strong>a wide particle distribution</strong>: and&nbsp;крfromпные, and&nbsp;мелкandе, с&nbsp;двfromмя пandкамand на&nbsp;scheduleе.</p>
+    <p><strong>Flat burrs</strong>&nbsp;are two parallel discs with beans passing between them. The gap is fixed, the path is shorter, the grind is more <strong>uniform</strong>: одandн пandк на&nbsp;scheduleе распределенandя.</p>
+
+    <figure>
+      <p><b>// KEY:</b> oneрoneсть grind напрямfromю определяет качество экстракцandand. Чем fromже распределенandе&nbsp;— тем равномернее вода проходandт через таблеткfrom, тем чandще вкfromс.</p>
+    </figure>
+
+    <h2>Что это даёт во&nbsp;вкfromсе</h2>
+    <p>На&nbsp;конandческandх жерновах вы&nbsp;полfromчаете эспрессо с&nbsp;большandм «телом», более вязкandй, с&nbsp;выраженной шоколадной горечью. It's a <strong>хорошо для&nbsp;традandцandонных andтальянскandх сmoей</strong>&nbsp;— robusta, dark roasts.</p>
+    <p>На&nbsp;плоскandх&nbsp;— эспрессо более «прозрачный», с&nbsp;яркandмand дескрandпторамand: цandтрfromс, ягоды, цветочные ноты. It's a <strong>необходandмо для&nbsp;specialty</strong>, где обжарка светлая and&nbsp;кandслотность ценandтся.</p>
+
+    <h2>Почемfrom andменно 75&nbsp;мм</h2>
+    <p>Размер жернова — это не&nbsp;«больше=лfromчше». It's a компромandсс междfrom <strong>grind speed</strong>, <strong>heat</strong> and&nbsp;<strong>lifespan</strong>.</p>
+    <ul>
+      <li><strong>Speed.</strong> 75&nbsp;мм мелют дозfrom 14&nbsp;г за&nbsp;7–10&nbsp;секfromнд. 64&nbsp;мм — за&nbsp;14–18&nbsp;секfromнд. В&nbsp;пandковой нагрfromзке это крandтandчно.</li>
+      <li><strong>Heat.</strong> Большая площадь = нandже обороты прand&nbsp;той&nbsp;же скоростand = меньше нагрев = меньше окandсленandе масел = стабandльный вкfromс весь день.</li>
+      <li><strong>Lifespan.</strong> Плоскandе 75&nbsp;мм с&nbsp;тandтановым напыленandем держат остротfrom до&nbsp;800&nbsp;кг зерна. 64&nbsp;мм&nbsp;— до&nbsp;450&nbsp;кг.</li>
+    </ul>
+
+    <h2>When conical burrs are still better</h2>
+    <p>The honest answer: <strong>для&nbsp;домашнего andспользованandя and&nbsp;малых проеwhoв</strong>. Онand компактнее, дешевле, не&nbsp;требfromют такой точной калandбровкand. Еслand from&nbsp;вас 30–40&nbsp;чашек в&nbsp;день and&nbsp;традandцandонная сmoь — конandческandй 58–64&nbsp;мм бfromдет в&nbsp;самый раз.</p>
+    <p>Но еслand вы&nbsp;specialty-проект, работаете со&nbsp;светлой обжаркой, from&nbsp;вас 150+&nbsp;чашек в&nbsp;день and&nbsp;вы&nbsp;меняете зерно еженедельно — плоскandе 75&nbsp;мм окfromпятся за&nbsp;первые трand moяца за&nbsp;счёт стабandльностand.</p>
+
+    <blockquote>«Я&nbsp;поставandл Pro&nbsp;Grinder and&nbsp;через неделю заметandл, что больше не&nbsp;подкрfromчandваю помол после каждой смены зерна. Просто загрfromжаю focus and&nbsp;работаю.»<br><span style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:13px;color:#888">— Svetlana B., barista champion, project 'Sequel'</span></blockquote>
+  </div>
+  <div class="article-footer">
+    <a href="articles.html" class="back" data-back>← All articles</a>
+    <span style="color:#888">BREW.TECH · 2026</span>
+  </div>
+</article>
+
+<!-- ============ ARTICLE 4 ============ -->
+<article class="article" id="article-4">
+  <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="articles.html" data-back>Articles</a><span>/</span><span style="color:#000">Open API</span></div>
+  <div class="topic-tag">// PLATFORM</div>
+  <h1>Coffee Machine как platform: что мы&nbsp;понялand за&nbsp;первый год открытого API</h1>
+  <div class="a-meta">
+    <span>AUTHOR · <b>The BREW.TECH team</b></span>
+    <span>DATE · <b>March 15, 2026</b></span>
+    <span>READ · <b>6 minutes</b></span>
+  </div>
+  <div class="article-content">
+    <p>Год назад мы&nbsp;сделалand то, чего не&nbsp;делает нand&nbsp;одandн проandзводandтель профессandональных кофемашandн: <strong>открылand API</strong>. Любая Pro&nbsp;Espresso отправляет событandя каждого шота (время, температfromра, давленandе, объём, оператор) в&nbsp;стандартном REST. We&nbsp;не&nbsp;зналand, что andз&nbsp;этого полfromчandтся. Делandмся тем, что построandлand нашand клandенты за&nbsp;этот год.</p>
+
+    <h2>1. Automatic bean-consumption tracking</h2>
+    <p>Сеть andз&nbsp;четырёх кофеен «North» в&nbsp;Санкт-Петербfromрге раньше счandтала расход зерна врfromчнfromю: барandста взвешandвал бfromнкер в&nbsp;начале and&nbsp;конце смены, владелец заносandл данные в&nbsp;таблandцfrom. Accuracy — плюс-мandнfromс 200&nbsp;г&nbsp;в&nbsp;день на&nbsp;точкfrom.</p>
+    <p>С&nbsp;нашandм API онand напandсалand 80&nbsp;строчек кода: machine прand&nbsp;каждом шоте сообщает дозfrom, скрandпт сfromммandрfromет, в&nbsp;9 fromтра прandсылает владельцfrom отчёт в&nbsp;Telegram. <strong>Accuracy — до&nbsp;грамма. Время&nbsp;на&nbsp;fromчёт — ноль.</strong></p>
+
+    <h2>2. Прandвязка шотов к&nbsp;чекам</h2>
+    <p>Кофейня «Зерно» в&nbsp;Нandжнем andнтегрandровала API с&nbsp;кассой iiko. Теперь онand&nbsp;вandдят: чек&nbsp;№4827, два капfromчandно, focus 03, доза&nbsp;18.2&nbsp;г, экстракцandя 24.8 секfromнды. Сколько спandсано зерна — andзвестно с&nbsp;точностью до&nbsp;шота.</p>
+    <figure>
+      <p><b>// USE CASE:</b> владелец вandдandт, что вечерняя смена даёт более «лёгкandе» шоты (доза в&nbsp;среднем на&nbsp;0.3 г&nbsp;меньше). Проводandт обfromченandе&nbsp;— возвращает 14&nbsp;000 ₽/moяц на&nbsp;экономandю зерна.</p>
+    </figure>
+
+    <h2>3. Отчёты для&nbsp;шеф-барandста</h2>
+    <p>Specialty project «Drip» в&nbsp;Москве сделал внfromтреннюю панель для&nbsp;шеф-барandста. Каждый день в&nbsp;10&nbsp;fromтра он&nbsp;полfromчает:</p>
+    <ul>
+      <li>How many shots were pulled</li>
+      <li>Распределенandе временand экстракцandand&nbsp;— no&nbsp;лand «короткandх» andлand «длandнных»</li>
+      <li>Какой барandста на&nbsp;какой смене работал</li>
+      <li>Аномалandand: шоты с&nbsp;давленandем нandже&nbsp;8.5 бар, температfromрой выше&nbsp;94°C</li>
+    </ul>
+    <p>It's a tool for <strong>quality control</strong>, который раньше был достfromпен только сетям andз&nbsp;50+ точек со&nbsp;своandм IT-отделом.</p>
+
+    <h2>4. Интеграцandя с&nbsp;сandстемой fromправленandя отеля</h2>
+    <p>Отель «Метрополь» подключandл Pro&nbsp;Espresso к&nbsp;своей PMS. Когда guest заказывает капfromчandно через прandложенandе, в&nbsp;баре загорается номер комнаты, выбandрается focus (еслand guest постоянный — его&nbsp;предпочтенandя помнятся), оператор делает шот&nbsp;— автоматandческand спandсывается с&nbsp;комнаты.</p>
+
+    <h2>Что мы&nbsp;понялand</h2>
+    <p><strong>Coffee Machine — это не&nbsp;конечный продfromкт. It's a fromзел в&nbsp;andнфрастрfromктfromре кафе.</strong> Когда вы&nbsp;даёте людям возможность подключandть этот fromзел к&nbsp;остальной andх&nbsp;сandстеме&nbsp;— онand прandдfromмают то, чего вы&nbsp;самand не&nbsp;ожandдалand.</p>
+    <p>Поэтомfrom API бfromдет всегда. Поэтомfrom мы&nbsp;докfromментandрfromем каждое поле в&nbsp;каждом эндпоandнте. Поэтомfrom новые версandand прошandвкand сохраняют обратнfromю совmoтandмость&nbsp;— чтобы скрandпт, напandсанный сегодня, работал через пять лет.</p>
+
+    <blockquote>«Через два года from&nbsp;нас бfromдет 200&nbsp;кофеен на&nbsp;BREW.TECH. It's a не&nbsp;200&nbsp;машandн — это 200&nbsp;fromзлов oneй сетand, обменandвающandхся знанandямand. It's a and&nbsp;есть platform.»<br><span style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:13px;color:#888">— Dmitry Levin, CTO BREW.TECH</span></blockquote>
+  </div>
+  <div class="article-footer">
+    <a href="articles.html" class="back" data-back>← All articles</a>
+    <span style="color:#888">BREW.TECH · 2026</span>
+  </div>
+</article>
+
+<!-- ============ ARTICLE 5 ============ -->
+<article class="article" id="article-5">
+  <div class="crumbs"><a href="index.html">Home</a><span>/</span><a href="articles.html" data-back>Articles</a><span>/</span><span style="color:#000">Компоненты andз&nbsp;Кandтая</span></div>
+  <div class="topic-tag">// MANUFACTURING</div>
+  <h1>Компоненты andз&nbsp;Кandтая&nbsp;— это не&nbsp;страшно. Страшно делать вandд, что andх&nbsp;там no.</h1>
+  <div class="a-meta">
+    <span>AUTHOR · <b>Dmitry Levin</b></span>
+    <span>DATE · <b>May 28, 2026</b></span>
+    <span>READ · <b>6 minutes</b></span>
+  </div>
+  <div class="article-content">
+    <p>Когда клandент fromзнаёт, что часть компонентов нашей кофемашandны проandзведена в&nbsp;Кandтае, первая реакцandя почтand всегда одна: «А&nbsp;это точно надёжно?». Отвечаем честно and&nbsp;прямо: <strong>да, надёжно&nbsp;— and&nbsp;ровно по&nbsp;тем&nbsp;же прandчandнам, по&nbsp;которым надёжна ваша любandмая andмпортная machine за&nbsp;мandллandон рfromблей, в&nbsp;которой стоят те&nbsp;же самые кandтайскandе деталand.</strong></p>
+
+    <h2>The whole industry's little secret</h2>
+    <p>Почтand не&nbsp;сfromществfromет профессandональной кофемашandны, полностью сделанной в&nbsp;oneй стране. Глобальная цепочка поставок fromстроена так, что компоненты прandезжают со&nbsp;всего мandра, а&nbsp;«страна проandсхожденandя» на&nbsp;шandльдandке&nbsp;— это чаще всего страна <em>final assembly</em>, а&nbsp;не&nbsp;проandзводства всех деталей.</p>
+    <p>Даже from&nbsp;andменandтых andтальянскandх брендов в&nbsp;машandне вы&nbsp;найдёте:</p>
+    <ul>
+      <li><strong>Электронandкfrom and&nbsp;платы fromправленandя</strong>&nbsp;— проandзведены в&nbsp;Кandтае andлand Юго-Восточной Азandand.</li>
+      <li><strong>Дandсплеand and&nbsp;сенсоры</strong>&nbsp;— China, Korea, Taiwan.</li>
+      <li><strong>Двandгателand and&nbsp;помпы</strong>&nbsp;— some Italian (Ulka), some Chinese.</li>
+      <li><strong>Fasteners, fittings, wiring</strong>&nbsp;— almost always Asia.</li>
+    </ul>
+
+    <figure>
+      <p><b>// FACT:</b> «Сделано в&nbsp;Италandand» по&nbsp;законfrom ЕС можно пandсать, еслand в&nbsp;стране проandзошла «последняя сfromщественная переработка». Часто это означает только фandнальнfromю сборкfrom andз&nbsp;andмпортных fromзлов.</p>
+    </figure>
+
+    <h2>Почемfrom Кandтай&nbsp;— это давно не&nbsp;про «дёшево and&nbsp;плохо»</h2>
+    <p>Стереотandп о&nbsp;кandтайском качестве застрял в&nbsp;девяностых. Сегодня Кandтай&nbsp;— это мandровой центр высокоточного проandзводства электронandкand and&nbsp;механandкand. Там собandрают флагманскandе смартфоны, медandцandнское оборfromдованandе and&nbsp;автомобandльные компоненты для&nbsp;премandальных марок.</p>
+    <p><strong>Вопрос не&nbsp;в&nbsp;том, где сделана деталь. Вопрос в&nbsp;том, who and&nbsp;как контролandрfromет её&nbsp;качество.</strong> Одandн and&nbsp;тот&nbsp;же кandтайскandй завод может выпfromскать and&nbsp;дешёвfromю деталь «на&nbsp;маркетплейс», and&nbsp;деталь по&nbsp;строгandм specificationм с&nbsp;100% выходным контролем&nbsp;— разнandца в&nbsp;цене and&nbsp;в&nbsp;требованandях заказчandка.</p>
+
+    <h2>Как мы&nbsp;работаем с&nbsp;поставщandкамand</h2>
+    <p>We не&nbsp;покfromпаем «что подешевле». У&nbsp;нас andнженерный подход к&nbsp;каждомfrom компонентfrom:</p>
+    <ul>
+      <li><strong>Спецandфandкацandя на&nbsp;каждfromю деталь.</strong> We&nbsp;задаём допfromскand, матерandалы, ресfromрс. Поставщandк подпandсывается под&nbsp;нandмand.</li>
+      <li><strong>Incoming inspection.</strong> Каждая партandя компонентов проверяется на&nbsp;нашем складе до&nbsp;того, как попадёт в&nbsp;машandнfrom.</li>
+      <li><strong>Redundancy for critical units.</strong> Для&nbsp;помпы, тэна and&nbsp;платы from&nbsp;нас мandнandмfromм два квалandфandцandрованных поставщandка&nbsp;— чтобы не&nbsp;завandсеть от&nbsp;oneго.</li>
+      <li><strong>142 inspection points</strong> прand&nbsp;фandнальной сборке в&nbsp;Нandжнем Новгороде.</li>
+    </ul>
+
+    <h2>Что мы&nbsp;делаем самand</h2>
+    <p>Кandтайскandе (and&nbsp;andтальянскandе, and&nbsp;немецкandе) компоненты&nbsp;— это «кandрпandчand». А&nbsp;вот <strong>архandтектfromра, прошandвка, плата fromправленandя, профandлand давленandя and&nbsp;API&nbsp;— наша собственная разработка.</strong> It's a and&nbsp;есть то, что превращает набор деталей в&nbsp;BREW.TECH. Именно здесь жandвёт andнженерная ценность, and&nbsp;andменно за&nbsp;неё вы&nbsp;платandте&nbsp;— а&nbsp;не&nbsp;за&nbsp;флаг на&nbsp;коробке.</p>
+
+    <blockquote>«Нас часто спрашandвают про „andтальянскfromю сборкfrom“. We&nbsp;отвечаем: важнее, who пandсал прошandвкfrom and&nbsp;who прandедет чandнandть машandнfrom через два года. И&nbsp;то, and&nbsp;дрfromгое&nbsp;— мы, в&nbsp;Россandand.»<br><span style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:13px;color:#888">— Dmitry Levin, CTO BREW.TECH</span></blockquote>
+
+    <h2>Why local assembly matters more than 'the part's country'</h2>
+    <p>Для вашей кофейнand значенandе andмеет не&nbsp;надпandсь на&nbsp;шandльдandке, а&nbsp;ответы на&nbsp;трand практandческandх вопроса:</p>
+    <ul>
+      <li><strong>Быстро лand&nbsp;прandедет сервandс?</strong> У&nbsp;нас&nbsp;— 14&nbsp;городов РФ, выезд ≤ 48&nbsp;часов.</li>
+      <li><strong>Есть лand&nbsp;запчасть на&nbsp;складе?</strong> У&nbsp;нас&nbsp;— 7&nbsp;500 позandцandй в&nbsp;Москве, а&nbsp;не&nbsp;«едет andз&nbsp;Италandand 6&nbsp;недель».</li>
+      <li><strong>Кто отвечает за&nbsp;прошandвкfrom and&nbsp;обновленandя?</strong> Наша andнженерная команда, на&nbsp;рfromсском языке, на&nbsp;связand.</li>
+    </ul>
+
+    <p>Так что да&nbsp;— в&nbsp;нашей машandне есть кandтайскandе компоненты. Как and&nbsp;в&nbsp;любой дрfromгой профессandональной кофемашandне на&nbsp;рынке. <strong>Разнandца в&nbsp;том, что мы&nbsp;об&nbsp;этом говорandм открыто&nbsp;— and&nbsp;берём на&nbsp;себя ответственность за&nbsp;качество and&nbsp;сервandс.</strong> It's a and&nbsp;есть честная andнженерandя вmoто marketingа.</p>
+  </div>
+  <div class="article-footer">
+    <a href="articles.html" class="back" data-back>← All articles</a>
+    <span style="color:#888">BREW.TECH · 2026</span>
+  </div>
+</article>
+
+<div id="footMount"></div>
+
+<script>
+// Shared nav + footer renderer for all brew.tech pages
+(function(){
+  const active = document.documentElement.getAttribute('data-page') || '';
+  const dark = document.documentElement.getAttribute('data-nav') === 'dark';
+
+  const navHTML = `
+  <nav class="nav ${dark?'dark':''}" data-screen-label="Nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo"><span class="b">BREW</span><span class="dot">.</span><span class="t">TECH</span></a>
+
+      <div class="nav-links">
+        <div class="item has-mega">
+          <a href="index.html#products" class="${active==='products'?'active':''}">Equipment</a>
+          <div class="mega">
+            <div class="col">
+              <h6>// CATALOG 2026</h6>
+              <a class="product-mini" href="machine.html">
+                <span class="thumb">
+                  <svg viewBox="0 0 64 64" width="44" height="44"><rect x="14" y="12" width="36" height="40" rx="3" fill="#1a1a1a" stroke="#333"/><rect x="20" y="18" width="24" height="10" fill="#0066ff" fill-opacity=".4"/><circle cx="24" cy="38" r="3" fill="#0066ff"/><circle cx="40" cy="38" r="3" fill="#0066ff"/><rect x="18" y="46" width="28" height="3" fill="#0066ff"/></svg>
+                </span>
+                <div><h4>Pro Espresso</h4><p>Two-group professional machine · from ₽489,000</p></div>
+              </a>
+              <a class="product-mini" href="grinder.html">
+                <span class="thumb">
+                  <svg viewBox="0 0 64 64" width="44" height="44"><ellipse cx="32" cy="14" rx="18" ry="4" fill="#0a0a0a" stroke="#333"/><rect x="18" y="14" width="28" height="14" fill="#1a1a1a" stroke="#333"/><rect x="22" y="28" width="20" height="26" fill="#1a1a1a" stroke="#333"/><rect x="26" y="34" width="12" height="8" fill="#0066ff" fill-opacity=".4"/><circle cx="32" cy="48" r="3" fill="#0066ff"/></svg>
+                </span>
+                <div><h4>Pro Grinder</h4><p>Grinder с&nbsp;плоскandмand жерновамand · from ₽189,000</p></div>
+              </a>
+            </div>
+            <div class="col">
+              <h6>// SECTIONS</h6>
+              <div class="links">
+                <a href="machine.html"><span class="arr">→</span>Coffee Machine BT-PRO/01</a>
+                <a href="grinder.html"><span class="arr">→</span>Grinder BT-GR/75</a>
+                <a href="index.html#price"><span class="arr">→</span>Transparent Pricing</a>
+                <a href="index.html#contact"><span class="arr">→</span>Order a Demo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item"><a href="machine.html" class="${active==='machine'?'active':''}">Coffee Machine</a></div>
+        <div class="item"><a href="grinder.html" class="${active==='grinder'?'active':''}">Grinder</a></div>
+        <div class="item"><a href="index.html#buy">Where to Buy</a></div>
+        <div class="item"><a href="articles.html" class="${active==='articles'?'active':''}">Articles</a></div>
+        <div class="item"><a href="index.html#mission">About</a></div>
+      </div>
+
+      <div class="nav-right">
+        <a href="tel:+74951234567" class="nav-phone">+7 495 123-45-67</a>
+        <a href="index.html#contact" class="nav-cta">Request a Demo</a>
+        <button class="burger" aria-label="Меню" id="burger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home <span class="arr">→</span></a>
+    <a data-toggle="prod">Equipment <span class="arr">+</span></a>
+    <div class="sub" id="prod-sub" style="display:none">
+      <a href="machine.html">Pro Espresso Machine</a>
+      <a href="grinder.html">Pro Grinder</a>
+      <a href="index.html#price">Transparent Pricing</a>
+    </div>
+    <a href="index.html#buy">Where to Buy <span class="arr">→</span></a>
+    <a href="articles.html">Articles <span class="arr">→</span></a>
+    <a href="index.html#platform">Platform <span class="arr">→</span></a>
+    <a href="index.html#mission">About <span class="arr">→</span></a>
+    <a href="index.html#audience">Who It's For <span class="arr">→</span></a>
+    <a href="tel:+74951234567">+7 495 123-45-67 <span class="arr">→</span></a>
+    <a href="index.html#contact" class="foot-cta">Request a Demo</a>
+  </div>
+  `;
+
+  const footerHTML = `
+  <footer data-screen-label="10 Footer">
+    <div class="container">
+      <div class="foot">
+        <div>
+          <div class="logo"><span style="color:#fff">BREW</span><span style="color:#0066ff">.</span><span style="color:#0066ff">TECH</span></div>
+          <p>Профессandональное оборfromдованandе для кофе. Технологandя. Мandнandмалandзм. Надёжность. Собрано and&nbsp;поддержandвается в&nbsp;Россandand.</p>
+        </div>
+        <div>
+          <h5>// EQUIPMENT</h5>
+          <ul>
+            <li><a href="machine.html">Pro Espresso Machine</a></li>
+            <li><a href="grinder.html">Pro Grinder</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Spare Parts</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>// COMPANY</h5>
+          <ul>
+            <li><a href="index.html#mission">Mission</a></li>
+            <li><a href="index.html#platform">Platform</a></li>
+            <li><a href="index.html#price">Transparent Pricing</a></li>
+            <li><a href="articles.html">Articles</a></li>
+            <li><a href="index.html#buy">Where to Buy</a></li>
+            <li><a href="https://disk.yandex.ru/i/XuidxsI_v73MfA" target="_blank" rel="noopener">Brand Book ↗</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>// CONTACTS</h5>
+          <ul>
+            <li><a href="mailto:hello@brew.tech">hello@brew.tech</a></li>
+            <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li><a href="#">Moscow, Nizhny, Kazan</a></li>
+            <li><a href="#">Telegram · WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <span>© 2026 BREW.TECH · ALL RIGHTS RESERVED</span>
+        <span>BUILD 2026.05 · MOSCOW / NIZHNY / KAZAN</span>
+      </div>
+    </div>
+  </footer>
+  `;
+
+  document.getElementById('navMount')?.insertAdjacentHTML('beforebegin', navHTML);
+  document.getElementById('navMount')?.remove();
+  document.getElementById('footMount')?.insertAdjacentHTML('beforebegin', footerHTML);
+  document.getElementById('footMount')?.remove();
+
+  // Burger toggle
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger?.addEventListener('click', ()=>{
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu?.addEventListener('click', e=>{
+    const t = e.target.closest('a');
+    if(t && !t.dataset.toggle){
+      burger.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    if(t && t.dataset.toggle){
+      e.preventDefault();
+      const sub = document.getElementById(t.dataset.toggle + '-sub');
+      sub.style.display = sub.style.display === 'none' ? 'flex' : 'none';
+    }
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  },{threshold:.08});
+  document.querySelectorAll('[data-reveal], section, .machine-card, .product, .aud-card, .value-card, .flow-step, .pq').forEach(el=>{el.classList.add('reveal');io.observe(el);});
+})();
+
+</script>
+<script>
+  // Article routing — show/hide
+  function showArticle(id){
+    document.querySelectorAll('.article').forEach(a=>a.classList.remove('show'));
+    const a = document.getElementById(id);
+    if(a){
+      a.classList.add('show');
+      document.body.classList.add('reading');
+      window.scrollTo({top:0, behavior:'instant'});
+    }
+  }
+  function showIndex(){
+    document.querySelectorAll('.article').forEach(a=>a.classList.remove('show'));
+    document.body.classList.remove('reading');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  document.addEventListener('click', e=>{
+    const back = e.target.closest('[data-back]');
+    if(back){
+      e.preventDefault();
+      showIndex();
+      history.replaceState(null,'','articles.html');
+      return;
+    }
+    const card = e.target.closest('[data-article]');
+    if(card){
+      e.preventDefault();
+      const n = card.dataset.article;
+      showArticle('article-'+n);
+      history.replaceState(null,'','#article-'+n);
+    }
+  });
+  // On load, check hash
+  (function(){
+    const m = location.hash.match(/article-(\d+)/);
+    if(m) showArticle('article-'+m[1]);
+  })();
+</script>
+<script>
+// ===== BREW.TECH i18n — RU (default) <-> EN, with geo-detect =====
+(function(){
+  const CIS = ['RU','BY','KZ','KG','AM','AZ','MD','TJ','TM','UZ','UA','GE','EE','LV','LT'];
+
+  // RU(normalized) -> EN
+  const DICT = {
+  // ---- misc labels / svg text ----
+  "WARRANTY":"WARRANTY",
+  "Pro Grinder · flat 75 mm":"Pro Grinder · flat 75 mm",
+  "conical 64 mm (market)":"conical 64 mm (market)",
+  "93.5°C · 9.0 BAR":"93.5°C · 9.0 BAR",
+  "14.2 g":"14.2 g",
+  // ---- titles ----
+  "BREW.TECH — Professional Coffee Equipment":"BREW.TECH — Professional Coffee Equipment",
+  "Pro Espresso — BREW.TECH Coffee Machine":"Pro Espresso — BREW.TECH Coffee Machine",
+  "Pro Grinder — BREW.TECH Grinder":"Pro Grinder — BREW.TECH Grinder",
+  "Articles — BREW.TECH":"Articles — BREW.TECH",
+
+  // ---- nav / footer (from partials) ----
+  "Equipment":"Equipment",
+  "Coffee Machine":"Coffee Machine",
+  "Grinder":"Grinder",
+  "Where to Buy":"Where to Buy",
+  "Articles":"Articles",
+  "Platform":"Platform",
+  "Mission":"Mission",
+  "About":"About",
+  "Who It's For":"Who It's For",
+  "Request a Demo":"Request a Demo",
+  "// CATALOG 2026":"// CATALOG 2026",
+  "// SECTIONS":"// SECTIONS",
+  "Pro Espresso":"Pro Espresso",
+  "Pro Grinder":"Pro Grinder",
+  "Two-group professional machine · from ₽489,000":"Two-group professional machine · from ₽489,000",
+  "Grinder with flat burrs · from ₽189,000":"Grinder with flat burrs · from ₽189,000",
+  "Coffee Machine BT-PRO/01":"Coffee Machine BT-PRO/01",
+  "Grinder BT-GR/75":"Grinder BT-GR/75",
+  "Transparent Pricing":"Transparent Pricing",
+  "Order a Demo":"Order a Demo",
+  "Home":"Home",
+  "Pro Espresso Machine":"Pro Espresso Machine",
+  "Pro Grinder":"Pro Grinder",
+  "// EQUIPMENT":"// EQUIPMENT",
+  "// COMPANY":"// COMPANY",
+  "// CONTACTS":"// CONTACTS",
+  "Professional coffee equipment. Technology. Minimalism. Reliability. Built and supported in Russia.":"Professional coffee equipment. Technology. Minimalism. Reliability. Built and supported in Russia.",
+  "Accessories":"Accessories",
+  "Spare Parts":"Spare Parts",
+  "Brand Book ↗":"Brand Book ↗",
+  "© 2026 BREW.TECH · ALL RIGHTS RESERVED":"© 2026 BREW.TECH · ALL RIGHTS RESERVED",
+  "BUILD 2026.05 · MOSCOW / NIZHNY / KAZAN":"BUILD 2026.05 · MOSCOW / NIZHNY / KAZAN",
+  "Moscow, Nizhny, Kazan":"Moscow, Nizhny, Kazan",
+
+  // ---- index hero ----
+  "professional coffee equipment":"professional coffee equipment",
+  "A machine":"A machine",
+  "that judges":"that judges",
+  "coffee":"coffee",
+  "by taste":"by taste",
+  "· COFFEE MACHINE":"· COFFEE MACHINE",
+  "v. 3.2 / 2026":"v. 3.2 / 2026",
+  "2 GROUPS · PID ±0.2°C · OPEN API":"2 GROUPS · PID ±0.2°C · OPEN API",
+  "BREW.TECH — for those who judge coffee by taste, not by their equipment budget. Reliable, technological solutions at fair prices.":"BREW.TECH — for those who judge coffee by taste, not by their equipment budget. Reliable, technological solutions at fair prices.",
+  "View equipment":"View equipment",
+  "Built in Russia":"Built in Russia",
+  "Moscow · Nizhny · Kazan":"Moscow · Nizhny · Kazan",
+  "Warranty":"Warranty",
+  "12 months · 24/7 support":"12 months · 24/7 support",
+  "over-the-air updates · open API":"over-the-air updates · open API",
+  "TECHNOLOGY":"TECHNOLOGY",
+  "MINIMALISM":"MINIMALISM",
+  "RELIABILITY":"RELIABILITY",
+  "AFFORDABLE TECHNOLOGY":"AFFORDABLE TECHNOLOGY",
+  "TRANSPARENT PRICING":"TRANSPARENT PRICING",
+  "24/7 SUPPORT":"24/7 SUPPORT",
+
+  // ---- index mission ----
+  "[ MISSION ]":"[ MISSION ]",
+  "A maturity certificate for a market where what matters is":"A maturity certificate for a market where what matters is",
+  "professionalism":"professionalism",
+  ", not deep pockets.":", not deep pockets.",
+  "We believe quality equipment":"We believe quality equipment",
+  "shouldn't be expensive":"shouldn't be expensive",
+  "vs the price of Western equivalents":"vs the price of Western equivalents",
+  "uptime in the first year":"uptime in the first year",
+  "mo":"mo",
+  "warranty on every component":"warranty on every component",
+  "BREW.TECH delivers reliable, technological solutions at fair prices":"BREW.TECH delivers reliable, technological solutions at fair prices",
+  ", letting small and mid-size cafés compete with big chains on equal terms.":", letting small and mid-size cafés compete with big chains on equal terms.",
+  "We don't hide the price — we explain it. No hidden markups: only real costs — parts, engineers' salaries, delivery — plus an honest profit.":"We don't hide the price — we explain it. No hidden markups: only real costs — parts, engineers' salaries, delivery — plus an honest profit.",
+  "Every BREW.TECH machine is a platform for experimentation, where every barista becomes the engineer of their own coffee.":"Every BREW.TECH machine is a platform for experimentation, where every barista becomes the engineer of their own coffee.",
+
+  // ---- index values ----
+  "[ VALUES ]":"[ VALUES ]",
+  "Three principles":"Three principles",
+  "that underpin":"that underpin",
+  "every":"every",
+  "machine":"machine",
+  "Affordable technology":"Affordable technology",
+  "Professional components, firmware and thermal stability — at a price that opens the market to independent cafés and young baristas.":"Professional components, firmware and thermal stability — at a price that opens the market to independent cafés and young baristas.",
+  "Price transparency":"Price transparency",
+  "We show the cost structure openly: parts, engineers' pay, delivery, honest profit. No marketing markups 'for the brand'.":"We show the cost structure openly: parts, engineers' pay, delivery, honest profit. No marketing markups 'for the brand'.",
+  "Professionalism":"Professionalism",
+  "Every machine passes 142 inspection points. Every update is an engineering dialogue with baristas and café owners.":"Every machine passes 142 inspection points. Every update is an engineering dialogue with baristas and café owners.",
+
+  // ---- index products ----
+  "[ EQUIPMENT ]":"[ EQUIPMENT ]",
+  "Equipment lineup":"Equipment lineup",
+  "Every machine is a platform.":"Every machine is a platform.",
+  "FLAGSHIP":"FLAGSHIP",
+  "FLAGSHIP · 2 GROUPS":"FLAGSHIP · 2 GROUPS",
+  "from ₽489,000":"from ₽489,000",
+  "/ excl. VAT":"/ excl. VAT",
+  "A two-group professional machine with a dual heating circuit, 12 programmable pressure profiles and an open API for POS and accounting integration.":"A two-group professional machine with a dual heating circuit, 12 programmable pressure profiles and an open API for POS and accounting integration.",
+  "CIRCUITS":"CIRCUITS",
+  "2 × 1.8 L":"2 × 1.8 L",
+  "PRESSURE":"PRESSURE",
+  "9–15 bar":"9–15 bar",
+  "PROFILES":"PROFILES",
+  "12":"12",
+  "SKU · BT-PRO-2X":"SKU · BT-PRO-2X",
+  "Learn more":"Learn more",
+  "NEW · 2026":"NEW · 2026",
+  "FLAT BURRS · GRAVIMETRIC DOSING":"FLAT BURRS · GRAVIMETRIC DOSING",
+  "from ₽189,000":"from ₽189,000",
+  "A grinder with flat 75 mm burrs, precise gravimetric dosing accurate to ±0.1 g and a quiet 1500 W motor.":"A grinder with flat 75 mm burrs, precise gravimetric dosing accurate to ±0.1 g and a quiet 1500 W motor.",
+  "BURRS":"BURRS",
+  "flat 75 mm":"flat 75 mm",
+  "ACCURACY":"ACCURACY",
+  "±0.1 g":"±0.1 g",
+  "NOISE LEVEL":"NOISE LEVEL",
+  "62 dB":"62 dB",
+  "SKU · BT-GR-75":"SKU · BT-GR-75",
+
+  // ---- index where to buy ----
+  "[ WHERE TO BUY ]":"[ WHERE TO BUY ]",
+  "Available":"Available",
+  "from":"from",
+  "authorized partners":"authorized partners",
+  "across Russia.":"across Russia.",
+  "BREW.TECH equipment is sold officially through a network of authorized distributors. All partners provide a full 12-month warranty, service support and installation help.":"BREW.TECH equipment is sold officially through a network of authorized distributors. All partners provide a full 12-month warranty, service support and installation help.",
+  "Territoriya Kofe":"Territoriya Kofe",
+  "Moscow · St. Petersburg":"Moscow · St. Petersburg",
+  "Visit partner":"Visit partner",
+  "Refro":"Refro",
+  "Moscow · regions":"Moscow · regions",
+  "Entero":"Entero",
+  "federal network":"federal network",
+  "Trust Holod":"Trust Holod",
+  "Moscow · Volga region":"Moscow · Volga region",
+  "WhiteGoods":"WhiteGoods",
+  "Moscow · Urals · Siberia":"Moscow · Urals · Siberia",
+  "Directly from BREW.TECH":"Directly from BREW.TECH",
+  "factory price · on request":"factory price · on request",
+
+  // ---- index platform ----
+  "[ PLATFORM ]":"[ PLATFORM ]",
+  "It's not just a machine.":"It's not just a machine.",
+  "It's a":"It's a",
+  "platform":"platform",
+  "for experiments.":"for experiments.",
+  "Your idea":"Your idea",
+  "A barista notices a pressure profile could be improved; an owner wants the bean-consumption report exported to their accounting system.":"A barista notices a pressure profile could be improved; an owner wants the bean-consumption report exported to their accounting system.",
+  "Our update":"Our update",
+  "The BREW.TECH team takes the request, engineers write the firmware. The update reaches every machine in the lineup at once, over the air.":"The BREW.TECH team takes the request, engineers write the firmware. The update reaches every machine in the lineup at once, over the air.",
+  "Your machine":"Your machine",
+  "The machine gets smarter every month it runs. What was an idea yesterday brings in revenue tomorrow.":"The machine gets smarter every month it runs. What was an idea yesterday brings in revenue tomorrow.",
+  "// OWNERS":"// OWNERS",
+  "\u201CIt pays off through reliability, not a low price.\u201D":"\u201CIt pays off through reliability, not a low price.\u201D",
+  "// BARISTAS":"// BARISTAS",
+  "\u201CYour tool. Your rules.\u201D":"\u201CYour tool. Your rules.\u201D",
+  "// RESTAURATEURS":"// RESTAURATEURS",
+  "\u201CCoffee that needs no attention.\u201D":"\u201CCoffee that needs no attention.\u201D",
+  "// ENTHUSIASTS":"// ENTHUSIASTS",
+  "\u201CA lab for experiments.\u201D":"\u201CA lab for experiments.\u201D",
+
+  // ---- index audience ----
+  "[ AUDIENCE ]":"[ AUDIENCE ]",
+  "For those":"For those",
+  "who":"who",
+  "brew":"brew",
+  "seriously.":"seriously.",
+  "Café owners":"Café owners",
+  "age":"age",
+  "income":"income",
+  "mid+":"mid+",
+  "segment":"segment",
+  "small business":"small business",
+  "Entrepreneurs seeking a balance of price and quality. Wary of high costs and equipment downtime.":"Entrepreneurs seeking a balance of price and quality. Wary of high costs and equipment downtime.",
+  "Professional baristas":"Professional baristas",
+  "experience":"experience",
+  "3+ years":"3+ years",
+  "focus":"focus",
+  "specialty":"specialty",
+  "Perfectionists who value technology. They know poor equipment affects the taste of coffee.":"Perfectionists who value technology. They know poor equipment affects the taste of coffee.",
+  "Restaurants & cafés":"Restaurants & cafés",
+  "size":"size",
+  "small / mid":"small / mid",
+  "focus":"focus",
+  "reliability":"reliability",
+  "schedule":"schedule",
+  "14 h × 7 days":"14 h × 7 days",
+  "They need reliable equipment that's simple to use and service, without long staff training.":"They need reliable equipment that's simple to use and service, without long staff training.",
+  "Hotels & inns":"Hotels & inns",
+  "level":"level",
+  "3–5 stars":"3–5 stars",
+  "guest":"guest",
+  "demanding":"demanding",
+  "integration":"integration",
+  "with hotel system":"with hotel system",
+  "Professional-grade coffee for guests — without the complexity of training frontline staff.":"Professional-grade coffee for guests — without the complexity of training frontline staff.",
+
+  // ---- index tech ----
+  "[ TECHNOLOGY ]":"[ TECHNOLOGY ]",
+  "Engineering,":"Engineering,",
+  "not":"not",
+  "marketing":"marketing",
+  "// DISPLAY":"// DISPLAY",
+  "5.0\"5.0\":"5.0\" IPS · 60 Hz",
+  "// GROUP":"// GROUP",
+  "Circuit thermal stability (PID)":"Circuit thermal stability (PID)",
+  "Programmable pressure profiles":"Programmable pressure profiles",
+  "12 · OTA updates":"12 · OTA updates",
+  "Open API for POS and accounting":"Open API for POS and accounting",
+  "Remote diagnostics 24/7":"Remote diagnostics 24/7",
+  "Burr wear monitoring":"Burr wear monitoring",
+  "in real time":"in real time",
+  "Local service in 14 Russian cities":"Local service in 14 Russian cities",
+  "arrival ≤ 48 h":"arrival ≤ 48 h",
+  "Spare parts in stock":"Spare parts in stock",
+  "7,500 items":"7,500 items",
+
+  // ---- index price ----
+  "[ TRANSPARENT PRICING ]":"[ TRANSPARENT PRICING ]",
+  "We don't hide the price.":"We don't hide the price.",
+  "We":"We",
+  "explain":"explain",
+  "it.":"it.",
+  "No marketing markups 'for the brand'. Only real costs plus an honest engineering profit. Here's how every Pro Espresso breaks down:":"No marketing markups 'for the brand'. Only real costs plus an honest engineering profit. Here's how every Pro Espresso breaks down:",
+  "// parts and components":"// parts and components",
+  "// engineers' salaries":"// engineers' salaries",
+  "// assembly and quality control":"// assembly and quality control",
+  "// delivery":"// delivery",
+  "// honest profit (≈10%)":"// honest profit (≈10%)",
+  "Pro Espresso · total":"Pro Espresso · total",
+  "// Western-brand equivalent: ₽840,000 — ₽980,000":"// Western-brand equivalent: ₽840,000 — ₽980,000",
+
+  // ---- index contact ----
+  "[ GET IN TOUCH / 08 ]":"[ GET IN TOUCH / 08 ]",
+  "Request":"Request",
+  "a demo":"a demo",
+  "at your":"at your",
+  "café":"café",
+  "We'll bring a Pro Espresso, set it next to your current machine and let your barista pull five cups. An honest comparison.":"We'll bring a Pro Espresso, set it next to your current machine and let your barista pull five cups. An honest comparison.",
+  "// FULL NAME":"// FULL NAME",
+  "// PHONE":"// PHONE",
+  "// VENUE TYPE":"// VENUE TYPE",
+  "Independent café":"Independent café",
+  "Café chain":"Café chain",
+  "Restaurant / café":"Restaurant / café",
+  "Hotel / inn":"Hotel / inn",
+  "Enthusiast / lab":"Enthusiast / lab",
+  "// CITY":"// CITY",
+  "Request a demo →":"Request a demo →",
+
+  // ---- machine page ----
+  "FLAGSHIP · 2026":"FLAGSHIP · 2026",
+  "A two-group professional coffee machine with a dual heating circuit, programmable pressure profiles and an open integration platform.":"A two-group professional coffee machine with a dual heating circuit, programmable pressure profiles and an open integration platform.",
+  "Technical specs":"Technical specs",
+  "12 mo":"12 mo",
+  "· 540 × 580 × 460 MM · 56 KG":"· 540 × 580 × 460 MM · 56 KG",
+  "2 GROUPS":"2 GROUPS",
+  "12 PROFILES":"12 PROFILES",
+  "OPEN API":"OPEN API",
+  "12-MONTH WARRANTY":"12-MONTH WARRANTY",
+  "OVER-THE-AIR UPDATES":"OVER-THE-AIR UPDATES",
+  "[ FEATURES ]":"[ FEATURES ]",
+  "Six engineering":"Six engineering",
+  "solutions that":"solutions that",
+  "transform":"transform",
+  "extraction":"extraction",
+  "Dual heating circuit":"Dual heating circuit",
+  "Separate boilers for water and steam. Temperature stability of ±0.2 °C even at peak load — shot after shot with identical taste.":"Separate boilers for water and steam. Temperature stability of ±0.2 °C even at peak load — shot after shot with identical taste.",
+  "12 pressure profiles":"12 pressure profiles",
+  "A programmable pressure curve for every bean: pre-infusion, ramp, plateau, decline. Profiles update over the air — get new ones from the team.":"A programmable pressure curve for every bean: pre-infusion, ramp, plateau, decline. Profiles update over the air — get new ones from the team.",
+  "Open API":"Open API",
+  "REST and MQTT to integrate with your POS, accounting or hotel management system. Every shot is an event you can count.":"REST and MQTT to integrate with your POS, accounting or hotel management system. Every shot is an event you can count.",
+  "E61 group":"E61 group",
+  "The classic E61 thermosiphon with a forced heating circuit — a proven design, easy to service, with affordable spare parts.":"The classic E61 thermosiphon with a forced heating circuit — a proven design, easy to service, with affordable spare parts.",
+  "Over-the-air updates":"Over-the-air updates",
+  "A new profile, new firmware, a new feature — all reach every machine in the lineup. Today's machine does more tomorrow.":"A new profile, new firmware, a new feature — all reach every machine in the lineup. Today's machine does more tomorrow.",
+  "Remote diagnostics":"Remote diagnostics",
+  "The machine reports a fault to our engineers before you even notice it. On-site SLA — 48 hours.":"The machine reports a fault to our engineers before you even notice it. On-site SLA — 48 hours.",
+  "[ SPECIFICATIONS ]":"[ SPECIFICATIONS ]",
+  "Full":"Full",
+  "specification":"specification",
+  "2 groups":"2 groups",
+  "// DRIP TRAY":"// DRIP TRAY",
+  "removable · 1.6 L":"removable · 1.6 L",
+  "// HYDRAULICS & HEATING":"// HYDRAULICS & HEATING",
+  "Heating circuits":"Heating circuits",
+  "Pump pressure":"Pump pressure",
+  "Temperature stability":"Temperature stability",
+  "Group type":"Group type",
+  "E61 · thermosiphon":"E61 · thermosiphon",
+  "Water supply":"Water supply",
+  "mains / 3 L tank":"mains / 3 L tank",
+  "// ELECTRONICS":"// ELECTRONICS",
+  "Display":"Display",
+  "Pressure profiles":"Pressure profiles",
+  "Connectivity":"Connectivity",
+  "// DIMENSIONS & POWER":"// DIMENSIONS & POWER",
+  "Dimensions (W × D × H)":"Dimensions (W × D × H)",
+  "540 × 580 × 460 mm":"540 × 580 × 460 mm",
+  "Weight":"Weight",
+  "56 kg":"56 kg",
+  "Power":"Power",
+  "380 V · 5.2 kW":"380 V · 5.2 kW",
+  "Noise level":"Noise level",
+  "≤ 58 dB":"≤ 58 dB",
+  "12 months":"12 months",
+  "[ COMPARISON ]":"[ COMPARISON ]",
+  "Pro Espresso vs":"Pro Espresso vs",
+  "the usual":"the usual",
+  "flagships":"flagships",
+  "Feature":"Feature",
+  "Imported flagship A":"Imported flagship A",
+  "Imported flagship B":"Imported flagship B",
+  "Price":"Price",
+  "dual, independent":"dual, independent",
+  "dual":"dual",
+  "12 · OTA updates":"12 · OTA updates",
+  "6 · fixed":"6 · fixed",
+  "no":"no",
+  "REST only":"REST only",
+  "Service in Russia":"Service in Russia",
+  "14 cities · 48 h":"14 cities · 48 h",
+  "2 cities":"2 cities",
+  "dealer":"dealer",
+  "on order":"on order",
+  "24 months":"24 months",
+  "[ WHO IT'S FOR ]":"[ WHO IT'S FOR ]",
+  "Pro Espresso fits":"Pro Espresso fits",
+  "three":"three",
+  "types":"types",
+  "of venues.":"of venues.",
+  "// SCENARIO 01":"// SCENARIO 01",
+  "Pays off through reliability, not price. 24/7 support, parts in stock, clear costs — the owner sleeps soundly, the barista makes coffee.":"Pays off through reliability, not price. 24/7 support, parts in stock, clear costs — the owner sleeps soundly, the barista makes coffee.",
+  "11 mo":"11 mo",
+  "payback":"payback",
+  "// SCENARIO 02":"// SCENARIO 02",
+  "Specialty project":"Specialty project",
+  "Full control over the pressure curve, ±0.2 °C thermal stability, profiles for every roast. The barista is the engineer of their coffee.":"Full control over the pressure curve, ±0.2 °C thermal stability, profiles for every roast. The barista is the engineer of their coffee.",
+  "profiles":"profiles",
+  "// SCENARIO 03":"// SCENARIO 03",
+  "Hotel / restaurant":"Hotel / restaurant",
+  "Integration with the hotel management system via API. A barista or frontline employee presses one button and gets an identical result.":"Integration with the hotel management system via API. A barista or frontline employee presses one button and gets an identical result.",
+  "cups / day":"cups / day",
+  "Transparent pricing.":"Transparent pricing.",
+  "No markups for the brand.":"No markups for the brand.",
+  "The price is made up of parts, engineers' salaries, assembly, quality control and an honest ≈10% profit. Western-brand equivalent: ₽840,000 — ₽980,000.":"The price is made up of parts, engineers' salaries, assembly, quality control and an honest ≈10% profit. Western-brand equivalent: ₽840,000 — ₽980,000.",
+  "// PRO ESPRESSO · TOTAL":"// PRO ESPRESSO · TOTAL",
+  "excl. VAT · delivery included":"excl. VAT · delivery included",
+  "Order":"Order",
+  "Price breakdown":"Price breakdown",
+  "[ REQUEST A DEMO ]":"[ REQUEST A DEMO ]",
+  "Five cups,":"Five cups,",
+  "one":"one",
+  "comparison":"comparison",
+  "We'll bring a Pro Espresso, set it next to your current machine and let your barista pull five cups on each. An honest comparison, an informed choice.":"We'll bring a Pro Espresso, set it next to your current machine and let your barista pull five cups on each. An honest comparison, an informed choice.",
+  "// COMMENT":"// COMMENT",
+  "Request a Pro Espresso demo →":"Request a Pro Espresso demo →",
+
+  // ---- grinder page ----
+  "A professional grinder with flat 75 mm burrs and precise gravimetric dosing. ±0.1 g accuracy — shot after shot with the same weight and grind.":"A professional grinder with flat 75 mm burrs and precise gravimetric dosing. ±0.1 g accuracy — shot after shot with the same weight and grind.",
+  "Specifications":"Specifications",
+  "NOISE":"NOISE",
+  "· 220 × 580 × 290 MM · 18 KG":"· 220 × 580 × 290 MM · 18 KG",
+  "FLAT 75 MM BURRS":"FLAT 75 MM BURRS",
+  "GRAVIMETRIC DOSING":"GRAVIMETRIC DOSING",
+  "±0.1 G":"±0.1 G",
+  "1500 W":"1500 W",
+  "62 DB":"62 DB",
+  "solutions for the perfect":"solutions for the perfect",
+  "grind":"grind",
+  "Flat 75 mm burrs":"Flat 75 mm burrs",
+  "Hardened steel with a titanium coating. An even grind with no 'fines' — cleaner extraction, brighter flavor descriptors.":"Hardened steel with a titanium coating. An even grind with no 'fines' — cleaner extraction, brighter flavor descriptors.",
+  "Gravimetric dosing":"Gravimetric dosing",
+  "Built-in load cells stop grinding within ±0.1 g. Shot after shot — the same dose, with no manual weighing.":"Built-in load cells stop grinding within ±0.1 g. Shot after shot — the same dose, with no manual weighing.",
+  "Stepped adjustment":"Stepped adjustment",
+  "A micrometric screw with a scale and memory for 6 settings. Switch beans in seconds — without losing calibration.":"A micrometric screw with a scale and memory for 6 settings. Switch beans in seconds — without losing calibration.",
+  "1500 W motor":"1500 W motor",
+  "Direct drive with thermal protection and speed stabilization. Noise no higher than 62 dB — it won't disturb guests' conversation.":"Direct drive with thermal protection and speed stabilization. Noise no higher than 62 dB — it won't disturb guests' conversation.",
+  "Wear counter":"Wear counter",
+  "The firmware tracks total burr mileage and tells you when it's time to replace them. The taste doesn't start to suffer — you already know.":"The firmware tracks total burr mileage and tells you when it's time to replace them. The taste doesn't start to suffer — you already know.",
+  "Machine integration":"Machine integration",
+  "Compatible with Pro Espresso over the same API: one bean profile, one pressure profile. The pair works as a single system.":"Compatible with Pro Espresso over the same API: one bean profile, one pressure profile. The pair works as a single system.",
+  "[ GRIND ]":"[ GRIND ]",
+  "Why flat":"Why flat",
+  "75 mm":"75 mm",
+  "burrs matter.":"burrs matter.",
+  "// PARTICLE DISTRIBUTION":"// PARTICLE DISTRIBUTION",
+  "Pro Grinder · µm":"Pro Grinder · µm",
+  "Narrow particle distribution":"Narrow particle distribution",
+  "Flat burrs produce a grind with one peak instead of two — water passes through the puck evenly, extraction is cleaner.":"Flat burrs produce a grind with one peak instead of two — water passes through the puck evenly, extraction is cleaner.",
+  "Fewer fines and boulders":"Fewer fines and boulders",
+  "Fewer ultra-fine particles that over-extract and add bitterness. Fewer large ones that under-extract and add sourness.":"Fewer ultra-fine particles that over-extract and add bitterness. Fewer large ones that under-extract and add sourness.",
+  "Shot-to-shot consistency":"Shot-to-shot consistency",
+  "The 75 mm size gives a long cutting path and low RPM — less heat, less oil oxidation, a stable taste all day.":"The 75 mm size gives a long cutting path and low RPM — less heat, less oil oxidation, a stable taste all day.",
+  "800 kg bean lifespan":"800 kg bean lifespan",
+  "Hardened steel with a titanium coating stays sharp 3.5× longer than ordinary steel. Replacement — once every 2–3 years at average load.":"Hardened steel with a titanium coating stays sharp 3.5× longer than ordinary steel. Replacement — once every 2–3 years at average load.",
+  "// HOPPER":"// HOPPER",
+  "1.5 kg · UV":"1.5 kg · UV",
+  "// BURRS":"// BURRS",
+  "// CRADLE":"// CRADLE",
+  "for portafilter":"for portafilter",
+  "// MECHANICS":"// MECHANICS",
+  "Burr type":"Burr type",
+  "flat · 75 mm":"flat · 75 mm",
+  "Material":"Material",
+  "hardened steel · titanium":"hardened steel · titanium",
+  "Burr lifespan":"Burr lifespan",
+  "800 kg of beans":"800 kg of beans",
+  "Grind adjustment":"Grind adjustment",
+  "micrometric · 6 presets":"micrometric · 6 presets",
+  "Rotation speed":"Rotation speed",
+  "1450 rpm":"1450 rpm",
+  "// DOSING":"// DOSING",
+  "Method":"Method",
+  "gravimetric · load cells":"gravimetric · load cells",
+  "Accuracy":"Accuracy",
+  "± 0.1 g":"± 0.1 g",
+  "Dose range":"Dose range",
+  "7–24 g":"7–24 g",
+  "Single-dose speed":"Single-dose speed",
+  "7–10 seconds":"7–10 seconds",
+  "Calibration":"Calibration",
+  "automatic":"automatic",
+  "Bean hopper":"Bean hopper",
+  "1.5 kg · UV-protected":"1.5 kg · UV-protected",
+  "220 × 580 × 290 mm":"220 × 580 × 290 mm",
+  "18 kg":"18 kg",
+  "220 V · 1500 W":"220 V · 1500 W",
+  "The same logic as Pro Espresso: real costs, an honest ≈10% profit. Western-brand equivalent: ₽320,000 — ₽380,000.":"The same logic as Pro Espresso: real costs, an honest ≈10% profit. Western-brand equivalent: ₽320,000 — ₽380,000.",
+  "// PRO GRINDER · TOTAL":"// PRO GRINDER · TOTAL",
+  "+ add the machine":"+ add the machine",
+  "Five grinds,":"Five grinds,",
+  "We'll bring a Pro Grinder, set it next to your current grinder and let your barista grind five doses on each. The difference shows in the very first cup.":"We'll bring a Pro Grinder, set it next to your current grinder and let your barista grind five doses on each. The difference shows in the very first cup.",
+  "Request a Pro Grinder demo →":"Request a Pro Grinder demo →",
+
+  // ---- articles index ----
+  "[ ARTICLES & STORIES ]":"[ ARTICLES & STORIES ]",
+  "Engineering":"Engineering",
+  "in every":"in every",
+  "cup":"cup",
+  "How our machines work, why 'transparent pricing' is an engineering decision and not marketing, and what it means to build coffee equipment in Russia in 2026.":"How our machines work, why 'transparent pricing' is an engineering decision and not marketing, and what it means to build coffee equipment in Russia in 2026.",
+  "FEATURED":"FEATURED",
+  "7 MIN READ":"7 MIN READ",
+  "// ECONOMICS":"// ECONOMICS",
+  "MAY 05, 2026":"MAY 05, 2026",
+  "Why the Western equivalent costs ₽940,000 and ours ₽489,000. And it's not dumping.":"Why the Western equivalent costs ₽940,000 and ours ₽489,000. And it's not dumping.",
+  "A detailed anatomy of the price of a professional coffee machine. What makes up the cost of an imported flagship, how much of it is marketing and the dealer network, and how much is real engineering. And why quality equipment can be built in Russia for less, without losing quality.":"A detailed anatomy of the price of a professional coffee machine. What makes up the cost of an imported flagship, how much of it is marketing and the dealer network, and how much is real engineering. And why quality equipment can be built in Russia for less, without losing quality.",
+  "Dmitry Levin · CTO BREW.TECH":"Dmitry Levin · CTO BREW.TECH",
+  "Read":"Read",
+  "ENGINEERING":"ENGINEERING",
+  "5 MIN READ":"5 MIN READ",
+  "// EXTRACTION":"// EXTRACTION",
+  "APR 22, 2026":"APR 22, 2026",
+  "Pressure profiles: why 12 of them, and why a single profile kills specialty coffee":"Pressure profiles: why 12 of them, and why a single profile kills specialty coffee",
+  "Most machines brew at a constant 9 bar. It works, but it kills the subtle descriptors. We explain how a programmable curve — pre-infusion, ramp, plateau, decline — changes the taste.":"Most machines brew at a constant 9 bar. It works, but it kills the subtle descriptors. We explain how a programmable curve — pre-infusion, ramp, plateau, decline — changes the taste.",
+  "Artyom Kim · Q-grader":"Artyom Kim · Q-grader",
+  "GRIND":"GRIND",
+  "4 MIN READ":"4 MIN READ",
+  "// GRINDER":"// GRINDER",
+  "APR 08, 2026":"APR 08, 2026",
+  "Flat vs conical burrs: what changes in the taste":"Flat vs conical burrs: what changes in the taste",
+  "Why we chose flat 75 mm burrs for the Pro Grinder, how they differ from conical ones, and how burr geometry directly affects the flavor descriptors in the cup.":"Why we chose flat 75 mm burrs for the Pro Grinder, how they differ from conical ones, and how burr geometry directly affects the flavor descriptors in the cup.",
+  "Dmitry Levin · CTO":"Dmitry Levin · CTO",
+  "PLATFORM":"PLATFORM",
+  "6 MIN READ":"6 MIN READ",
+  "// PLATFORM":"// PLATFORM",
+  "MAR 15, 2026":"MAR 15, 2026",
+  "The coffee machine as a platform: what we learned in our first year of an open API":"The coffee machine as a platform: what we learned in our first year of an open API",
+  "What our clients built on our API in a year: automatic bean-consumption tracking, reports for head baristas, linking shots to receipts, exporting to CRM. Implementation stories.":"What our clients built on our API in a year: automatic bean-consumption tracking, reports for head baristas, linking shots to receipts, exporting to CRM. Implementation stories.",
+  "The BREW.TECH team":"The BREW.TECH team",
+  "DEEP DIVE":"DEEP DIVE",
+  "// MANUFACTURING":"// MANUFACTURING",
+  "MAY 28, 2026":"MAY 28, 2026",
+  "Chinese components aren't scary. Pretending they're not there is.":"Chinese components aren't scary. Pretending they're not there is.",
+  "Almost all coffee equipment in the world uses Chinese components — from premium brands to budget ones. We explain why that's fine, how we control quality, and why 'Italian assembly' often means less than it seems.":"Almost all coffee equipment in the world uses Chinese components — from premium brands to budget ones. We explain why that's fine, how we control quality, and why 'Italian assembly' often means less than it seems.",
+
+  // ---- article shared chrome ----
+  "Price structure":"Price structure",
+  "AUTHOR ·":"AUTHOR ·",
+  "Dmitry Levin":"Dmitry Levin",
+  "DATE ·":"DATE ·",
+  "May 05, 2026":"May 05, 2026",
+  "READ ·":"READ ·",
+  "7 minutes":"7 minutes",
+  "← All articles":"← All articles",
+  "Artyom Kim":"Artyom Kim",
+  "April 22, 2026":"April 22, 2026",
+  "5 minutes":"5 minutes",
+  "Pressure profiles":"Pressure profiles",
+  "Flat vs conical burrs":"Flat vs conical burrs",
+  "April 08, 2026":"April 08, 2026",
+  "4 minutes":"4 minutes",
+  "Open API":"Open API",
+  "March 15, 2026":"March 15, 2026",
+  "6 minutes":"6 minutes",
+  "Chinese components":"Chinese components",
+  "Chinese components aren't scary. Pretending they're not there is.":"Chinese components aren't scary. Pretending they're not there is.",
+  "May 28, 2026":"May 28, 2026",
+
+  // ---- article 1 body ----
+  "When we launched BREW.TECH, we were asked the same question many times: \u201CIf you have the same two-group machine with a dual heating circuit as an imported flagship — why does yours cost half as much?\u201D The short answer:":"When we launched BREW.TECH, we were asked the same question many times: \u201CIf you have the same two-group machine with a dual heating circuit as an imported flagship — why does yours cost half as much?\u201D The short answer:",
+  "because our price doesn't carry ₽350,000 of marketing and dealer markup.":"because our price doesn't carry ₽350,000 of marketing and dealer markup.",
+  "The long answer is below.":"The long answer is below.",
+  "What makes up the price of an imported machine":"What makes up the price of an imported machine",
+  "The list price of an imported brand is not the same as the cost of the machine. Between the factory and your café sit at least four markups:":"The list price of an imported brand is not the same as the cost of the machine. Between the factory and your café sit at least four markups:",
+  "Brand premium.":"Brand premium.",
+  "Marketing, championship sponsorships, branded showrooms. In an imported flagship's price, that's ~12–18%.":"Marketing, championship sponsorships, branded showrooms. In an imported flagship's price, that's ~12–18%.",
+  "Import and logistics.":"Import and logistics.",
+  "Sea freight, customs clearance, a warehouse in Russia. Another ~8–12%.":"Sea freight, customs clearance, a warehouse in Russia. Another ~8–12%.",
+  "Dealer margin.":"Dealer margin.",
+  "An authorized distributor doesn't work for free. In the professional-equipment niche, that's 25–35%.":"An authorized distributor doesn't work for free. In the professional-equipment niche, that's 25–35%.",
+  "Service buffer.":"Service buffer.",
+  "If a spare part takes 6 weeks to arrive from Italy, the dealer bakes its cost into the margin in advance. Another ~5–8%.":"If a spare part takes 6 weeks to arrive from Italy, the dealer bakes its cost into the margin in advance. Another ~5–8%.",
+  "Add it all up and you get ~60% of markup over the factory price. A machine that costs €5,800 on the line in Italy lands in a Russian café at €13,000.":"Add it all up and you get ~60% of markup over the factory price. A machine that costs €5,800 on the line in Italy lands in a Russian café at €13,000.",
+  "How we calculate ours":"How we calculate ours",
+  "We decided to do it differently. When you buy a Pro Espresso, you pay for exactly five things, and we show them openly:":"We decided to do it differently. When you buy a Pro Espresso, you pay for exactly five things, and we show them openly:",
+  "parts and components":"parts and components",
+  "engineers' salaries":"engineers' salaries",
+  "honest profit":"honest profit",
+  "Plus ₽26,000 for assembly and quality control and ₽14,000 for delivery to your café. Total: ₽489,000. A ≈10% profit — enough to grow and keep an engineering team.":"Plus ₽26,000 for assembly and quality control and ₽14,000 for delivery to your café. Total: ₽489,000. A ≈10% profit — enough to grow and keep an engineering team.",
+  "// PRINCIPLE:":"// PRINCIPLE:",
+  "We don't hide the price. We explain it. No hidden markups 'for the brand' or 'for the name' — only real costs.":"We don't hide the price. We explain it. No hidden markups 'for the brand' or 'for the name' — only real costs.",
+  "What about quality?":"What about quality?",
+  "Here's the interesting part.":"Here's the interesting part.",
+  "Most 'premium' machines on the market use the very same components:":"Most 'premium' machines on the market use the very same components:",
+  "the E61 group, an Ulka EX5 pump, heating elements from two Italian suppliers, Gicar or Hanyoung PID controllers. We buy the very same units. The only difference is the nameplate and the marketing budget.":"the E61 group, an Ulka EX5 pump, heating elements from two Italian suppliers, Gicar or Hanyoung PID controllers. We buy the very same units. The only difference is the nameplate and the marketing budget.",
+  "What we add on top is our own electronics (control board, display, firmware) and our own API. That's our engineering contribution, and it costs ₽88,000 — exactly what we pay our engineers, divided by the number of machines produced.":"What we add on top is our own electronics (control board, display, firmware) and our own API. That's our engineering contribution, and it costs ₽88,000 — exactly what we pay our engineers, divided by the number of machines produced.",
+  "Why this is sustainable":"Why this is sustainable",
+  "Someone will ask: \u201CIf your profit is only 10%, how do you even survive?\u201D Very simply: we don't spend money on things that have nothing to do with coffee.":"Someone will ask: \u201CIf your profit is only 10%, how do you even survive?\u201D Very simply: we don't spend money on things that have nothing to do with coffee.",
+  "We have no branded showroom on Tverskaya — we have an engineering workshop in Nizhny.":"We have no branded showroom on Tverskaya — we have an engineering workshop in Nizhny.",
+  "We don't sponsor a championship — we send engineers to fix machines.":"We don't sponsor a championship — we send engineers to fix machines.",
+  "We have no three-tier dealer network — we have five authorized partners plus direct sales.":"We have no three-tier dealer network — we have five authorized partners plus direct sales.",
+  "Spare parts sit in our Moscow warehouse, instead of traveling six weeks from Italy.":"Spare parts sit in our Moscow warehouse, instead of traveling six weeks from Italy.",
+  "What this means for your café":"What this means for your café",
+  "If you're opening a new location, saving ₽350,000 on the coffee machine is either":"If you're opening a new location, saving ₽350,000 on the coffee machine is either",
+  "two extra months of working capital":"two extra months of working capital",
+  ", or better beans for the year ahead, or a second grinder for decaf. It's a decision that directly affects the economics of the business.":", or better beans for the year ahead, or a second grinder for decaf. It's a decision that directly affects the economics of the business.",
+  "\u201CWe broke even in 11 months. With an imported machine it would have been 20. The difference is a whole year of our lives.\u201D":"\u201CWe broke even in 11 months. With an imported machine it would have been 20. The difference is a whole year of our lives.\u201D",
+  "— Alexey P., owner of the café 'Zerno', Nizhny Novgorod":"— Alexey P., owner of the café 'Zerno', Nizhny Novgorod",
+  "And this isn't marketing. It's an engineering decision — to strip away every layer of cost that has nothing to do with how the machine makes coffee.":"And this isn't marketing. It's an engineering decision — to strip away every layer of cost that has nothing to do with how the machine makes coffee.",
+
+  // ---- article 2 body ----
+  "In a classic espresso machine, group pressure is constant — 9 bar from the press of the button to the end of the shot. This standard has existed since 1948, when Achille Gaggia invented the lever machine.":"In a classic espresso machine, group pressure is constant — 9 bar from the press of the button to the end of the shot. This standard has existed since 1948, when Achille Gaggia invented the lever machine.",
+  "For robusta and dark roasts it works. For specialty — not anymore.":"For robusta and dark roasts it works. For specialty — not anymore.",
+  "What a pressure profile is":"What a pressure profile is",
+  "A programmable profile is a pressure curve over time. It consists of four phases:":"A programmable profile is a pressure curve over time. It consists of four phases:",
+  "Pre-infusion (0–6 seconds).":"Pre-infusion (0–6 seconds).",
+  "Low pressure of 2–4 bar. Water wets the puck, the coffee bed swells, density evens out.":"Low pressure of 2–4 bar. Water wets the puck, the coffee bed swells, density evens out.",
+  "Ramp (6–10 seconds).":"Ramp (6–10 seconds).",
+  "Pressure rises linearly to 9 bar. This is the 'flavor extraction phase'.":"Pressure rises linearly to 9 bar. This is the 'flavor extraction phase'.",
+  "Plateau (10–22 seconds).":"Plateau (10–22 seconds).",
+  "A steady 9 bar. The main volume of the drink.":"A steady 9 bar. The main volume of the drink.",
+  "Decline (22–25 seconds).":"Decline (22–25 seconds).",
+  "Pressure drops to 6 bar. This is the 'sweetness phase' — the last sugars come out.":"Pressure drops to 6 bar. This is the 'sweetness phase' — the last sugars come out.",
+  "// FACT:":"// FACT:",
+  "at a constant 9 bar, the first two and last two seconds of extraction work sub-optimally. That's 16% of the time — and roughly the same loss in flavor.":"at a constant 9 bar, the first two and last two seconds of extraction work sub-optimally. That's 16% of the time — and roughly the same loss in flavor.",
+  "Why one profile doesn't fit all":"Why one profile doesn't fit all",
+  "Specialty roasting isn't one coffee. It's Ethiopia natural, Kenya washed, Colombia Geisha, Brazil pulped natural. They have different bean density, different moisture, different oil content.":"Specialty roasting isn't one coffee. It's Ethiopia natural, Kenya washed, Colombia Geisha, Brazil pulped natural. They have different bean density, different moisture, different oil content.",
+  "One profile can't work equally well for all of them.":"One profile can't work equally well for all of them.",
+  "Ethiopia natural needs a long 8-second pre-infusion at 3 bar — otherwise the fermented sweetness is lost. Colombia Geisha needs a short 4-second pre-infusion — otherwise it over-extracts and turns bitter.":"Ethiopia natural needs a long 8-second pre-infusion at 3 bar — otherwise the fermented sweetness is lost. Colombia Geisha needs a short 4-second pre-infusion — otherwise it over-extracts and turns bitter.",
+  "How many profiles you actually need":"How many profiles you actually need",
+  "We asked 30 specialty cafés how many different beans they use at once. The average is 4–6 per season. Counting espresso/filter and decaf — up to 8 different profiles at any given moment.":"We asked 30 specialty cafés how many different beans they use at once. The average is 4–6 per season. Counting espresso/filter and decaf — up to 8 different profiles at any given moment.",
+  "That's why the Pro Espresso holds 12 profiles. Enough to:":"That's why the Pro Espresso holds 12 profiles. Enough to:",
+  "Keep active profiles for current beans (4–6)":"Keep active profiles for current beans (4–6)",
+  "Save profiles for 'favorite' beans that will return to rotation (2–3)":"Save profiles for 'favorite' beans that will return to rotation (2–3)",
+  "Leave experimental slots for new batches (2–3)":"Leave experimental slots for new batches (2–3)",
+  "How we update them":"How we update them",
+  "Profiles are stored in the firmware.":"Profiles are stored in the firmware.",
+  "When the BREW.TECH engineering team develops a new profile":"When the BREW.TECH engineering team develops a new profile",
+  "(for example, for a partner roaster's new batch) — it reaches every machine in the lineup over the air. The barista opens settings, selects 'Profile 09 — Tymens natural, April 2026', and starts brewing.":"(for example, for a partner roaster's new batch) — it reaches every machine in the lineup over the air. The barista opens settings, selects 'Profile 09 — Tymens natural, April 2026', and starts brewing.",
+  "\u201CIn the first three months we received six profile updates. It's as if the machine learns alongside us.\u201D":"\u201CIn the first three months we received six profile updates. It's as if the machine learns alongside us.\u201D",
+  "— Mikhail K., barista, specialty project 'Drip', Moscow":"— Mikhail K., barista, specialty project 'Drip', Moscow",
+  "In summary":"In summary",
+  "One pressure profile is a compromise. Twelve profiles with updates are a tool.":"One pressure profile is a compromise. Twelve profiles with updates are a tool.",
+  "The difference in the cup is noticeable from the first sip.":"The difference in the cup is noticeable from the first sip.",
+  "Especially when you compare the same lot brewed on a universal 9-bar curve and on one tuned for it.":"Especially when you compare the same lot brewed on a universal 9-bar curve and on one tuned for it.",
+
+  // ---- article 3 body ----
+  "When we designed the Pro Grinder, there was one main question: flat or conical burrs. And 75 or 64 mm. That choice directly determines what coffee ends up in the cup. We explain why we settled on flat 75 mm.":"When we designed the Pro Grinder, there was one main question: flat or conical burrs. And 75 or 64 mm. That choice directly determines what coffee ends up in the cup. We explain why we settled on flat 75 mm.",
+  "Geometry and particle distribution":"Geometry and particle distribution",
+  "Conical burrs":"Conical burrs",
+  "work like the grinder in your kitchen: a cone-shaped burr spins inside, a cup-shaped one outside. Beans pass top to bottom, gradually ground down. This produces":"work like the grinder in your kitchen: a cone-shaped burr spins inside, a cup-shaped one outside. Beans pass top to bottom, gradually ground down. This produces",
+  "a wide particle distribution":"a wide particle distribution",
+  ": both large and small, with two peaks on the chart.":": both large and small, with two peaks on the chart.",
+  "Flat burrs":"Flat burrs",
+  "are two parallel discs with beans passing between them. The gap is fixed, the path is shorter, the grind is more":"are two parallel discs with beans passing between them. The gap is fixed, the path is shorter, the grind is more",
+  "uniform":"uniform",
+  ": a single peak on the distribution chart.":": a single peak on the distribution chart.",
+  "// KEY:":"// KEY:",
+  "grind uniformity directly determines extraction quality. The narrower the distribution, the more evenly water passes through the puck, the cleaner the taste.":"grind uniformity directly determines extraction quality. The narrower the distribution, the more evenly water passes through the puck, the cleaner the taste.",
+  "What this gives in the taste":"What this gives in the taste",
+  "With conical burrs you get an espresso with more 'body', thicker, with pronounced chocolatey bitterness. That's":"With conical burrs you get an espresso with more 'body', thicker, with pronounced chocolatey bitterness. That's",
+  "good for traditional Italian blends":"good for traditional Italian blends",
+  "— robusta, dark roasts.":"— robusta, dark roasts.",
+  "With flat burrs the espresso is more 'transparent', with bright descriptors: citrus, berries, floral notes. That's":"With flat burrs the espresso is more 'transparent', with bright descriptors: citrus, berries, floral notes. That's",
+  "essential for specialty":"essential for specialty",
+  ", where the roast is light and acidity is valued.":", where the roast is light and acidity is valued.",
+  "Why 75 mm specifically":"Why 75 mm specifically",
+  "Burr size isn't 'bigger = better'. It's a trade-off between":"Burr size isn't 'bigger = better'. It's a trade-off between",
+  "grind speed":"grind speed",
+  "heat":"heat",
+  "and":"and",
+  "lifespan":"lifespan",
+  "Speed.":"Speed.",
+  "75 mm grind a 14 g dose in 7–10 seconds. 64 mm — in 14–18 seconds. At peak load that's critical.":"75 mm grind a 14 g dose in 7–10 seconds. 64 mm — in 14–18 seconds. At peak load that's critical.",
+  "Heat.":"Heat.",
+  "A larger area = lower RPM at the same speed = less heat = less oil oxidation = a stable taste all day.":"A larger area = lower RPM at the same speed = less heat = less oil oxidation = a stable taste all day.",
+  "Lifespan.":"Lifespan.",
+  "Flat 75 mm with a titanium coating stay sharp for up to 800 kg of beans. 64 mm — up to 450 kg.":"Flat 75 mm with a titanium coating stay sharp for up to 800 kg of beans. 64 mm — up to 450 kg.",
+  "When conical burrs are still better":"When conical burrs are still better",
+  "The honest answer:":"The honest answer:",
+  "for home use and small projects":"for home use and small projects",
+  ". They're more compact, cheaper, and don't need such precise calibration. If you do 30–40 cups a day and a traditional blend — a conical 58–64 mm is just right.":". They're more compact, cheaper, and don't need such precise calibration. If you do 30–40 cups a day and a traditional blend — a conical 58–64 mm is just right.",
+  "But if you're a specialty project, work with light roasts, do 150+ cups a day and change beans weekly — flat 75 mm will pay for themselves in the first three months through consistency.":"But if you're a specialty project, work with light roasts, do 150+ cups a day and change beans weekly — flat 75 mm will pay for themselves in the first three months through consistency.",
+  "\u201CI set up the Pro Grinder and within a week noticed I no longer tweak the grind after every bean change. I just load a profile and go.\u201D":"\u201CI set up the Pro Grinder and within a week noticed I no longer tweak the grind after every bean change. I just load a profile and go.\u201D",
+  "— Svetlana B., barista champion, project 'Sequel'":"— Svetlana B., barista champion, project 'Sequel'",
+
+  // ---- article 4 body ----
+  "A year ago we did something no professional coffee machine maker does:":"A year ago we did something no professional coffee machine maker does:",
+  ". Any Pro Espresso sends every shot's events (time, temperature, pressure, volume, operator) over standard REST. We didn't know what would come of it. Here's what our clients built over the year.":". Any Pro Espresso sends every shot's events (time, temperature, pressure, volume, operator) over standard REST. We didn't know what would come of it. Here's what our clients built over the year.",
+  "1. Automatic bean-consumption tracking":"1. Automatic bean-consumption tracking",
+  "The four-café chain 'North' in St. Petersburg used to count bean usage by hand: the barista weighed the hopper at the start and end of a shift, the owner logged it into a spreadsheet. Accuracy — plus or minus 200 g per day per location.":"The four-café chain 'North' in St. Petersburg used to count bean usage by hand: the barista weighed the hopper at the start and end of a shift, the owner logged it into a spreadsheet. Accuracy — plus or minus 200 g per day per location.",
+  "With our API they wrote 80 lines of code: the machine reports the dose on every shot, the script sums it up, and at 9 a.m. it sends the owner a report in Telegram.":"With our API they wrote 80 lines of code: the machine reports the dose on every shot, the script sums it up, and at 9 a.m. it sends the owner a report in Telegram.",
+  "Accuracy — to the gram. Time spent on tracking — zero.":"Accuracy — to the gram. Time spent on tracking — zero.",
+  "2. Linking shots to receipts":"2. Linking shots to receipts",
+  "The café 'Zerno' in Nizhny integrated the API with the iiko POS. Now they see: receipt #4827, two cappuccinos, profile 03, dose 18.2 g, extraction 24.8 seconds. How much coffee was used — known down to the shot.":"The café 'Zerno' in Nizhny integrated the API with the iiko POS. Now they see: receipt #4827, two cappuccinos, profile 03, dose 18.2 g, extraction 24.8 seconds. How much coffee was used — known down to the shot.",
+  "// USE CASE:":"// USE CASE:",
+  "the owner sees that the evening shift pulls 'lighter' shots (the dose is on average 0.3 g less). Runs a training session — recovers ₽14,000/month in saved coffee.":"the owner sees that the evening shift pulls 'lighter' shots (the dose is on average 0.3 g less). Runs a training session — recovers ₽14,000/month in saved coffee.",
+  "3. Reports for the head barista":"3. Reports for the head barista",
+  "The specialty project 'Drip' in Moscow built an internal dashboard for the head barista. Every day at 10 a.m. they get:":"The specialty project 'Drip' in Moscow built an internal dashboard for the head barista. Every day at 10 a.m. they get:",
+  "How many shots were pulled":"How many shots were pulled",
+  "The distribution of extraction times — any 'short' or 'long' ones":"The distribution of extraction times — any 'short' or 'long' ones",
+  "Which barista worked which shift":"Which barista worked which shift",
+  "Anomalies: shots below 8.5 bar or above 94°C":"Anomalies: shots below 8.5 bar or above 94°C",
+  "It's a tool for":"It's a tool for",
+  "quality control":"quality control",
+  "that used to be available only to chains of 50+ locations with their own IT department.":"that used to be available only to chains of 50+ locations with their own IT department.",
+  "4. Integration with the hotel management system":"4. Integration with the hotel management system",
+  "The 'Metropol' hotel connected a Pro Espresso to its PMS. When a guest orders a cappuccino through the app, the room number lights up at the bar, a profile is selected (a returning guest's preferences are remembered), the operator pulls the shot — and it's automatically charged to the room.":"The 'Metropol' hotel connected a Pro Espresso to its PMS. When a guest orders a cappuccino through the app, the room number lights up at the bar, a profile is selected (a returning guest's preferences are remembered), the operator pulls the shot — and it's automatically charged to the room.",
+  "What we learned":"What we learned",
+  "A coffee machine isn't a finished product. It's a node in the café's infrastructure.":"A coffee machine isn't a finished product. It's a node in the café's infrastructure.",
+  "When you give people the ability to connect that node to the rest of their system — they'll come up with things you never expected.":"When you give people the ability to connect that node to the rest of their system — they'll come up with things you never expected.",
+  "That's why the API is here to stay. That's why we document every field in every endpoint. That's why new firmware versions keep backward compatibility — so a script written today still works in five years.":"That's why the API is here to stay. That's why we document every field in every endpoint. That's why new firmware versions keep backward compatibility — so a script written today still works in five years.",
+  "\u201CIn two years we'll have 200 cafés on BREW.TECH. That's not 200 machines — it's 200 nodes of one network, exchanging knowledge. That's what a platform is.\u201D":"\u201CIn two years we'll have 200 cafés on BREW.TECH. That's not 200 machines — it's 200 nodes of one network, exchanging knowledge. That's what a platform is.\u201D",
+  "— Dmitry Levin, CTO BREW.TECH":"— Dmitry Levin, CTO BREW.TECH",
+
+  // ---- article 5 body ----
+  "When a client learns that some of our coffee machine's components are made in China, the first reaction is almost always the same: \u201CIs that really reliable?\u201D We answer honestly and directly:":"When a client learns that some of our coffee machine's components are made in China, the first reaction is almost always the same: \u201CIs that really reliable?\u201D We answer honestly and directly:",
+  "yes, it's reliable — and for exactly the same reasons your favorite million-ruble imported machine, which contains the very same Chinese parts, is reliable.":"yes, it's reliable — and for exactly the same reasons your favorite million-ruble imported machine, which contains the very same Chinese parts, is reliable.",
+  "The whole industry's little secret":"The whole industry's little secret",
+  "Almost no professional coffee machine is made entirely in one country. The global supply chain is built so that components come from all over the world, and the 'country of origin' on the nameplate is most often the country of":"Almost no professional coffee machine is made entirely in one country. The global supply chain is built so that components come from all over the world, and the 'country of origin' on the nameplate is most often the country of",
+  "final assembly":"final assembly",
+  ", not where all the parts were made.":", not where all the parts were made.",
+  "Even in renowned Italian brands' machines you'll find:":"Even in renowned Italian brands' machines you'll find:",
+  "Electronics and control boards":"Electronics and control boards",
+  "— made in China or Southeast Asia.":"— made in China or Southeast Asia.",
+  "Displays and sensors":"Displays and sensors",
+  "— China, Korea, Taiwan.":"— China, Korea, Taiwan.",
+  "Motors and pumps":"Motors and pumps",
+  "— some Italian (Ulka), some Chinese.":"— some Italian (Ulka), some Chinese.",
+  "Fasteners, fittings, wiring":"Fasteners, fittings, wiring",
+  "— almost always Asia.":"— almost always Asia.",
+  "Under EU law, 'Made in Italy' can be used if the 'last substantial transformation' happened in the country. Often that means only final assembly from imported units.":"Under EU law, 'Made in Italy' can be used if the 'last substantial transformation' happened in the country. Often that means only final assembly from imported units.",
+  "Why China has long stopped meaning 'cheap and bad'":"Why China has long stopped meaning 'cheap and bad'",
+  "The stereotype about Chinese quality is stuck in the nineties. Today China is the world's center of high-precision electronics and mechanical manufacturing. It assembles flagship smartphones, medical equipment and automotive components for premium brands.":"The stereotype about Chinese quality is stuck in the nineties. Today China is the world's center of high-precision electronics and mechanical manufacturing. It assembles flagship smartphones, medical equipment and automotive components for premium brands.",
+  "The question isn't where a part is made. The question is who controls its quality, and how.":"The question isn't where a part is made. The question is who controls its quality, and how.",
+  "The same Chinese factory can produce both a cheap 'marketplace' part and a part to strict specs with 100% outgoing inspection — the difference is the price and the customer's requirements.":"The same Chinese factory can produce both a cheap 'marketplace' part and a part to strict specs with 100% outgoing inspection — the difference is the price and the customer's requirements.",
+  "How we work with suppliers":"How we work with suppliers",
+  "We don't buy 'whatever's cheapest'. We take an engineering approach to every component:":"We don't buy 'whatever's cheapest'. We take an engineering approach to every component:",
+  "A spec for every part.":"A spec for every part.",
+  "We set tolerances, materials, lifespan. The supplier signs off on them.":"We set tolerances, materials, lifespan. The supplier signs off on them.",
+  "Incoming inspection.":"Incoming inspection.",
+  "Every batch of components is checked at our warehouse before it goes into a machine.":"Every batch of components is checked at our warehouse before it goes into a machine.",
+  "Redundancy for critical units.":"Redundancy for critical units.",
+  "For the pump, heating element and board we have at least two qualified suppliers — so we don't depend on any single one.":"For the pump, heating element and board we have at least two qualified suppliers — so we don't depend on any single one.",
+  "142 inspection points":"142 inspection points",
+  "at final assembly in Nizhny Novgorod.":"at final assembly in Nizhny Novgorod.",
+  "What we do ourselves":"What we do ourselves",
+  "Chinese (and Italian, and German) components are the 'bricks'. But the":"Chinese (and Italian, and German) components are the 'bricks'. But the",
+  "architecture, firmware, control board, pressure profiles and API are our own development.":"architecture, firmware, control board, pressure profiles and API are our own development.",
+  "That's what turns a set of parts into a BREW.TECH. This is where the engineering value lives, and that's what you pay for — not the flag on the box.":"That's what turns a set of parts into a BREW.TECH. This is where the engineering value lives, and that's what you pay for — not the flag on the box.",
+  "\u201CWe're often asked about 'Italian assembly'. We answer: what matters more is who wrote the firmware and who'll come fix the machine in two years. Both — us, in Russia.\u201D":"\u201CWe're often asked about 'Italian assembly'. We answer: what matters more is who wrote the firmware and who'll come fix the machine in two years. Both — us, in Russia.\u201D",
+  "Why local assembly matters more than 'the part's country'":"Why local assembly matters more than 'the part's country'",
+  "For your café, what matters isn't the text on the nameplate but the answers to three practical questions:":"For your café, what matters isn't the text on the nameplate but the answers to three practical questions:",
+  "Will service arrive fast?":"Will service arrive fast?",
+  "For us — 14 Russian cities, arrival ≤ 48 hours.":"For us — 14 Russian cities, arrival ≤ 48 hours.",
+  "Is the spare part in stock?":"Is the spare part in stock?",
+  "For us — 7,500 items in Moscow, not 'six weeks from Italy'.":"For us — 7,500 items in Moscow, not 'six weeks from Italy'.",
+  "Who's responsible for firmware and updates?":"Who's responsible for firmware and updates?",
+  "Our engineering team, in Russian, reachable.":"Our engineering team, in Russian, reachable.",
+  "So yes — our machine has Chinese components. Like every other professional coffee machine on the market.":"So yes — our machine has Chinese components. Like every other professional coffee machine on the market.",
+  "The difference is that we talk about it openly — and take responsibility for quality and service.":"The difference is that we talk about it openly — and take responsibility for quality and service.",
+  "That's honest engineering instead of marketing.":"That's honest engineering instead of marketing."
+  };
+
+  // placeholder translations
+  const PH = {
+    "Алексей Петров":"John Smith",
+    "Москва":"Moscow",
+    "Удобное время для звонка":"Convenient time to call"
+  };
+
+  const norm = s => s.replace(/\s+/g,' ').trim();
+  let textNodes = null;
+  let phEls = null;
+
+  function collect(){
+    textNodes = [];
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(n){
+        if(!n.nodeValue || !/[А-Яа-яЁё]/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        const p = n.parentNode;
+        if(!p) return NodeFilter.FILTER_REJECT;
+        const nm = p.nodeName;
+        if(nm==='SCRIPT'||nm==='STYLE') return NodeFilter.FILTER_REJECT;
+        if(p.closest && p.closest('#bt-langbar')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let n; while(n=w.nextNode()){ textNodes.push({node:n, ru:n.nodeValue}); }
+    phEls = [...document.querySelectorAll('[placeholder]')].map(el=>({el, ru:el.getAttribute('placeholder')}));
+  }
+
+  function apply(lang){
+    if(!textNodes) collect();
+    for(const it of textNodes){
+      if(lang==='en'){
+        const en = DICT[norm(it.ru)];
+        if(en!=null){
+          const lead = it.ru.match(/^\s*/)[0];
+          const trail = it.ru.match(/\s*$/)[0];
+          it.node.nodeValue = lead + en + trail;
+        }
+      } else {
+        it.node.nodeValue = it.ru;
+      }
+    }
+    for(const it of phEls){
+      if(lang==='en'){ const en = PH[it.ru.trim()]; if(en!=null) it.el.setAttribute('placeholder', en); }
+      else it.el.setAttribute('placeholder', it.ru);
+    }
+    // title
+    const t = document.title;
+    if(lang==='en'){ if(DICT[t]) { document.title = DICT[t]; document.documentElement.dataset.ruTitle = t; } }
+    else if(document.documentElement.dataset.ruTitle){ document.title = document.documentElement.dataset.ruTitle; }
+    document.documentElement.lang = lang;
+    try{ localStorage.setItem('btlang', lang); }catch(e){}
+    updateToggle(lang);
+  }
+
+  function updateToggle(lang){
+    document.querySelectorAll('.bt-lang').forEach(b=>{
+      b.querySelectorAll('[data-lang]').forEach(s=>{
+        s.classList.toggle('on', s.dataset.lang===lang);
+      });
+    });
+  }
+
+  const I18N = {
+    apply,
+    set(lang){ apply(lang); dismissBanner(); },
+    toggle(){ apply((localStorage.getItem('btlang')||'ru')==='ru'?'en':'ru'); },
+    current(){ return localStorage.getItem('btlang')||'ru'; }
+  };
+  window.I18N = I18N;
+
+  // ---- language toggle injection (into nav) ----
+  function injectToggle(){
+    document.querySelectorAll('.nav-right').forEach(nr=>{
+      if(nr.querySelector('.bt-lang')) return;
+      const wrap = document.createElement('div');
+      wrap.className='bt-lang';
+      wrap.innerHTML='<span data-lang="en">RU</span><span class="sep">/</span><span data-lang="en">EN</span>';
+      wrap.addEventListener('click', ()=>I18N.set(I18N.current()==='ru'?'en':'ru'));
+      nr.insertBefore(wrap, nr.firstChild);
+    });
+    // mobile menu toggle
+    document.querySelectorAll('#mobileMenu').forEach(mm=>{
+      if(mm.querySelector('.bt-lang-m')) return;
+      const a=document.createElement('a');
+      a.className='bt-lang-m';
+      a.style.cssText='justify-content:flex-start;gap:12px';
+      a.innerHTML='Язык / Language: <b style="margin-left:8px"><span data-lang="en">RU</span> / <span data-lang="en">EN</span></b>';
+      a.addEventListener('click',e=>{e.preventDefault();I18N.set(I18N.current()==='ru'?'en':'ru');});
+      mm.insertBefore(a, mm.firstChild);
+    });
+  }
+
+  // ---- banner ----
+  function dismissBanner(){ const b=document.getElementById('bt-geobanner'); if(b) b.remove(); }
+  function showBanner(country){
+    if(document.getElementById('bt-geobanner')) return;
+    const b=document.createElement('div');
+    b.id='bt-geobanner';
+    b.innerHTML=`
+      <div class="bt-gb-inner">
+        <div class="bt-gb-txt">
+          <b>This site is available in English.</b>
+          <span>It looks like you're visiting from outside Russia${country?` (${country})`:''}. Switch the language?</span>
+        </div>
+        <div class="bt-gb-act">
+          <button class="bt-gb-en">View in English</button>
+          <button class="bt-gb-ru">Остаться на рfromсском</button>
+        </div>
+      </div>`;
+    document.body.appendChild(b);
+    b.querySelector('.bt-gb-en').addEventListener('click',()=>I18N.set('en'));
+    b.querySelector('.bt-gb-ru').addEventListener('click',()=>{ I18N.set('ru'); });
+  }
+
+  // ---- styles ----
+  const css=document.createElement('style');
+  css.textContent=`
+    .bt-lang{display:inline-flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;border:1px solid var(--line);padding:7px 10px;user-select:none;transition:border-color .15s}
+    .bt-lang:hover{border-color:var(--blue)}
+    .bt-lang [data-lang]{color:#9a9a9a;transition:color .15s}
+    .bt-lang [data-lang].on{color:var(--blue)}
+    .bt-lang .sep{color:#ccc}
+    .nav.dark .bt-lang{border-color:rgba(255,255,255,.18)}
+    .nav.dark .bt-lang [data-lang]{color:rgba(255,255,255,.5)}
+    .nav.dark .bt-lang [data-lang].on{color:#fff}
+    .bt-lang-m b{color:var(--blue)}
+    .bt-lang-m [data-lang].on{text-decoration:underline}
+    #bt-geobanner{position:fixed;left:0;right:0;bottom:0;z-index:200;background:#0a0a0a;color:#fff;border-top:2px solid var(--blue);animation:btgb .35s ease}
+    @keyframes btgb{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .bt-gb-inner{max-width:1440px;margin:0 auto;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .bt-gb-txt{display:flex;flex-direction:column;gap:3px}
+    .bt-gb-txt b{font-size:15px;font-weight:700;letter-spacing:-.01em}
+    .bt-gb-txt span{font-size:13px;color:rgba(255,255,255,.6)}
+    .bt-gb-act{display:flex;gap:10px;flex-wrap:wrap}
+    .bt-gb-act button{font-family:'Montserrat',sans-serif;font-weight:600;font-size:13px;padding:11px 18px;border:0;cursor:pointer}
+    .bt-gb-en{background:var(--blue);color:#fff}
+    .bt-gb-en:hover{background:#0052cc}
+    .bt-gb-ru{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25)!important}
+    .bt-gb-ru:hover{background:rgba(255,255,255,.08)}
+    @media(max-width:640px){.bt-gb-inner{padding:16px 20px}.bt-gb-act{width:100%}.bt-gb-act button{flex:1}}
+  `;
+  document.head.appendChild(css);
+
+  // ---- init ----
+  function init(){
+    injectToggle();
+    const stored = localStorage.getItem('btlang');
+    if(stored){ apply(stored); return; }
+    // default RU, then geo-check
+    apply('ru');
+    // Try language preference first (cheap, offline)
+    const navLang = (navigator.language||'').slice(0,2).toLowerCase();
+    fetch('https://ipapi.co/json/',{cache:'no-store'})
+      .then(r=>r.ok?r.json():Promise.reject())
+      .then(d=>{
+        const cc=(d&&d.country_code)||'';
+        if(cc && CIS.indexOf(cc)===-1) showBanner(d.country_name||cc);
+      })
+      .catch(()=>{
+        // fallback to browser language if geo blocked
+        if(navLang && navLang!=='ru' && !['be','kk','uk','hy','az','ky','tg','tk','uz','ka'].includes(navLang)) showBanner('');
+      });
+  }
+
+  // partials.js injects nav/footer synchronously before this runs (script order),
+  // but guard in case:
+  if(document.getElementById('mobileMenu')) init();
+  else window.addEventListener('DOMContentLoaded', init);
+})();
+
+</script>
+</body>
+</html>

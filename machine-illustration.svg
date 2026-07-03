@@ -1,0 +1,115 @@
+<svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Фон с градиентом -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c0c0c0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0088ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0044cc;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="20" stdDeviation="40" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Фон -->
+  <rect width="600" height="800" fill="url(#bgGradient)"/>
+  
+  <!-- Лучи света в фоне -->
+  <circle cx="500" cy="200" r="300" fill="#0066ff" opacity="0.05"/>
+  <circle cx="100" cy="600" r="250" fill="#0066ff" opacity="0.03"/>
+  
+  <!-- ОСНОВНОЙ КОРПУС КОФЕМАШИНЫ -->
+  <g filter="url(#shadow)">
+    <!-- Главное тело машины -->
+    <rect x="120" y="150" width="360" height="480" rx="20" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+    
+    <!-- Верхняя панель -->
+    <rect x="120" y="150" width="360" height="80" rx="20" fill="#222" stroke="#333" stroke-width="2"/>
+    
+    <!-- Передняя экранная панель -->
+    <rect x="140" y="170" width="320" height="60" rx="8" fill="#0a0a0a" stroke="#0066ff" stroke-width="2"/>
+    
+    <!-- Дисплей/индикаторы -->
+    <circle cx="170" cy="200" r="8" fill="#0066ff" opacity="0.8"/>
+    <circle cx="200" cy="200" r="8" fill="#0066ff" opacity="0.6"/>
+    <circle cx="230" cy="200" r="8" fill="#0066ff" opacity="0.4"/>
+    <line x1="140" y1="215" x2="460" y2="215" stroke="#0066ff" stroke-width="1" opacity="0.3"/>
+    
+    <!-- Главная рабочая зона (групповая часть) -->
+    <rect x="140" y="250" width="320" height="200" rx="8" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+    
+    <!-- Две групповые головки (портафильтеры) -->
+    <!-- Левая группа -->
+    <g id="left-group">
+      <circle cx="220" cy="310" r="35" fill="url(#metalGradient)" stroke="#666" stroke-width="2"/>
+      <circle cx="220" cy="310" r="28" fill="#0a0a0a"/>
+      <circle cx="220" cy="310" r="20" fill="#1a1a1a" stroke="#0066ff" stroke-width="1"/>
+      <!-- Портафильтер -->
+      <rect x="210" y="335" width="20" height="60" rx="4" fill="#333" stroke="#555" stroke-width="1"/>
+      <circle cx="220" cy="405" r="12" fill="#1a1a1a" stroke="#666" stroke-width="1"/>
+    </g>
+    
+    <!-- Правая группа -->
+    <g id="right-group">
+      <circle cx="380" cy="310" r="35" fill="url(#metalGradient)" stroke="#666" stroke-width="2"/>
+      <circle cx="380" cy="310" r="28" fill="#0a0a0a"/>
+      <circle cx="380" cy="310" r="20" fill="#1a1a1a" stroke="#0066ff" stroke-width="1"/>
+      <!-- Портафильтер -->
+      <rect x="370" y="335" width="20" height="60" rx="4" fill="#333" stroke="#555" stroke-width="1"/>
+      <circle cx="380" cy="405" r="12" fill="#1a1a1a" stroke="#666" stroke-width="1"/>
+    </g>
+    
+    <!-- Панель управления справа -->
+    <rect x="420" y="260" width="40" height="120" rx="6" fill="#222" stroke="#333" stroke-width="1"/>
+    
+    <!-- Кнопки управления -->
+    <circle cx="440" cy="280" r="6" fill="#333" stroke="#555" stroke-width="1"/>
+    <circle cx="440" cy="310" r="6" fill="#0066ff" opacity="0.7" stroke="#0088ff" stroke-width="1"/>
+    <circle cx="440" cy="340" r="6" fill="#333" stroke="#555" stroke-width="1"/>
+    <rect x="425" y="360" width="30" height="8" rx="2" fill="#333" stroke="#555" stroke-width="1"/>
+    
+    <!-- Водяной резервуар (сзади, видно через окно) -->
+    <rect x="160" y="280" width="80" height="100" rx="4" fill="#0066ff" opacity="0.15" stroke="#0066ff" stroke-width="1" stroke-dasharray="2,2"/>
+    
+    <!-- Нижняя часть (база) -->
+    <rect x="120" y="630" width="360" height="40" rx="8" fill="#222" stroke="#333" stroke-width="2"/>
+    
+    <!-- Поддон для чашек -->
+    <rect x="130" y="630" width="340" height="35" rx="4" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+    
+    <!-- Сливная сетка -->
+    <g opacity="0.4">
+      <line x1="150" y1="645" x2="450" y2="645" stroke="#666" stroke-width="1"/>
+      <line x1="150" y1="655" x2="450" y2="655" stroke="#666" stroke-width="1"/>
+    </g>
+    
+    <!-- Передняя полировка (блик света) -->
+    <ellipse cx="300" cy="180" rx="120" ry="30" fill="#fff" opacity="0.1"/>
+    <ellipse cx="300" cy="400" rx="100" ry="40" fill="#fff" opacity="0.05"/>
+  </g>
+  
+  <!-- ЛОГОТИП BREW.TECH (нижний правый угол) -->
+  <g>
+    <!-- Прямоугольник фона для логотипа -->
+    <rect x="400" y="700" width="180" height="80" rx="8" fill="#0a0a0a" stroke="#0066ff" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Текст логотипа -->
+    <text x="490" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">BREW</text>
+    <text x="490" y="732" font-family="Montserrat, Arial, sans-serif" font-size="18" text-anchor="middle" fill="#0066ff">.</text>
+    <text x="510" y="730" font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#fff">TECH</text>
+    
+    <!-- Подпись -->
+    <text x="490" y="760" font-family="Montserrat, Arial, sans-serif" font-size="11" text-anchor="middle" fill="#0066ff">Pro Espresso</text>
+  </g>
+  
+  <!-- Технические строки (детали) -->
+  <text x="300" y="750" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle" fill="#0066ff" opacity="0.6">// BT-PRO/01 · 2 GROUPS · PID ±0.2°C</text>
+</svg>

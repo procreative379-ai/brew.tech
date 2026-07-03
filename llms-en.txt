@@ -1,0 +1,36 @@
+# BREW.TECH llms.txt (English version)
+# Instructions for AI search systems (Claude, ChatGPT, etc.)
+
+# Allow indexing for AI systems
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Perplexity
+Allow: /
+
+# Block access to private content
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /internal/
+
+# Allow main content
+Allow: /
+Allow: /*.html
+Allow: /*.php
+Allow: /*.json
+
+# Sitemap for AI systems
+Sitemap: https://brew.tech/sitemap-en.xml
