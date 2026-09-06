@@ -3,122 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BREW.TECH - профессиональное кофейное оборудование. Pro Espresso и Pro Grinder.">
-    <meta name="keywords" content="кофемашина, кофемолка, Pro Espresso, Pro Grinder, BREW.TECH">
-    <meta name="robots" content="index, follow">
-    <title>BREW.TECH — Профессиональное кофейное оборудование</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>BREW.TECH - Профессиональное кофейное оборудование</title>
     <style>
         * {margin:0; padding:0; box-sizing:border-box}
-        body {font-family:'Montserrat',sans-serif; background:#fff; color:#0a0a0a}
+        body {font-family: Arial, sans-serif; background: white; color: #333}
         
-        header {display:flex; align-items:center; justify-content:space-between; padding:20px 60px; border-bottom:1px solid #f0f0f0}
-        .logo {font-size:24px; font-weight:900}
-        .logo .blue {color:#0066ff}
-        nav {display:flex; gap:40px; font-size:14px}
-        nav a {color:inherit; text-decoration:none}
-        .cta {display:flex; align-items:center; gap:20px}
-        .phone {font-weight:600}
-        .btn {background:#000; color:#fff; padding:12px 24px; border-radius:6px; cursor:pointer; border:none; font-weight:600}
-        .btn:hover {background:#333}
+        header {background: white; padding: 20px 40px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center}
+        header h1 {font-size: 28px; font-weight: bold}
+        header nav a {margin: 0 20px; text-decoration: none; color: #333; font-weight: 500}
+        header nav a:hover {color: #0066ff}
+        header button {background: black; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer}
         
-        .hero {display:grid; grid-template-columns:1fr 1fr; gap:60px; padding:80px 60px; align-items:center}
-        .hero-text h1 {font-size:64px; font-weight:900; margin-bottom:30px; line-height:1.1}
-        .hero-text .blue {color:#0066ff}
-        .hero-text p {font-size:16px; color:#666; margin-bottom:40px; line-height:1.6}
-        .hero-text .features {display:flex; flex-direction:column; gap:15px}
-        .feature {display:flex; align-items:center; gap:12px}
-        .feature-dot {width:8px; height:8px; background:#0066ff; border-radius:50%}
+        .hero {display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 60px 40px; align-items: center; max-width: 1200px; margin: 0 auto}
+        .hero h2 {font-size: 56px; font-weight: bold; margin-bottom: 20px; line-height: 1.2}
+        .hero h2 span {color: #0066ff}
+        .hero p {font-size: 16px; color: #666; margin-bottom: 20px; line-height: 1.6}
+        .hero img {width: 100%; max-width: 500px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1)}
         
-        .hero-image img {width:100%; max-width:600px; border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.15)}
+        .products {display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 60px 40px; max-width: 1200px; margin: 0 auto}
+        .card {background: #f9f9f9; padding: 40px; border-radius: 8px; text-align: center}
+        .card h3 {font-size: 24px; margin-bottom: 15px}
+        .card p {color: #666; margin-bottom: 30px}
+        .card .price {font-size: 32px; font-weight: bold; color: #0066ff; margin: 20px 0}
+        .card a {display: inline-block; background: #0066ff; color: white; padding: 10px 30px; border-radius: 4px; text-decoration: none; font-weight: bold}
+        .card a:hover {background: #0052cc}
         
-        .products {display:grid; grid-template-columns:1fr 1fr; gap:40px; padding:80px 60px}
-        .product-card {background:#f8f9fa; padding:40px; border-radius:12px; text-align:center}
-        .product-card h3 {font-size:24px; font-weight:900; margin-bottom:15px}
-        .product-card p {font-size:14px; color:#666; margin-bottom:30px}
-        .product-card .price {font-size:32px; font-weight:900; color:#0066ff; margin-bottom:20px}
-        .product-card a {display:inline-block; background:#0066ff; color:#fff; padding:12px 32px; border-radius:6px; text-decoration:none; font-weight:600; transition:all.3s}
-        .product-card a:hover {background:#0052cc; transform:translateY(-2px)}
+        footer {text-align: center; padding: 20px; color: #666; border-top: 1px solid #ddd}
         
-        footer {text-align:center; padding:40px; border-top:1px solid #f0f0f0; font-size:13px; color:#999}
-        footer a {color:#0066ff; text-decoration:none}
-        
-        @media(max-width:768px) {
-            header {padding:20px; flex-direction:column; gap:20px}
-            nav {flex-wrap:wrap; gap:20px}
-            .hero {grid-template-columns:1fr; padding:40px 20px}
-            .hero-text h1 {font-size:40px}
-            .products {grid-template-columns:1fr; padding:40px 20px}
+        @media (max-width: 768px) {
+            .hero {grid-template-columns: 1fr; padding: 40px 20px}
+            .products {grid-template-columns: 1fr; padding: 40px 20px}
+            .hero h2 {font-size: 36px}
         }
     </style>
 </head>
 <body>
 <header>
-    <div class="logo">BREW.<span class="blue">TECH</span></div>
+    <h1>BREW.<span style="color: #0066ff">TECH</span></h1>
     <nav>
-        <a href="#equipment">Оборудование</a>
-        <a href="machine.html">Кофемашина</a>
-        <a href="grinder.html">Кофемолка</a>
-        <a href="#where">Где купить</a>
-        <a href="#articles">Статьи</a>
-        <a href="#about">О нас</a>
+        <a href="index.html">Главная</a>
+        <a href="machine.html">Машина</a>
+        <a href="grinder.html">Молка</a>
     </nav>
-    <div class="cta">
-        <div class="phone">+7 495 123-45-67</div>
-        <button class="btn">Запросить демо</button>
-    </div>
+    <button>Запросить демо</button>
 </header>
 
 <div class="hero">
-    <div class="hero-text">
-        <h1>Машина, которая <span class="blue">судит</span> о кофе.</h1>
+    <div>
+        <h2>Машина, которая <span>судит</span> о кофе.</h2>
         <p>Профессиональное кофейное оборудование для независимых кофеен. Технология. Минимализм. Надёжность.</p>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-dot"></div>
-                <span>Двухгруппная эспрессо-машина с PID контролем</span>
-            </div>
-            <div class="feature">
-                <div class="feature-dot"></div>
-                <span>Профессиональная кофемолка 75мм жернова</span>
-            </div>
-            <div class="feature">
-                <div class="feature-dot"></div>
-                <span>Открытый API и обновления по сети</span>
-            </div>
-            <div class="feature">
-                <div class="feature-dot"></div>
-                <span>Собрано и поддерживается в России</span>
-            </div>
-        </div>
     </div>
-    
-    <div class="hero-image">
-        <img src="machine.png" alt="Pro Espresso кофемашина BREW.TECH" loading="lazy">
-    </div>
+    <img src="machine.png" alt="Pro Espresso BREW.TECH">
 </div>
 
-<div class="products" id="equipment">
-    <div class="product-card">
+<div class="products">
+    <div class="card">
         <h3>Pro Espresso</h3>
-        <p>Двухгруппная профессиональная кофемашина с PID контролем ±0.2°C</p>
+        <p>Двухгруппная профессиональная кофемашина с PID контролем</p>
         <div class="price">489 000 ₽</div>
         <a href="machine.html">Подробнее →</a>
     </div>
     
-    <div class="product-card">
+    <div class="card">
         <h3>Pro Grinder</h3>
-        <p>Профессиональная кофемолка с плоскими жерновами 75мм и дозированием по весу</p>
+        <p>Профессиональная кофемолка с плоскими жерновами 75мм</p>
         <div class="price">189 000 ₽</div>
         <a href="grinder.html">Подробнее →</a>
     </div>
 </div>
 
-<footer>
-    <p>© 2026 BREW.TECH. Все права защищены. | <a href="privacy.html">Политика конфиденциальности</a></p>
-</footer>
-
-<script src="partials.js"></script>
+<footer>© 2026 BREW.TECH. Все права защищены.</footer>
 </body>
 </html>
