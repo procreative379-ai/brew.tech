@@ -11,18 +11,20 @@ ErrorDocument 404 /404.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   
-  # Don't redirect .html files, only handle missing ones
-  RewriteRule ^([a-zA-Z0-9-]+)/?$ $1.html [L]
+  # Extensionless URLs: /articles -> articles.html, /stati/slug -> stati/slug.html
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
 # Browser caching
-<FilesMatch "\.(jpg|jpeg|png|gif|ico|css|js|svg)$">
+<FilesMatch "\.(jpg|jpeg|png|gif|ico|css|js|svg|webp|woff2)$">
   Header set Cache-Control "max-age=2592000, public"
 </FilesMatch>
 
 # Gzip compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE image/svg+xml
   AddOutputFilterByType DEFLATE text/html
   AddOutputFilterByType DEFLATE text/xml
   AddOutputFilterByType DEFLATE text/css

@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /docs
 Disallow: /docs.html
+Disallow: /tools/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&from
 
 Sitemap: https://brewtechology.ru/sitemap.xml
-Host: https://brewtechology.ru
